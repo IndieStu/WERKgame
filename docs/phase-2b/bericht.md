@@ -57,3 +57,7 @@ Die technische Grundlage ist weiterhin auf **eine Quest** begrenzt. Regal und fr
 [Selbstbedienung und menschlicher Nutzungstest](nutzungstest.md) liegen bereit. Noch keine menschliche Spielbarkeit, pädagogische Qualität oder unterhaltsame Experience als nachgewiesen behaupten. Fachreview der vereinfachten Material-/Verfahrensinhalte und reale iPad-Prüfung stehen aus. Die ursprüngliche Schätzung von 6–9 PT ist Planungsaufwand, keine aus Agentlaufzeit abgeleitete Ist-Zeiterfassung.
 
 Empfehlung: Auftraggeber spielt ohne Debug durch, danach kurze Beobachtung mit unvorbereiteten Personen. Finden sie Jonas, Messung und Werkbank, verstehen sie das Planen und erkennen sie ihre Folge? Erst dann gezielte UX-Korrekturen bzw. Freigabe entscheiden. **Hier stoppen. Phase 3 bleibt bis zur ausdrücklichen Freigabe gesperrt.**
+
+## Aufgenommenes Reviewfeedback · 21.10.2026
+
+Für das finale Spiel sind figurengebundene Sprechblasen und räumlich zugeordnete Antwortmöglichkeiten nach den bereitgestellten Graveyard-Keeper-Referenzen gewünscht; die untere Dialogbox ist vorläufig. [Creative Direction](../design/creative-direction.md) und [Storyboard](../design/regalquest-storyboard.md) sind präzisiert. Virtuelles Messen und Proben bleiben Stellvertreter für später vorbereitete reale Werkstattstationen. In dieser Feedbackrunde keine Änderung des Builds und kein Start von Phase 3.

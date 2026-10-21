@@ -39,7 +39,11 @@ Die Welt gibt Orientierung durch Standorte, Silhouetten, Reaktionen und wiederer
 
 ## 3. NPC-Gespräche
 
-Ansprache erfolgt in der Welt. Eine kompakte Dialogbox am unteren Rand lässt Figur und Gesprächsort sichtbar. Sprechername, höchstens ein bis zwei kurze Sätze und wenige situative Antworten bilden einen Gesprächswechsel. Auf schmalen Displays darf sich die Box vergrößern, ohne zum langen Informationsblatt zu werden.
+Ansprache erfolgt in der Welt. **Präzisierung durch den Auftraggeber am 21.10.2026:** Im finalen Spiel erscheinen Texte als Sprechblasen räumlich an der sprechenden Figur. Antwortmöglichkeiten werden ebenfalls als zugeordnetes Auswahlfeld in der Welt dargestellt, ähnlich den bereitgestellten Graveyard-Keeper-Beispielen (`statuette-quest.jpg`, `wine-flask-quest.jpg`). Diese Referenzen zeigen Gesprächszuordnung und Auswahlprinzip, keine zu übernehmenden Assets.
+
+Sprechername, höchstens ein bis zwei kurze Sätze und wenige situative Antworten bilden einen Gesprächswechsel. Blasen folgen der Figur/Kamera; am Bildschirmrand werden sie lesbar eingepasst, Figuren und wichtige Interaktionsziele bleiben erkennbar. Auf Touchgeräten müssen Auswahlflächen groß genug sein. Semantisches HTML, Tastaturfokus, vergrößerbare Schrift und zugängliche Alternativen bleiben erhalten. Die endgültige Anordnung ist mit realen Geräten zu prüfen.
+
+Die bisherige Box am unteren Rand im Phase-2B-Build ist eine vorläufige Dialogdarstellung und nicht mehr das finale Layoutziel. Dieses Feedback wird zunächst dokumentiert; daraus folgt weder eine Phase-2B-Abnahme noch eine Freigabe von Phase 3.
 
 Jonas spricht aus einer konkreten Situation:
 
