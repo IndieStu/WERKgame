@@ -1,6 +1,6 @@
 # UX-Storyboard: Ein Regal fürs Fest
 
-21.10.2026 · **Entwurf zum Review, keine Implementierungsfreigabe.** Ergänzt die [Creative-Direction-/Player-Experience-Revision](creative-direction.md). Der bisherige Build ist technische Vorarbeit; dieses Storyboard beschreibt eine andere beabsichtigte Experience.
+21.10.2026 · **Vom Auftraggeber inhaltlich freigegeben.** Umsetzung als begrenzter [Phase-2B-Prototyp](../phase-2b/plan.md) ist autorisiert; dessen menschliches Review steht aus. Phase 3 bleibt gesperrt. Der [WERK-Fest-Arc](werk-fest.md) ergänzt die langfristige Richtung. Die folgende Kritik am Dashboard bezieht sich auf den historischen Phase-2-Build.
 
 ## Ausgangssituation und Umfang
 

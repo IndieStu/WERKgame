@@ -1,6 +1,6 @@
 # Creative Direction und Player Experience – Revision zu Phase 2
 
-21.10.2026 · **Entscheidungsvorlage, noch nicht freigegeben.** Dieser Zwischenschritt folgt auf den technischen Phase-2-Build und liegt vor Phase 3. Er ersetzt keine historische Abnahme von Phase 1. Phase 2 ist inhaltlich und UX-seitig nicht abgenommen. Bis zum Review werden weder Produktionscode noch finale Assets ergänzt.
+21.10.2026 · **Vom Auftraggeber inhaltlich freigegeben.** Umsetzung als begrenzter [Phase-2B-Prototyp](../phase-2b/plan.md) ist autorisiert; dessen menschliches Review steht aus. Phase 3 bleibt gesperrt. Der [WERK-Fest-Arc](werk-fest.md) ergänzt die langfristige Richtung. Die folgende Kritik am Dashboard bezieht sich auf den historischen Phase-2-Build.
 
 ## Leitentscheidung und Aussagegrenzen
 
@@ -8,7 +8,7 @@
 
 Das Ziel ist ein charmantes, modernes isometrisches Pixel-Art-Adventure/RPG für etwa 13–18-Jährige. Die Person kommt wegen eines Ortes, seiner Menschen und kleiner Probleme ins Spiel. Berufsorientierung entsteht durch Tätigkeiten und Entscheidungen in dieser Welt und im echten WERK.
 
-Der aktuelle Build ist eine nützliche technische Questvorarbeit mit Developer UI. Die Bezeichnung „durchspielbar“ war zu weitgehend. Vier Ebenen sind künftig getrennt zu beurteilen:
+Der historische Phase-2-Build ist eine nützliche technische Questvorarbeit mit Developer UI. Die Bezeichnung „durchspielbar“ war zu weitgehend. Vier Ebenen sind künftig getrennt zu beurteilen:
 
 | Ebene | Erforderlicher Nachweis |
 |---|---|

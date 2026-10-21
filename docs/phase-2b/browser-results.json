@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-21T15:09:29.702Z",
+  "results": [
+    {
+      "environment": "Chrome headless on Mac with SwiftShader",
+      "browser": "155.0.8059.86",
+      "readyMs": 3634.800000011921,
+      "viewport": {
+        "w": 1280,
+        "h": 900,
+        "canvasW": 1280,
+        "canvasH": 900
+      },
+      "metrics": {
+        "fps": "60 fps",
+        "save": "Lokal gespeichert",
+        "offline": "Offline bereit"
+      },
+      "checks": {
+        "gameFirst": true,
+        "physicalObjectApproach": true,
+        "voluntaryCup": true,
+        "directControl": true,
+        "tapObjectControl": true,
+        "tapFloorMovement": true,
+        "measurementRetry": true,
+        "explorationGate": true,
+        "alternativeChoice": true,
+        "planningInteraction": true,
+        "planningReload": true,
+        "worldChange": true,
+        "optionalCareerConversation": true,
+        "offlineReload": true,
+        "offlineNewTab": true
+      },
+      "errors": []
+    },
+    {
+      "environment": "Chromium iPad touch emulation; NOT real iPad/Safari",
+      "browser": "155.0.8059.86",
+      "readyMs": 332.5,
+      "viewport": {
+        "w": 810,
+        "h": 1080,
+        "canvasW": 810,
+        "canvasH": 1080
+      },
+      "metrics": {
+        "fps": "59 fps",
+        "save": "Lokal gespeichert",
+        "offline": "Offline bereit"
+      },
+      "checks": {
+        "gameFirst": true,
+        "physicalObjectApproach": true,
+        "voluntaryCup": true,
+        "directControl": true,
+        "tapObjectControl": true,
+        "tapFloorMovement": true,
+        "measurementRetry": true,
+        "explorationGate": true,
+        "alternativeChoice": true,
+        "planningInteraction": true,
+        "planningReload": true,
+        "worldChange": true,
+        "optionalCareerConversation": true,
+        "offlineReload": true,
+        "offlineNewTab": true
+      },
+      "errors": []
+    }
+  ],
+  "phoneDialogFits": true,
+  "phoneFullFlow": true,
+  "oldSaveBackedUpAndRestarted": true,
+  "futureSavePreserved": true,
+  "deniedStorageVisible": true,
+  "browserRestartOfflineAtMaterial": true,
+  "humanUsabilityTest": "pending",
+  "realIpadSafari": "pending"
+}

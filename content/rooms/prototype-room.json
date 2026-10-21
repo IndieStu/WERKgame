@@ -1,74 +1,124 @@
 {
   "objects": [
     {
-      "id": "shelf",
-      "label": "Regal",
+      "id": "site",
+      "label": "Freier Regalplatz",
       "x": 4,
-      "y": 4,
-      "height": 90,
-      "color": 7634311,
-      "description": "Hier soll das Regal für unsere Festkisten entstehen. Nach dem Abschluss steht hier dein virtuelles Ergebnis.",
-      "shortLabel": "Regal"
+      "y": 2,
+      "height": 8,
+      "color": 11054228,
+      "shortLabel": "Platz",
+      "description": "Hier könnte ein Regal stehen.",
+      "detail": "Im Prototyp misst du virtuell. Später wäre das der vorbereitete sichere Messort im echten WERK.",
+      "kind": "site"
     },
     {
       "id": "bench",
-      "label": "Werkbank",
+      "label": "Werkbank mit Regalplan",
       "x": 2,
       "y": 3,
-      "height": 32,
+      "height": 30,
       "color": 9867658,
-      "description": "Auf einer Werkbank werden Teile vorbereitet und geprüft. In diesem Slice musst du hier nichts mit echten Werkzeugen tun.",
-      "shortLabel": "Werkbank"
+      "shortLabel": "Werkbank",
+      "description": "Ein Plan, zwei Böden. Und hoffentlich genug Platz für die Kisten.",
+      "detail": "Der vereinfachte Plan ist ein Spielmodell, keine Bauanleitung.",
+      "kind": "block"
     },
     {
-      "id": "machine",
-      "label": "Maschinen-Infopunkt",
-      "x": 6,
-      "y": 3,
-      "height": 57,
+      "id": "cut",
+      "label": "Plattenzuschnitt",
+      "x": 7,
+      "y": 2,
+      "height": 45,
       "color": 8885659,
-      "description": "Wiederholbarer Plattenzuschnitt kann bei einfachen Rechtecken sinnvoll sein. CNC kann Konturen wiederholen, braucht aber Programmierung und Einrichtung. Maschinen bleiben hier rein virtuell.",
-      "shortLabel": "Maschine"
+      "shortLabel": "Zuschnitt",
+      "description": "Rechtecke? Immer wieder das gleiche Maß? Dafür bin ich da.",
+      "detail": "Gleiche Einstellungen können beim Wiederholen helfen. Das Ergebnis wird trotzdem geprüft. Bedienung im echten WERK nur durch eingewiesene Personen.",
+      "kind": "block"
     },
     {
-      "id": "box",
-      "label": "Kiste und Messkarte",
-      "x": 1,
+      "id": "cnc",
+      "label": "CNC-Infopunkt",
+      "x": 7,
       "y": 4,
-      "height": 23,
-      "color": 11642238,
-      "description": "Messkarte · Kiste A: Breite 40 cm, Tiefe 30 cm, Höhe 25 cm. Gesucht ist die Breite, von links nach rechts.",
-      "shortLabel": "Kiste"
+      "height": 55,
+      "color": 7765130,
+      "shortLabel": "CNC",
+      "description": "Ein Programm, viele Wiederholungen. Auch mit besonderen Konturen.",
+      "detail": "Programmierung und Einrichtung brauchen Zeit. Für einfache Rechtecke kann ein Zuschnitt weniger Vorbereitung benötigen.",
+      "kind": "machine"
     },
     {
-      "id": "materials",
-      "label": "Drei Materialproben",
-      "x": 6,
+      "id": "multiplex",
+      "label": "Multiplexprobe",
+      "x": 1,
+      "y": 2,
+      "height": 14,
+      "color": 12158602,
+      "shortLabel": "Multiplex",
+      "description": "Die Kante sieht aus wie ein kleiner Schichtkuchen.",
+      "detail": "Viele verleimte Furnierlagen. Hier: sichtbare Kante, höherer Preis. Für den Vergleich nehmen wir ausreichend dimensionierte Platten und trockenen Einsatz an.",
+      "kind": "sample"
+    },
+    {
+      "id": "mdf",
+      "label": "MDF-Probe",
+      "x": 1,
       "y": 6,
-      "height": 22,
-      "color": 11512725,
-      "description": "Multiplex: sichtbare Schichtkante, höherer Preis. MDF: glatte Fläche, zusätzliche Kantenbeschichtung. OSB: markante Struktur. Im Beispiel sind alle ausreichend dimensioniert und trocken eingesetzt; keine reale Belastungszusage.",
-      "shortLabel": "Proben"
+      "height": 14,
+      "color": 12365972,
+      "shortLabel": "MDF",
+      "description": "Ganz glatt. Nur die Kante ist noch rau.",
+      "detail": "Feine Holzfasern bilden eine gleichmäßige Platte. Für unsere Gestaltung bekommt die Kante noch eine Beschichtung.",
+      "kind": "sample"
+    },
+    {
+      "id": "osb",
+      "label": "OSB-Probe",
+      "x": 7,
+      "y": 7,
+      "height": 14,
+      "color": 11707512,
+      "shortLabel": "OSB",
+      "description": "Da stecken ja richtig große Späne drin.",
+      "detail": "Die sichtbare Struktur kann Teil der Gestaltung werden. Material, Aufbau und Belastung müssen bei einem echten Regal fachlich geprüft werden.",
+      "kind": "sample"
     },
     {
       "id": "coffee",
-      "label": "Jonas’ Kaffeetasse",
+      "label": "Jonas’ Tasse",
       "x": 2,
       "y": 6,
-      "height": 17,
-      "color": 13294809,
-      "description": "Für die Regalplanung nicht nötig. Für Jonas offenbar schon. Die Tasse gibt keine Punkte und schaltet nichts frei.",
-      "shortLabel": "Tasse"
+      "height": 12,
+      "color": 13154732,
+      "shortLabel": "Tasse",
+      "description": "Noch warm.",
+      "detail": "",
+      "kind": "coffee"
+    },
+    {
+      "id": "crates",
+      "label": "Festkisten",
+      "x": 4,
+      "y": 4,
+      "height": 25,
+      "color": 11052661,
+      "shortLabel": "Kisten",
+      "description": "Das Fest wächst. Der freie Boden nicht.",
+      "detail": "",
+      "kind": "crates"
     },
     {
       "id": "jonas",
       "label": "Jonas",
-      "x": 5,
+      "x": 4,
       "y": 6,
       "height": 48,
       "color": 7244992,
-      "description": "Jonas plant mit dir ein Regal für das WERK-Fest. Ein Placeholder mit blauer Jacke, Cap und Brille; keine finale Personenillustration.",
-      "shortLabel": "JONAS"
+      "shortLabel": "Jonas",
+      "description": "Wohin nur mit den Kisten …",
+      "detail": "",
+      "kind": "npc"
     }
   ]
 }

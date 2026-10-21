@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-21T15:09:36.489Z",
+  "files": [
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "bytes": 2542,
+      "gzipBytes": 983
+    },
+    {
+      "path": "dist/assets/index-5UXjyeQv.css",
+      "bytes": 5539,
+      "gzipBytes": 2008
+    },
+    {
+      "path": "dist/assets/index-D99uAGZe.js",
+      "bytes": 1431306,
+      "gzipBytes": 387919
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 2787,
+      "gzipBytes": 1195
+    },
+    {
+      "path": "dist/sw.js",
+      "bytes": 1256,
+      "gzipBytes": 618
+    }
+  ],
+  "totalBytes": 1443430,
+  "totalGzipBytes": 392723,
+  "note": "Computed gzip, not measured network transfer; local Vite preview may send uncompressed files."
+}

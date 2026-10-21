@@ -10,7 +10,8 @@
     "roomId",
     "npcId",
     "startStepId",
-    "steps"
+    "steps",
+    "discoveries"
   ],
   "properties": {
     "schemaVersion": {
@@ -59,7 +60,8 @@
               "real_world_task",
               "measurement",
               "choice",
-              "result"
+              "result",
+              "planning"
             ]
           },
           "title": {
@@ -88,7 +90,7 @@
           },
           "stationId": {
             "enum": [
-              "box"
+              "site"
             ]
           },
           "mode": {
@@ -160,6 +162,38 @@
                 "next": {
                   "type": "string",
                   "minLength": 1
+                },
+                "requires": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "all": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "minOf": {
+                      "type": "object",
+                      "required": [
+                        "ids",
+                        "count"
+                      ],
+                      "properties": {
+                        "ids": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "count": {
+                          "type": "integer",
+                          "minimum": 1
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -180,6 +214,41 @@
           "completedText": {
             "type": "string",
             "minLength": 1
+          },
+          "requires": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "all": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "minOf": {
+                "type": "object",
+                "required": [
+                  "ids",
+                  "count"
+                ],
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            }
+          },
+          "blockedText": {
+            "type": "string"
           }
         },
         "allOf": [
@@ -263,8 +332,29 @@
                 "completedText"
               ]
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "planning"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "next"
+              ]
+            }
           }
         ]
+      }
+    },
+    "discoveries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
       }
     }
   }

@@ -1,6 +1,8 @@
 # Entwicklungsplan und erster Vertical Slice
 
-Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 und die technische Phase 1 bleiben abgenommen. Phase 2 ist nach dem Testfeedback inhaltlich und UX-seitig nicht freigegeben. Vor Phase 3 liegt eine reine Creative-Direction-/UX-Revision zum Review vor; kein neuer Produktionscode oder finale Assets in diesem Zwischenschritt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
+Stand 21.10.2026. Phase 0 und die technische Phase 1 sind abgenommen. Creative Direction und Regalquest-Storyboard sind inhaltlich freigegeben. **Phase 2B – UX Gameplay Prototype ist implementiert und technisch geprüft**, mit Placeholdern und noch offenem menschlichen Review; **Phase 3 bleibt gesperrt**. Phaser + TypeScript + Vite bleiben gesetzt. Alle visuellen Produktionsmaße sind vorläufig. Ein Personentag entspricht etwa sechs konzentrierten Arbeitsstunden; Spannen sind Planungsannahmen, keine gemessenen Ist-Aufwände.
+
+Die langfristige Leitidee [Das WERK-Fest](design/werk-fest.md) ist aufgenommen: frei gewählte Interessen, mehrere Quests pro Raum, unabhängige sichtbare Weltbeiträge und spätere Content-Erweiterungen. Die dortige Architekturprüfung benennt aktuelle Grenzen und den erforderlichen Ausbau vor einer zweiten aktiven Quest. Sie gibt keine weiteren Quests oder Produktionsassets frei.
 
 ## Phase 0 – Analyse und Entscheidungen
 
@@ -39,7 +41,7 @@ Status und technische Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Technisc
 - **Risiken:** aus einer Miniquest einen Werkstattsimulator machen; überlange Texte; vermeintlich eindeutige Maschinenantwort.
 - **Done:** technische Checks separat bestanden; zusätzlich Spielbarkeit und unterhaltsame Experience mit Personen beobachten und pädagogischen Inhalt fachlich prüfen. Finden sie aus eigener Neugier Informationen, verstehen sie Handlungen und Folgen und möchten sie einen weiteren Raum erkunden? Ein Completed-State genügt nicht. Die formative Probe ist kein Wirksamkeitsnachweis.
 
-## Zwischenschritt: Creative Direction und Player Experience revidieren
+## Zwischenschritt: Creative Direction und Player Experience revidieren · inhaltlich freigegeben
 
 - **Ziel:** die technische Questvorarbeit als Adventure statt Web-/E-Learning-UI weiterdenken, bevor Phase 3 beginnt.
 - **Deliverables:** [Creative-Direction-/Player-Experience-Revision](design/creative-direction.md), [konkretes Regalquest-Storyboard](design/regalquest-storyboard.md), korrigierte Einordnung der bisherigen Nachweise.
@@ -49,6 +51,10 @@ Status und technische Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Technisc
 - **Abhängigkeiten:** Testfeedback zum vorhandenen Build.
 - **Risiko:** technische Ausführbarkeit erneut mit Gameplay oder Experience verwechseln. Vier Nachweise strikt trennen.
 - **Done:** Dokumente zur Durchsicht bereitstellen und stoppen. Ein Umbau folgt erst nach Review/Freigabe; Phase 3 bleibt gesperrt.
+
+## Phase 2B – UX Gameplay Prototype · 6–9 PT
+
+[Konkreter Umfang, Aufwand und Abnahme](phase-2b/plan.md) · [Reviewbericht](phase-2b/bericht.md) · [Nutzungstest](phase-2b/nutzungstest.md). Die freigegebene Experience wird in einem erfundenen Placeholder-Raum spielbar: Weltansicht, räumliche Gespräche/Erkundung/Messung, Material- und Verfahrenswahl, echtes Regalplanungs-Minispiel, sichtbare eingeräumte Kisten. Technische Prüfung und menschlicher Nutzungstest bleiben getrennte Nachweise. Danach stoppen und Review abwarten. Keine Fest-Gesamtwelt, weiteren Werkstätten oder Produktionsassets in diesem Schritt.
 
 ## Phase 3 – Eine reale Werkstatt · 6–10 PT
 
@@ -61,9 +67,9 @@ Status und technische Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Technisc
 - **Risiken:** Umbau, fehlende sichere Station, falsche Maßannahmen.
 - **Done:** Standort bestätigt sichere Route; Jugendliche finden vorbereitete Stationen; Quest funktioniert bei abgeschaltetem WLAN und bei gesperrter Station über Alternative.
 
-## Phase 4 – Content-System stabilisieren · 4–7 PT
+## Phase 4 – Content-System stabilisieren · bisherige Schätzung 4–7 PT, neu zu schätzen
 
-- **Ziel:** neue Quests überwiegend redaktionell hinzufügen.
+- **Ziel:** neue Quests überwiegend redaktionell hinzufügen. Vor einer zweiten aktiven Quest die im [WERK-Fest-Architekturreview](design/werk-fest.md) benannten Einzelquest-/Save-/Weltkopplungen lösen; neue Schätzung nach 2B und konkreter Contentwahl.
 - **Deliverables:** zwei weitere datenbasierte Quests, Autor:innenanleitung und Migrationsbeispiel.
 - **Technik:** Referenz-/Erreichbarkeitsprüfung, wiederholbare Übergänge, Savevorgänger-Test; nur nachgewiesene neue Schritttypen ergänzen.
 - **Content:** Werkzeugdetektiv und eine zweite Abwägungsaufgabe; Hilfen/Tiefe für alle drei Quests.

@@ -14,7 +14,7 @@ hash.update(await readFile(new URL(import.meta.url)));
 const version=hash.digest('hex').slice(0,12);
 const urls=paths.map(p=>'./'+p.slice(5));
 await writeFile('dist/sw.js',`
-const CACHE='werk-phase2-${version}';
+const CACHE='werk-phase2b-${version}';
 const URLS=${JSON.stringify(urls)};
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  try { const cache=await caches.open(CACHE); await cache.addAll(URLS); }

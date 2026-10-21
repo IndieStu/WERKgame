@@ -1,46 +1,32 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#202830">
-  <link rel="icon" href="data:,">
-  <title>WERK · Das Regal fürs Fest</title>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#19232b"><link rel="icon" href="data:,"><title>WERK · Kurz vor dem Fest</title>
 </head>
 <body>
-<main>
-  <header><span>WERK / VERTICAL SLICE</span><h1>Ein Regal fürs Fest.</h1><p>Ein erfundener Raum, ein gemeinsamer Plan. Alle Grafiken und Maße sind vorläufig.</p></header>
-  <section class="toolbar" aria-label="Steuerung und Start">
-    <label>Bewegungsvariante<select id="mode"><option value="tap">A · Tap-to-Move</option><option value="direct">B · Direkte Richtungstasten</option></select></label>
-    <label>Avatarpreset<select id="avatar"><option value="mint">Mint</option><option value="orange">Ocker</option></select></label>
-    <label>Unterstützung<select id="help"><option value="normal">Hinweise auf Anfrage</option><option value="more">Erste Hinweise direkt zeigen</option></select></label>
-    <button id="reset">Neue Runde</button>
+<main id="play" aria-label="WERK Spielwelt">
+  <div id="game"></div>
+  <div id="world-controls" aria-label="Dinge in der Spielwelt"></div>
+  <nav id="hud" hidden aria-label="Spielmenü">
+    <button id="notebook-button">Notizen</button><button id="menu-button">Menü</button>
+  </nav>
+  <div id="pad" hidden aria-label="Bewegen"><button data-dir="up" aria-label="Links oben">↖</button><button data-dir="right" aria-label="Rechts oben">↗</button><button data-dir="left" aria-label="Links unten">↙</button><button data-dir="down" aria-label="Rechts unten">↘</button></div>
+  <p id="toast" role="status" aria-live="polite"></p>
+  <p id="notice" role="alert" hidden></p>
+  <section id="start" aria-labelledby="start-title">
+    <span class="eyebrow">KURZ VOR DEM FEST</span><h1 id="start-title">WERK</h1><p>Ein Platz für gute Ideen.<br>Und für ziemlich viele Kisten.</p>
+    <button id="continue">Fortsetzen</button><button id="new-game">Neues Spiel</button><button id="start-settings">Einstellungen &amp; Zugänglichkeit</button>
+    <p id="migration-note" class="secondary" hidden>Die neue Runde beginnt mit einer anderen Geschichte. Dein früherer Teststand bleibt als Sicherung erhalten.</p>
   </section>
-  <div class="workspace">
-    <section class="world" aria-label="Virtueller Raum">
-      <div id="game" tabindex="0" aria-label="Isometrischer Fantasie-WERK-Raum. Alternativ die Objektliste verwenden."></div>
-      <div id="pad" hidden aria-label="Direkte Touchsteuerung">
-        <button data-dir="up" aria-label="Nach links oben bewegen">↖</button>
-        <button data-dir="right" aria-label="Nach rechts oben bewegen">↗</button>
-        <button data-dir="left" aria-label="Nach links unten bewegen">↙</button>
-        <button data-dir="down" aria-label="Nach rechts unten bewegen">↘</button>
-      </div>
-      <p id="instruction"></p>
-      <section class="objects-panel"><h2>Dinge im Raum</h2><p>Klick oder Tap läuft zum Objekt. Die Liste funktioniert auch mit Tastatur.</p><div id="objects"></div></section>
-    </section>
-    <aside aria-label="Questlog">
-      <span class="eyebrow">DEIN AUFTRAG</span><h2 id="quest-title"></h2>
-      <p id="quest-progress"></p><progress id="progress" max="7" value="0" aria-label="Questfortschritt"></progress>
-      <h3 id="step-title"></h3><p id="objective"></p>
-      <button id="resume">Mit Jonas sprechen</button>
-      <p id="outcome" role="status"></p>
-      <details><summary>Technik &amp; Testbericht</summary><dl><dt>Speichern</dt><dd id="save-status">Wird geladen …</dd><dt>Offline</dt><dd id="offline-status">Nur Produktionsbuild</dd><dt>Messung</dt><dd id="metrics">Start …</dd><dt>Position</dt><dd id="position">–</dd></dl><button id="export">Testbericht herunterladen</button><p>Nur lokal. Kein Upload. E öffnet den Auftrag; Pfeile oder WASD bewegen die Figur.</p></details>
-    </aside>
-  </div>
-  <p id="message" role="status" aria-live="polite">Wird geladen …</p>
-  <dialog id="dialog" aria-labelledby="dialog-title">
-    <div class="dialog-header"><span id="speaker">JONAS</span><button id="close-dialog" aria-label="Dialog schließen">Schließen</button></div>
-    <h2 id="dialog-title"></h2><div id="dialog-body"></div>
+  <dialog id="talk" aria-labelledby="speaker"><div class="talk-heading"><span id="speaker"></span><button id="close-talk" aria-label="Gespräch schließen">Schließen</button></div><div id="talk-body"></div></dialog>
+  <dialog id="panel" aria-labelledby="panel-title"><div class="panel-heading"><h2 id="panel-title"></h2><button id="close-panel">Zurück</button></div><div id="panel-body"></div></dialog>
+  <dialog id="planner" aria-labelledby="plan-title">
+    <div class="panel-heading"><h2 id="plan-title">Platz für zwei Kisten</h2><button id="close-plan">Zurück in den Raum</button></div>
+    <p id="plan-instruction" role="status">Wähle einen Boden und dann eine Höhe.</p>
+    <p class="secondary">80 cm Platz in der Höhe. Jede Kiste braucht ein eigenes Fach und 2 cm Luft. Wähle links eine Höhe, rechts einen Boden oder eine Kiste.</p>
+    <div class="plan-workspace"><div id="blueprint" aria-label="Regalplan"></div><div id="plan-parts" aria-label="Bauteile"></div></div>
+    <p id="plan-feedback" role="status" aria-live="polite"></p><button id="confirm-plan">Den Plan mitnehmen</button>
   </dialog>
 </main>
 <script type="module" src="/game/source/main.ts"></script>

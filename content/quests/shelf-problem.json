@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "shelf_problem",
-  "revision": 1,
+  "revision": 2,
   "title": "Ein Regal fürs WERK-Fest",
   "roomId": "prototype_room",
   "npcId": "jonas",
@@ -11,119 +11,188 @@
       "id": "briefing",
       "type": "dialogue",
       "title": "Ein Platz für die Festkisten",
-      "text": "Für unser WERK-Fest brauchen wir ein Regal. Bevor wir etwas bauen, brauchen wir einen Plan. Hilfst du mir?",
-      "objective": "Sprich mit Jonas und finde heraus, was gebraucht wird.",
+      "text": "Mist. Fürs Fest haben wir schon wieder mehr Kisten als Plätze.",
+      "objective": "Frag Jonas, was mit den Kisten passieren soll.",
       "next": "observe"
     },
     {
       "id": "observe",
       "type": "real_world_task",
-      "title": "Erst schauen, dann planen",
-      "text": "Später würdest du jetzt eine vorbereitete Kiste im echten WERK vermessen. Hier üben wir den Wechsel mit einer Messkarte.",
-      "objective": "Untersuche die fiktive Kiste und merke dir ihre Breite.",
+      "title": "Platz an der Wand",
+      "text": "Schau dir den freien Platz an der Rückwand an. Wie breit ist der eigentlich?",
+      "objective": "Untersuche den markierten freien Platz an der Rückwand.",
       "safetyText": "Dies ist eine Simulation. Keine Maschinen bedienen und keine echten Werkzeuge holen.",
-      "stationId": "box",
+      "stationId": "site",
       "mode": "simulated",
-      "observation": "Messkarte · Kiste A: Breite 40 cm, Tiefe 30 cm, Höhe 25 cm. Gesucht ist die Breite, von links nach rechts.",
+      "observation": "Der freie Platz ist im Beispiel 90 cm breit.",
       "hints": [
-        "Öffne die Messkarte bei der Kiste.",
-        "Die Karte unterscheidet Breite, Tiefe und Höhe.",
-        "Für den nächsten Schritt brauchst du die Breite: 40 cm."
+        "An der Rückwand ist eine freie markierte Stelle.",
+        "Geh zum gestrichelten Umriss und untersuche ihn.",
+        "Wähle am Platz zuerst den linken, dann den rechten Messpunkt."
       ],
-      "next": "measure"
+      "next": "measure",
+      "requires": {
+        "all": [
+          "site"
+        ]
+      },
+      "blockedText": "Sieh dir erst den Platz an der Rückwand an."
     },
     {
       "id": "measure",
       "type": "measurement",
-      "title": "Wie breit ist die Kiste?",
-      "text": "Welche Breite hast du auf der Messkarte gefunden? Wir brauchen erst einmal das Kistenmaß, noch kein fertiges Regalmaß.",
-      "objective": "Gib die Breite der Beispielkiste in Zentimetern ein.",
+      "title": "Den Platz ausmessen",
+      "text": "Leg den Anfang links an. Dann schau, wo der Platz rechts aufhört.",
+      "objective": "Miss am Standort zwischen den beiden Endpunkten.",
       "unit": "cm",
       "expected": {
-        "value": 40,
-        "tolerance": 0.5
+        "value": 90,
+        "tolerance": 1
       },
-      "retryFeedback": "Prüf noch einmal Breite und Einheit. Ein Kistenmaß ist schnell mit Tiefe oder Millimetern verwechselt.",
-      "successFeedback": "Genau, ungefähr 40 cm. Für ein echtes Regal müssten wir später noch Spielraum, Brettstärke und Last einplanen.",
+      "retryFeedback": "So breit? Schau noch mal auf das Maßband. Zentimeter, nicht Millimeter.",
+      "successFeedback": "Das Maß hast du. Erzähl Jonas, wie viel Platz da ist.",
       "hints": [
-        "Du kannst die Messkarte jederzeit erneut öffnen.",
-        "Gesucht ist die Breite in Zentimetern, nicht die Tiefe.",
-        "Die Breite der Beispielkiste ist 40 cm."
+        "Untersuche den freien Platz.",
+        "Wähle dort nacheinander Anfang und Ende des Maßbands.",
+        "Das Maßband zeigt 90 cm."
       ],
+      "next": "report_measure",
+      "requires": {
+        "all": [
+          "measure_start",
+          "measure_end"
+        ]
+      },
+      "blockedText": "Lege zuerst beide Messpunkte am Standort fest."
+    },
+    {
+      "id": "report_measure",
+      "type": "dialogue",
+      "title": "Das Maß zurückbringen",
+      "text": "90 cm? Gut. Dann passt unser kleines Regal mit etwas Luft daneben. Jetzt fehlt noch das Material.",
+      "objective": "Erzähl Jonas am Kistenstapel von deinem Maß.",
       "next": "material"
     },
     {
       "id": "material",
       "type": "choice",
       "title": "Welches Material – und warum?",
-      "text": "Im Beispiel sind alle drei Platten passend dimensioniert und trocken eingesetzt. Das Regal soll auch gut aussehen. Wofür würdest du dich entscheiden?",
-      "objective": "Vergleiche drei Materialkarten und entscheide dich mit einer Begründung.",
-      "context": "Didaktische Annahmen, keine Belastungsberechnung: Multiplex kostet mehr; MDF braucht Kantenbeschichtung; OSB hat eine deutlich sichtbare Struktur.",
+      "text": "Welche Oberfläche passt für unser Fest? Schau dir die Proben an – dann entscheiden wir.",
+      "objective": "Vergleiche mindestens zwei Materialproben im Raum.",
       "hints": [
-        "Es geht um eine Abwägung, nicht um einen einzigen richtigen Werkstoff.",
-        "Vergleiche Preis, Oberfläche und zusätzliche Arbeit.",
-        "Alle drei sind hier möglich. Wähle die Eigenschaft, die dir für das Fest wichtig ist."
+        "Die drei Proben liegen verteilt im Raum.",
+        "Untersuche mindestens zwei und vergleiche Oberfläche und Kante.",
+        "Komm danach zu Jonas zurück. Du kannst jedes Material wählen, das du angesehen hast."
       ],
       "options": [
         {
           "id": "multiplex",
-          "label": "Multiplex – sichtbare Kanten, dafür höherer Preis",
-          "feedback": "Du priorisierst die fertige Kantenansicht und nimmst höhere Kosten in Kauf. Unter unseren Beispielannahmen ist das nachvollziehbar.",
-          "next": "process"
+          "label": "Die Schichtkante von Multiplex gefällt mir.",
+          "feedback": "Dann lassen wir die Kante sichtbar. Kostet im Beispiel etwas mehr, spart aber einen Arbeitsschritt.",
+          "next": "process",
+          "requires": {
+            "all": [
+              "multiplex"
+            ]
+          }
         },
         {
           "id": "mdf",
-          "label": "MDF – glatte Fläche, Kanten zusätzlich beschichten",
-          "feedback": "Du wählst eine glatte Fläche und planst zusätzliche Arbeit an den Kanten ein. Auch das kann zum Fest passen.",
-          "next": "process"
+          "label": "MDF – ich möchte eine glatte Fläche.",
+          "feedback": "Gut, dann planen wir die Kantenbeschichtung mit ein.",
+          "next": "process",
+          "requires": {
+            "all": [
+              "mdf"
+            ]
+          }
         },
         {
           "id": "osb",
-          "label": "OSB – markante Struktur als Teil der Gestaltung",
-          "feedback": "Du machst die sichtbare Struktur zum Gestaltungselement. Das ist eine begründbare Wahl, wenn sie zum gewünschten Look passt.",
-          "next": "process"
+          "label": "OSB – die Struktur passt zum Fest.",
+          "feedback": "Dann gehört die Struktur zur Gestaltung. Hat was.",
+          "next": "process",
+          "requires": {
+            "all": [
+              "osb"
+            ]
+          }
         }
-      ]
+      ],
+      "requires": {
+        "minOf": {
+          "ids": [
+            "multiplex",
+            "mdf",
+            "osb"
+          ],
+          "count": 2
+        }
+      },
+      "blockedText": "Vergleiche erst zwei der Proben. Eine liegt links hinten, eine bei der Tür, eine rechts vorn."
     },
     {
       "id": "process",
       "type": "choice",
       "title": "Mehrere gleiche Bretter",
-      "text": "Die Teile sind einfache Rechtecke aus einer großen Platte. Mehrere sollen gleich groß werden. Welchen virtuellen Ablauf planst du?",
-      "objective": "Wähle ein Fertigungsverfahren und beachte den Vorbereitungsaufwand.",
-      "context": "Die echte Ausführung übernehmen ausschließlich eingewiesene Personen. Wir planen hier nur im Spiel.",
+      "text": "Einfache Rechtecke, mehrmals gleich. Welchen Weg nehmen wir?",
+      "objective": "Untersuche Zuschnitt und CNC. Besprich die Möglichkeiten mit Jonas.",
       "hints": [
-        "Denk an Form und Ausgangsmaterial.",
-        "Für Rechtecke braucht man keine besonderen Fräskonturen.",
-        "Wiederholbarer Plattenzuschnitt ist hier einfach. CNC ist ebenfalls möglich, braucht aber mehr Vorbereitung."
+        "Rechts im Raum stehen zwei Maschinen-Infopunkte.",
+        "Untersuche beide und achte auf Form und Vorbereitung.",
+        "Für Rechtecke ist Zuschnitt einfach; CNC geht auch, braucht aber ein Programm."
       ],
       "options": [
         {
           "id": "panel_cut",
-          "label": "Plattenzuschnitt – Maße und wiederholbare Einstellung planen",
-          "feedback": "Das passt gut zu den einfachen Rechtecken. Gleiche Einstellungen helfen bei gleichen Teilen; prüfen müssen wir das Ergebnis trotzdem.",
-          "next": "complete"
+          "label": "Zuschnitt mit gleicher Einstellung.",
+          "feedback": "Für die Rechtecke ein direkter Weg. Lass uns die Böden planen.",
+          "next": "planning",
+          "requires": {
+            "all": [
+              "cut"
+            ]
+          }
         },
         {
           "id": "cnc",
-          "label": "CNC – ein Programm vorbereiten und danach wiederholen",
-          "feedback": "Auch das funktioniert grundsätzlich. Für diese Rechtecke ist der Programmier- und Einrichtungsaufwand höher. Bei besonderen Konturen könnte sich das eher lohnen.",
-          "next": "complete"
-        },
-        {
-          "id": "printer",
-          "label": "3D-Druck – die Holzplatte in den Drucker legen",
-          "feedback": "Ein Filamentdrucker verarbeitet keine Holzplatte. Schau noch einmal darauf, welches Ausgangsmaterial wir haben. Du kannst ohne Nachteil neu wählen.",
-          "next": "process"
+          "label": "CNC – einmal programmieren, dann wiederholen.",
+          "feedback": "Geht auch. Das Programm braucht Vorbereitung – bei Konturen wäre es besonders nützlich. Jetzt zu den Böden.",
+          "next": "planning",
+          "requires": {
+            "all": [
+              "cnc"
+            ]
+          }
         }
-      ]
+      ],
+      "requires": {
+        "all": [
+          "cut",
+          "cnc"
+        ]
+      },
+      "blockedText": "Schau dir zuerst Zuschnitt und CNC an. Beide haben ihre Stärken."
+    },
+    {
+      "id": "planning",
+      "type": "planning",
+      "title": "Platz für zwei Kisten",
+      "text": "Setz die Böden so, dass beide Kisten ein eigenes passendes Fach bekommen.",
+      "objective": "Plane die Fächer an der Werkbank und stelle beide Kisten hinein.",
+      "hints": [
+        "An der Werkbank liegt der Regalplan.",
+        "Wähle einen Boden, dann seine Höhe. Danach probierst du die Kisten in den Fächern aus.",
+        "Zum Beispiel Böden auf 30 und 70 cm: kleine Kiste unten, hohe Kiste in der Mitte."
+      ],
+      "next": "complete"
     },
     {
       "id": "complete",
       "type": "result",
       "title": "Aus dem Plan wird ein Regal",
-      "text": "Du hast ein Maß geprüft, Materialien verglichen und einen Fertigungsweg abgewogen. Jetzt setzen wir den Plan virtuell um.",
-      "objective": "Stelle das Regal virtuell fertig und schau auf die erlebten Tätigkeiten zurück.",
+      "text": "Der Plan passt. Bauen wir das Regal hier im Spiel auf?",
+      "objective": "Zeig Jonas deinen fertigen Plan.",
       "outcomeId": "shelf_finished",
       "careerFields": [
         "Tischlerei",
@@ -131,8 +200,18 @@
         "Technische Planung",
         "Produktgestaltung"
       ],
-      "reflection": "Was würdest du gern näher ausprobieren: messen, gestalten, Materialien vergleichen oder Abläufe planen? Deine Wahl ist keine Berufseignungsdiagnose.",
-      "completedText": "Dein Beitrag zum Fest: ein fertiges Regal. Die Kisten haben jetzt einen Platz."
+      "reflection": "Erst planen, dann weniger Gefluche. Wenn dir das Spaß macht: In Tischlereien und in der Produktgestaltung wird auch ständig so abgewogen.",
+      "completedText": "Endlich stehen die Kisten nicht mehr im Weg."
     }
+  ],
+  "discoveries": [
+    "site",
+    "measure_start",
+    "measure_end",
+    "multiplex",
+    "mdf",
+    "osb",
+    "cut",
+    "cnc"
   ]
 }
