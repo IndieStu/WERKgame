@@ -4,7 +4,7 @@ Ein webbasiertes isometrisches Spiel verbindet virtuelle Aufträge mit sicheren 
 
 **Status:** Phase 1 bleibt technisch abgenommen. Der vorhandene Phase-2-Build ist nützliche technische Questvorarbeit, aber **inhaltlich und UX-seitig nicht freigegeben**. Die permanente Weboberfläche ist Developer-/Test-UI und keine Vorlage für das Produkt. Vor Phase 3 liegt jetzt eine Creative-Direction-/Player-Experience-Revision zum Review vor. In diesem Zwischenschritt werden nur Dokumente geändert.
 
-[Creative Direction / Player Experience](docs/design/creative-direction.md) · [Konkretes Regalquest-Storyboard](docs/design/regalquest-storyboard.md) · [Technischer Phase-2-Bericht](docs/phase-2/bericht.md)
+[Creative Direction / Player Experience](docs/design/creative-direction.md) · [Konkretes Regalquest-Storyboard](docs/design/regalquest-storyboard.md) · [Visuelle Inspiration](docs/design/visual-reference-01.md) · [Technischer Phase-2-Bericht](docs/phase-2/bericht.md)
 
 **Repository:** [IndieStu/WERKgame](https://github.com/IndieStu/WERKgame) · SSH: `git@github.com:IndieStu/WERKgame.git`.
 

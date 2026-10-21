@@ -125,6 +125,10 @@ Ziel sind detaillierte, charmante isometrische Pixel Art, moderne Lesbarkeit, be
 
 Die UI unterstützt die Welt durch ruhige kleine Flächen, klare Typografie und wenige sichtbare Bedienelemente. Lesetext muss nicht pixelig sein. Kein Habbo-Nachbau und kein Dashboard-Look. Die jetzigen Farben, Quader, Figuren, Labels sowie Tile-/Sprite-/Viewportmaße sind keine akzeptierte Art Direction. Fotos, Grundrisse und Referenzen werden später gemeinsam erhoben. In dieser Revision entstehen keine Produktionsgrafiken.
 
+### Ergänzende Inspirationsgrafik
+
+Die vom Auftraggeber bereitgestellte [visuelle Referenz 01](visual-reference-01.md) konkretisiert die angestrebte warme, detailreiche und bewohnte Werkstattatmosphäre: klare isometrische Raumwirkung, erkennbare Einrichtung, kleine Geschichten in Gegenständen und Figuren als Teil der Welt. Sie ist kreative Inspiration und zeigt ausdrücklich nicht das tatsächliche WERK oder dessen Werkstattgrundriss. Sie ist weder Produktionsasset noch Implementierungsfreigabe; reale Landmarken und endgültige Pixel-/Kameramaße werden später erarbeitet.
+
 ## Review und nächster Freigabepunkt
 
 Das [Storyboard der Regalquest](regalquest-storyboard.md) konkretisiert diese Richtung. Zuerst Einstieg, primäre Weltansicht, Gesprächsform, reale/virtuelle Handlung und kleines Planungsproblem freigeben. Danach kann ein eng begrenzter Umbau der vorhandenen technischen Vorarbeit geplant werden; keine Neuimplementierung der funktionierenden Basis.
