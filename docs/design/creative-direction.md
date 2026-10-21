@@ -1,6 +1,6 @@
 # Creative Direction und Player Experience – Revision zu Phase 2
 
-21.10.2026 · **Entscheidungsvorlage, noch nicht freigegeben.** Dieser Zwischenschritt folgt auf den technischen Phase-2-Build und liegt vor Phase 3. Er ersetzt keine historische Abnahme von Phase 1. Phase 2 ist inhaltlich und UX-seitig nicht abgenommen. Bis zum Review werden weder Produktionscode noch finale Assets ergänzt.
+21.10.2026 · **Vom Auftraggeber inhaltlich freigegeben.** Umsetzung als begrenzter [Phase-2B-Prototyp](../phase-2b/plan.md) ist autorisiert; dessen menschliches Review steht aus. Phase 3 bleibt gesperrt. Der [WERK-Fest-Arc](werk-fest.md) ergänzt die langfristige Richtung. Die folgende Kritik am Dashboard bezieht sich auf den historischen Phase-2-Build.
 
 ## Leitentscheidung und Aussagegrenzen
 
@@ -8,7 +8,7 @@
 
 Das Ziel ist ein charmantes, modernes isometrisches Pixel-Art-Adventure/RPG für etwa 13–18-Jährige. Die Person kommt wegen eines Ortes, seiner Menschen und kleiner Probleme ins Spiel. Berufsorientierung entsteht durch Tätigkeiten und Entscheidungen in dieser Welt und im echten WERK.
 
-Der aktuelle Build ist eine nützliche technische Questvorarbeit mit Developer UI. Die Bezeichnung „durchspielbar“ war zu weitgehend. Vier Ebenen sind künftig getrennt zu beurteilen:
+Der historische Phase-2-Build ist eine nützliche technische Questvorarbeit mit Developer UI. Die Bezeichnung „durchspielbar“ war zu weitgehend. Vier Ebenen sind künftig getrennt zu beurteilen:
 
 | Ebene | Erforderlicher Nachweis |
 |---|---|
@@ -39,7 +39,11 @@ Die Welt gibt Orientierung durch Standorte, Silhouetten, Reaktionen und wiederer
 
 ## 3. NPC-Gespräche
 
-Ansprache erfolgt in der Welt. Eine kompakte Dialogbox am unteren Rand lässt Figur und Gesprächsort sichtbar. Sprechername, höchstens ein bis zwei kurze Sätze und wenige situative Antworten bilden einen Gesprächswechsel. Auf schmalen Displays darf sich die Box vergrößern, ohne zum langen Informationsblatt zu werden.
+Ansprache erfolgt in der Welt. **Präzisierung durch den Auftraggeber am 21.10.2026:** Im finalen Spiel erscheinen Texte als Sprechblasen räumlich an der sprechenden Figur. Antwortmöglichkeiten werden ebenfalls als zugeordnetes Auswahlfeld in der Welt dargestellt, ähnlich den bereitgestellten Graveyard-Keeper-Beispielen (`statuette-quest.jpg`, `wine-flask-quest.jpg`). Diese Referenzen zeigen Gesprächszuordnung und Auswahlprinzip, keine zu übernehmenden Assets.
+
+Sprechername, höchstens ein bis zwei kurze Sätze und wenige situative Antworten bilden einen Gesprächswechsel. Blasen folgen der Figur/Kamera; am Bildschirmrand werden sie lesbar eingepasst, Figuren und wichtige Interaktionsziele bleiben erkennbar. Auf Touchgeräten müssen Auswahlflächen groß genug sein. Semantisches HTML, Tastaturfokus, vergrößerbare Schrift und zugängliche Alternativen bleiben erhalten. Die endgültige Anordnung ist mit realen Geräten zu prüfen.
+
+Die bisherige Box am unteren Rand im Phase-2B-Build ist eine vorläufige Dialogdarstellung und nicht mehr das finale Layoutziel. Dieses Feedback wird zunächst dokumentiert; daraus folgt weder eine Phase-2B-Abnahme noch eine Freigabe von Phase 3.
 
 Jonas spricht aus einer konkreten Situation:
 

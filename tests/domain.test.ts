@@ -17,5 +17,5 @@ test('measurement rejects empty, units, NaN, zero and extreme values; decimal co
 });
 test('save validation preserves valid state and rejects newer/invalid saves',()=>{
  assert.deepEqual(decode(fresh()),fresh());
- assert.throws(()=>decode({...fresh(),version:3}));assert.throws(()=>decode({...fresh(),cell:objects[0]}));assert.throws(()=>decode({...fresh(),width:NaN}));
+ assert.throws(()=>decode({...fresh(),version:99}));assert.throws(()=>decode({...fresh(),cell:objects[0]}));assert.throws(()=>decode({...fresh(),width:NaN}));
 });

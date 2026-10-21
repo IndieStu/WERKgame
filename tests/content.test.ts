@@ -9,5 +9,6 @@ test('shipped quest validates and invalid content fails before build',()=>{
   assert.doesNotThrow(()=>validateQuest(q,schema));
   const broken=structuredClone(q);broken.steps[0].next='missing';assert.throws(()=>validateQuest(broken,schema));
   const missing=structuredClone(q);delete missing.steps[2].expected;assert.throws(()=>validateQuest(missing,schema));
-  const deadEnd=structuredClone(q);deadEnd.steps[4].options.forEach((o:{next:string})=>o.next='process');assert.throws(()=>validateQuest(deadEnd,schema));
+  const badRequirement=structuredClone(q);badRequirement.steps[1].requires.all=['absent'];assert.throws(()=>validateQuest(badRequirement,schema));
+  const deadEnd=structuredClone(q);deadEnd.steps.find((s:{id:string})=>s.id==='process').options.forEach((o:{next:string})=>o.next='process');assert.throws(()=>validateQuest(deadEnd,schema));
 });

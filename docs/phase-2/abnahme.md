@@ -1,6 +1,8 @@
 # Phase 2 – technische Funktionsprüfung
 
-**Aktuelle Einordnung:** Dieser Ablauf prüft technische Zustände. Er ist kein Nachweis für spielbare oder unterhaltsame Quests. Die inhaltliche/UX-Abnahme steht aus; zuerst [Creative Direction](../design/creative-direction.md) und [Storyboard](../design/regalquest-storyboard.md) prüfen. Kein Produktionscode in diesem Revisionsschritt.
+**Historischer Phase-2-Testablauf, nicht für Phase 2B verwenden.** Aktuelle Bedienung und menschlicher Test: [Phase 2B](../phase-2b/nutzungstest.md).
+
+**Einordnung des damaligen Stands:** Dieser Ablauf prüft technische Zustände. Er ist kein Nachweis für spielbare oder unterhaltsame Quests. Die inhaltliche/UX-Abnahme steht aus; zuerst [Creative Direction](../design/creative-direction.md) und [Storyboard](../design/regalquest-storyboard.md) prüfen. Kein Produktionscode in diesem Revisionsschritt.
 
 Lokale Vorschau aktuell: `http://localhost:4175/`. Der eigene Port vermeidet einen noch aktiven Phase-1-Service-Worker auf Port 4173. Verschiedene Ports haben getrennte Browserdaten; Savemigration im selben Origin wird separat automatisiert geprüft.
 

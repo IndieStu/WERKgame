@@ -5,8 +5,16 @@ export function validateQuest(q, schema) {
  if(!validate(q))throw Error(JSON.stringify(validate.errors,null,2));
  const ids=new Set(q.steps.map(s=>s.id));
  if(ids.size!==q.steps.length || !ids.has(q.startStepId))throw Error('Doppelte IDs oder fehlender Start');
+ const known=new Set(q.discoveries);
+ const checkRequirements=r=>{
+  if(!r)return;
+  const references=[...(r.all??[]),...(r.minOf?.ids??[])];
+  if(references.some(id=>!known.has(id)))throw Error('Unbekannte Entdeckung in Voraussetzung');
+  if(r.minOf && (new Set(r.minOf.ids).size!==r.minOf.ids.length || r.minOf.count>r.minOf.ids.length))throw Error('Unerfüllbare Mindestanzahl');
+ };
  const adjacency=new Map();
  for(const s of q.steps){
+  checkRequirements(s.requires);for(const o of s.options??[])checkRequirements(o.requires);
   const edges=s.type==='choice'?s.options.map(o=>o.next):s.next?[s.next]:[];
   if(edges.some(id=>!ids.has(id)))throw Error('Unbekannter Folgeschritt: '+s.id);
   if(s.type==='choice'&&new Set(s.options.map(o=>o.id)).size!==s.options.length)throw Error('Doppelte Option: '+s.id);

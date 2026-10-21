@@ -1,6 +1,6 @@
 # UX-Storyboard: Ein Regal fürs Fest
 
-21.10.2026 · **Entwurf zum Review, keine Implementierungsfreigabe.** Ergänzt die [Creative-Direction-/Player-Experience-Revision](creative-direction.md). Der bisherige Build ist technische Vorarbeit; dieses Storyboard beschreibt eine andere beabsichtigte Experience.
+21.10.2026 · **Vom Auftraggeber inhaltlich freigegeben.** Umsetzung als begrenzter [Phase-2B-Prototyp](../phase-2b/plan.md) ist autorisiert; dessen menschliches Review steht aus. Phase 3 bleibt gesperrt. Der [WERK-Fest-Arc](werk-fest.md) ergänzt die langfristige Richtung. Die folgende Kritik am Dashboard bezieht sich auf den historischen Phase-2-Build.
 
 ## Ausgangssituation und Umfang
 
@@ -16,7 +16,7 @@ Eine spätere UX-Erprobung kann mit klaren Placeholder-Silhouetten arbeiten. Wic
 | 2 · Avatar | Langfristig einfacher Creator; im nächsten kleinen UX-Prototyp zwei Presets. | Wählt einen Avatar oder übernimmt einen Vorschlag. | Eine Figur statt eines zu verwaltenden Profils; keine Alters-/Geschlechtsabfrage nötig. |
 | 3 · Ankommen | Raum nimmt den Bildschirm ein. Kisten am Boden, Jonas daneben; ein beiläufiges „Wohin nur damit …“ macht neugierig. | Bewegt sich frei. Kann zuerst Regalplatz, Tasse oder andere Dinge anschauen. | Kein automatisch aufspringendes Questfenster. Die Situation erzählt das Problem. |
 | 4 · Kleine Entdeckung | Jonas’ Tasse. | Untersucht sie. | Kurze Reaktion: „Noch warm.“ Kein Fortschrittsversprechen oder Systemkommentar. Das Erkunden darf sich selbst lohnen. |
-| 5 · Jonas ansprechen | Kompakte Dialogbox bei weiterhin sichtbarem NPC und Raum. „Fürs Fest haben wir schon wieder mehr Kisten als Plätze.“ | Fragt „Was brauchst du?“ und sagt auf Wunsch Hilfe zu. Kann auch gehen. | Jonas bittet um ein Regal und verweist auf den freien Standort. Eine kleine Auftragsnotiz erscheint und verschwindet wieder. |
+| 5 · Jonas ansprechen | An Jonas verankerte Sprechblase und räumlich zugeordnetes Antwortfeld; im aktuellen 2B-Build noch vorläufige untere Dialogbox. „Fürs Fest haben wir schon wieder mehr Kisten als Plätze.“ | Fragt „Was brauchst du?“ und sagt auf Wunsch Hilfe zu. Kann auch gehen. | Jonas bittet um ein Regal und verweist auf den freien Standort. Eine kleine Auftragsnotiz erscheint und verschwindet wieder. |
 | 6 · Standort ansehen | Eine unauffällige leere Boden-/Wandstelle, eventuell Klebeband oder ein alter Umriss. | Geht zum Ort und untersucht die verfügbare Fläche. | Skizze des Platzes: „Wie breit ist hier eigentlich Platz?“ Die konkrete Beobachtung ist ausgelöst, statt eine neue Textseite freizuschalten. |
 | 7 · Reale Aufgabe annehmen | Kurze Notiz nennt sicheren realen Messort, vorbereitetes Maßband/Zollstock und die gesuchte Breite. | Merkt sich den Ort, legt das Gerät fürs Gehen weg und misst später am freigegebenen Platz. | Die Welt wartet ohne Timer. Hilfe und gleichwertiger Ersatz bleiben möglich. Keine Maschinenbedienung. |
 | 7a · Stellvertreter im Prototyp | Am virtuellen Standort erscheint eine einfache Maßskizze mit zwei klaren Messpunkten. | Wählt die beiden Enden der verfügbaren Fläche aus und liest das Maß ab; dieselbe Aktion geht per Tastatur. | Eine räumliche Handlung am relevanten Ort steht für das spätere reale Messen. Der Prototyp behauptet keinen realen Ortsnachweis. Keine zentrale Messkarte als ganze Experience. |
@@ -59,7 +59,7 @@ Die echte Messaufgabe in Szene 7 und ihr virtueller Stellvertreter 7a sind **alt
 | Entscheidung | Vorschlag für das Review |
 |---|---|
 | Einstiegsrhythmus | Erst Situation und freie Erkundung, dann bewusste Ansprache und Zusage |
-| Primäre UI | Weltbild, kompakte RPG-Dialogbox, kleine aufrufbare Questnotizen |
+| Primäre UI | Weltbild, figurengebundene Sprechblasen und zugeordnete Antwortfelder, kleine aufrufbare Questnotizen |
 | Messzweck | Verfügbaren Standort messen; im Prototyp räumlicher Stellvertreter vor Ort |
 | Materialsuche | Drei unterscheidbare Probenobjekte, Eigenschaften selbst entdecken |
 | Verfahren | Quellen vorher erkunden; Auswahl beruht auf gefundenen Informationen |
@@ -70,3 +70,7 @@ Die echte Messaufgabe in Szene 7 und ihr virtueller Stellvertreter 7a sind **alt
 Nach Freigabe kann daraus ein begrenzter Umbauplan für die vorhandene Technik werden. Eine spätere formative Probe bewertet getrennt: technische Funktion, tatsächliche Handlungsmöglichkeiten, fachliche Stimmigkeit und freiwilligen Erkundungswunsch. Eine bestätigte Dialogfolge ist nicht die Erfolgsmetrik.
 
 **Hier endet das Storyboard. Jetzt Review, kein Produktionscode und kein Start von Phase 3.**
+
+## Präzisierung nach dem Phase-2B-Reviewfeedback
+
+Die virtuellen Messpunkte und Proben sind ausdrücklich Placeholder. Später soll Jonas auf einen tatsächlich vorbereiteten, sicheren Platz sowie reale Werkzeuge und Materialien verweisen: etwa den bereitliegenden Zollstock finden, die freigegebene Fläche in der Werkstatt messen und reale Proben untersuchen. Das gefundene Maß bzw. Wissen wird anschließend im Spiel zum Planen und Entscheiden verwendet. Nicht dieselbe Messung zusätzlich virtuell wiederholen. Reale Gegenstände, Wege, Hinweise und Ersatzpfade werden gemeinsam am Standort festgelegt; sie sind bislang nicht aufgenommen oder validiert. Das gehört zum später gesondert freizugebenden Vor-Ort-Schritt. Phase 3 bleibt gesperrt.

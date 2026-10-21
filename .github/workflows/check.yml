@@ -1,4 +1,4 @@
-name: Phase 2 checks
+name: Phase 2B checks
 on: [push, pull_request]
 permissions:
   contents: read

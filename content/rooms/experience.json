@@ -1,0 +1,25 @@
+{
+  "jonas": {
+    "ask": "Ein kleines Regal würde reichen. Schau erst mal an der Rückwand: Wie viel Platz haben wir da überhaupt?",
+    "accepted": "Prima. Ich bleib bei den Kisten. Wenn du das Maß hast, komm wieder her.",
+    "report": "Gut, 90 cm. Unser 80-cm-Regal lässt etwas Luft daneben. Jetzt die Oberfläche: Schau dir mindestens zwei Proben an.",
+    "planning": "An der Werkbank liegt ein Plan. Setz die Böden so, dass beide Kisten reinpassen. Dann zeig ihn mir.",
+    "finish": "So kriegen wir die Kisten unter. Bauen wir's?",
+    "after": "Endlich wieder Platz. Erst planen, dann weniger Gefluche. In Tischlereien und in der Produktgestaltung wird auch ständig so abgewogen.",
+    "careers": "In Tischlereien werden Möbel und Innenausbauten geplant und gebaut. In der Produktgestaltung wird über Form, Material und Nutzung nachgedacht. Wenn du magst, frag im WERK nach einer Gelegenheit zum Ausprobieren."
+  },
+  "site": {
+    "intro": "Hier ist noch Platz. Das Maßband liegt schon bereit.",
+    "before": "Ein freier Platz an der Wand. Ob Jonas den brauchen kann?",
+    "measured": "Das Maß hast du. Jonas steht noch bei den Kisten.",
+    "start": "Leg den Anfang links an, dann wähle das Ende rechts.",
+    "endFirst": "Fang links an. Sonst misst du ins Blaue.",
+    "prompt": "Wie breit ist der Platz?",
+    "simulation": "Hier misst du im Spiel. Später suchen wir den freigegebenen Messort im echten WERK."
+  },
+  "notebook": {
+    "materialsReady": "Du hast etwas zum Vergleichen. Besprich deine Wahl mit Jonas.",
+    "processReady": "Beide Wege kennst du jetzt. Frag Jonas, wie es weitergeht.",
+    "finished": "Das Regal steht. Die Festkisten sind eingeräumt."
+  }
+}
