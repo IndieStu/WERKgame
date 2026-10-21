@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-21T10:34:22.959Z",
+  "results": [
+    {
+      "environment": "MacBook host, Chrome headless, SwiftShader; NOT hardware GPU benchmark",
+      "browserVersion": "155.0.8059.86",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "firstLoad": {
+        "readyMs": 3430.7000000178814,
+        "resources": [
+          {
+            "name": "/assets/index-DiRNi_4y.js",
+            "transfer": 377319,
+            "encoded": 377019,
+            "duration": 49.19999998807907
+          },
+          {
+            "name": "/assets/index-g2tw7OYy.css",
+            "transfer": 1276,
+            "encoded": 976,
+            "duration": 7.700000017881393
+          }
+        ]
+      },
+      "initialMetrics": "24 fps · Start 3431 ms · WebGL",
+      "checks": {
+        "invalidMeasurement": true,
+        "modalPausesMovement": true,
+        "directMovement": true,
+        "tapMovement": true,
+        "saveReload": true,
+        "objectApproach": true,
+        "offlineReload": true,
+        "offlineNewTab": true
+      },
+      "errors": []
+    },
+    {
+      "environment": "Chromium touch emulation; NOT Safari or real iPad",
+      "browserVersion": "155.0.8059.86",
+      "userAgent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+      "firstLoad": {
+        "readyMs": 260.69999998807907,
+        "resources": [
+          {
+            "name": "/assets/index-DiRNi_4y.js",
+            "transfer": 377319,
+            "encoded": 377019,
+            "duration": 43.5
+          },
+          {
+            "name": "/assets/index-g2tw7OYy.css",
+            "transfer": 1276,
+            "encoded": 976,
+            "duration": 6.0999999940395355
+          }
+        ]
+      },
+      "initialMetrics": "28 fps · Start 261 ms · WebGL",
+      "checks": {
+        "invalidMeasurement": true,
+        "modalPausesMovement": true,
+        "directMovement": true,
+        "tapMovement": true,
+        "saveReload": true,
+        "objectApproach": true,
+        "offlineReload": true,
+        "offlineNewTab": true
+      },
+      "errors": []
+    }
+  ],
+  "restartResult": {
+    "browserRestartOffline": true,
+    "measurementAfterRestart": 55.5,
+    "environment": "Persistent Chrome headless profile on Mac host; not Safari/iPad"
+  }
+}
