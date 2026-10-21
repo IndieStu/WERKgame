@@ -1,4 +1,4 @@
-WERK Phase 1 runtime dependency: Phaser 4.2.1
+WERK runtime dependency: Phaser 4.2.1
 
 The MIT License (MIT)
 
@@ -22,7 +22,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-Development tools (not shipped as runtime dependencies): TypeScript 5.9.3 (Apache-2.0), Vite 7.2.2 (MIT), Playwright 1.62.1 (Apache-2.0). Their license files are included in the installed packages. Project code/content licensing remains undecided.
+Development tools (not shipped as runtime dependencies): TypeScript 5.9.3 (Apache-2.0), Vite 7.2.2 (MIT), Playwright 1.62.1 (Apache-2.0), Ajv 8.17.1 (MIT). Their license files are included in the installed packages. Project code/content licensing remains undecided.
 
 EventEmitter3 5.0.4 (transitive Phaser dependency)
 

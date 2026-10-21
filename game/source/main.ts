@@ -1,21 +1,24 @@
 import Phaser from 'phaser';
 import './style.css';
-import { adjacent, decode, fresh, iso, measurement, objects, path, SIZE, unproject, walkable, type Cell } from './domain';
+import { decode, fresh, objects, quest, type Cell } from './domain';
+import { currentStep, nextHint, transition, type Action, type Step } from './quest';
 import { Store } from './storage';
+import { Room } from './room';
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const dialog = $<HTMLDialogElement>('dialog');
-const mode = $<HTMLSelectElement>('mode');
-const input = $<HTMLInputElement>('width');
 const store = new Store();
-let state = fresh(), canSave = true, ready = false;
-let saveQueue = Promise.resolve();
+let state = fresh(), canSave = true, saveQueue = Promise.resolve(), offlineReady = false;
+let room: Room;
+let lastFocus: HTMLElement | null = null;
 const say = (text: string) => { $('message').textContent = text; };
-const persist = () => {
+function persist() {
   if (!canSave) return;
   const snapshot = decode(state);
-  saveQueue = saveQueue.then(() => store.save(snapshot)).then(() => { $('save-status').textContent = 'Lokal gespeichert (IndexedDB)'; }).catch(() => { $('save-status').textContent = 'Speichern fehlgeschlagen. Teststand bleibt nur bis zum Neuladen verfügbar.'; });
-};
+  saveQueue = saveQueue.then(() => store.save(snapshot)).then(() => {
+    $('save-status').textContent = 'Fortschritt lokal gespeichert';
+  }).catch(() => { $('save-status').textContent = 'Speichern fehlgeschlagen. Vor dem Schließen erneut prüfen.'; });
+}
 try {
   state = await store.open() ?? fresh();
   $('save-status').textContent = 'Lokaler Speicher bereit';
@@ -23,169 +26,202 @@ try {
   canSave = false;
   $('save-status').textContent = `Ohne Speicherung: ${error instanceof Error ? error.message : 'Speicherzugriff fehlgeschlagen'}`;
 }
-mode.value = state.mode;
-input.value = state.width === null ? '' : String(state.width);
-let scene: Lab;
-let lastFocus: HTMLElement | null = null;
-function openDialog() {
-  if (dialog.open) return;
-  scene?.stop(); lastFocus = document.activeElement as HTMLElement;
-  dialog.showModal(); input.focus();
-}
-dialog.addEventListener('close', () => { lastFocus?.focus(); });
-$('open-dialog').onclick = openDialog;
-$('close-dialog').onclick = () => dialog.close();
-$('measurement').onsubmit = event => {
-  event.preventDefault();
-  const value = measurement(input.value);
-  if (value === null) { $('feedback').textContent = 'Bitte eine Zahl über 0 bis 300 cm eingeben. Komma oder Punkt ist möglich.'; input.setAttribute('aria-invalid', 'true'); return; }
-  input.removeAttribute('aria-invalid'); state.width = value; persist();
-  $('feedback').textContent = `${value.toLocaleString('de-DE')} cm übernommen. Testwert bleibt lokal.`;
-};
-function applyMode() {
+function settings() {
+  $<HTMLSelectElement>('mode').value = state.mode;
+  $<HTMLSelectElement>('avatar').value = state.avatar;
+  $<HTMLSelectElement>('help').value = state.help;
   $('pad').hidden = state.mode !== 'direct';
-  $('instruction').textContent = state.mode === 'tap' ? 'A: Tippe auf freie Felder oder einen Objektblock. Objektliste als Alternative.' : 'B: Halte eine Richtungstaste gedrückt. Die Pfeile folgen den schrägen Raumachsen. Tippe Objekte zum Untersuchen.';
+  $('instruction').textContent = state.mode === 'tap'
+    ? 'A: Tippe auf ein freies Feld oder auf ein Objekt. Beide Steuerungen sind weiterhin vorläufig.'
+    : 'B: Halte eine schräge Richtungstaste gedrückt. Tippe Objekte zum Untersuchen an.';
 }
-mode.onchange = () => { state.mode = mode.value === 'direct' ? 'direct' : 'tap'; scene?.stop(); applyMode(); persist(); };
-applyMode();
+function updateLog() {
+  const step = currentStep(quest, state.quest);
+  const index = quest.steps.findIndex(s => s.id === step.id);
+  $('quest-title').textContent = quest.title;
+  $('quest-progress').textContent = state.quest.completed ? 'Auftrag abgeschlossen' : `Schritt ${index + 1} von ${quest.steps.length}`;
+  $<HTMLProgressElement>('progress').max = quest.steps.length;
+  $<HTMLProgressElement>('progress').value = state.quest.completed ? quest.steps.length : index;
+  $('step-title').textContent = step.title;
+  $('objective').textContent = state.quest.completed ? 'Entdecke weitere Dinge im Raum oder starte eine neue Runde.' : step.objective;
+  $('resume').textContent = state.quest.completed ? 'Ergebnis ansehen' : index === 0 ? 'Mit Jonas sprechen' : 'Auftrag fortsetzen';
+  $('outcome').textContent = state.quest.completed && step.type === 'result' ? step.completedText : '';
+  room?.refresh();
+}
+const body = () => $('dialog-body');
+function paragraph(text: string, className = '') {
+  const p = document.createElement('p'); p.textContent = text; p.className = className; body().append(p); return p;
+}
+function button(text: string, run: () => void) {
+  const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.onclick = run; body().append(b); return b;
+}
+function beginDialog(title: string, speaker = 'JONAS') {
+  room?.stop();
+  if (!dialog.open) { lastFocus = document.activeElement as HTMLElement; dialog.showModal(); }
+  $('dialog-title').textContent = title; $('speaker').textContent = speaker; body().replaceChildren();
+}
+function focusContent() {
+  const target = body().querySelector<HTMLElement>('input:not([disabled]), button:not([disabled])');
+  (target ?? $('close-dialog')).focus();
+}
+function hintSection(step: Step) {
+  if (!step.hints || state.quest.completed) return;
+  const shown = Math.max(state.quest.hints[step.id] ?? 0, state.help === 'more' ? 1 : 0);
+  const section = document.createElement('section'); section.className = 'hints';
+  const title = document.createElement('h3'); title.textContent = 'Hinweise – ohne Punktabzug'; section.append(title);
+  for (const text of step.hints.slice(0, shown)) {
+    const p = document.createElement('p'); p.textContent = text; section.append(p);
+  }
+  const b = document.createElement('button'); b.type = 'button';
+  b.textContent = shown === 0 ? 'Ersten Hinweis zeigen' : shown < step.hints.length ? 'Nächsten Hinweis zeigen' : 'Alle Hinweise angezeigt';
+  b.disabled = shown >= step.hints.length;
+  b.onclick = () => {
+    state.quest = { ...state.quest, hints: { ...state.quest.hints, [step.id]: shown } };
+    state.quest = nextHint(quest, state.quest); persist(); renderQuest();
+  };
+  section.append(b); body().append(section);
+}
+function act(action: Action) {
+  const result = transition(quest, state.quest, action);
+  if (!result.changed) return;
+  state.quest = result.progress;
+  if (action.type === 'answer' && typeof state.quest.answers[action.stepId] === 'number') state.width = Number(state.quest.answers[action.stepId]);
+  persist(); updateLog();
+  if (result.feedback) {
+    beginDialog('Jonas zu deiner Entscheidung');
+    paragraph(result.feedback);
+    if ((state.quest.attempts[action.stepId] ?? 0) >= 2 && state.quest.stepId === action.stepId) paragraph('Wenn du magst, nutze die Hinweise. Du kannst jederzeit ohne Nachteil weiterprobieren.');
+    button('Weiter', renderQuest); focusContent();
+  } else renderQuest();
+}
+function renderQuest() {
+  const step = currentStep(quest, state.quest);
+  beginDialog(step.title);
+  paragraph(state.quest.completed && step.type === 'result' ? step.completedText : step.text);
+  if (step.type === 'dialogue') button('Ich helfe mit', () => act({ type: 'continue', stepId: step.id }));
+  if (step.type === 'real_world_task') {
+    paragraph(step.safetyText, 'notice');
+    const reveal = button('Messkarte ansehen', () => {
+      reveal.disabled = true;
+      // The card is a deliberate simulated observation, not a claim of real-world presence.
+      paragraph(step.observation, 'observation');
+      button('Breite gemerkt – zum Eingabeschritt', () => act({ type: 'continue', stepId: step.id }));
+      focusContent();
+    });
+  }
+  if (step.type === 'measurement') {
+    const reveal = button('Messkarte erneut ansehen', () => {
+      reveal.disabled = true;
+      const observation = quest.steps.find(s => s.type === 'real_world_task');
+      if (observation?.type === 'real_world_task') paragraph(observation.observation, 'observation');
+    });
+    const form = document.createElement('form');
+    const label = document.createElement('label'); label.htmlFor = 'width'; label.textContent = `Breite in ${step.unit}`;
+    const input = document.createElement('input'); input.id = 'width'; input.inputMode = 'decimal'; input.type = 'text'; input.maxLength = 12; input.autocomplete = 'off';
+    input.setAttribute('aria-describedby', 'measure-help');
+    const help = document.createElement('p'); help.id = 'measure-help'; help.textContent = 'Komma oder Punkt ist möglich. Die Eingabe ist kein Geschwindigkeitstest.';
+    const submit = document.createElement('button'); submit.type = 'submit'; submit.textContent = 'Maß prüfen';
+    form.append(label, input, help, submit); body().append(form);
+    form.onsubmit = event => { event.preventDefault(); act({ type: 'answer', stepId: step.id, value: input.value }); };
+  }
+  if (step.type === 'choice') {
+    if (step.context) paragraph(step.context, 'notice');
+    const choices = document.createElement('div'); choices.className = 'choices'; body().append(choices);
+    for (const option of step.options) {
+      const b = document.createElement('button'); b.textContent = option.label; b.type = 'button';
+      b.onclick = () => act({ type: 'answer', stepId: step.id, value: option.id }); choices.append(b);
+    }
+  }
+  if (step.type === 'result') {
+    if (!state.quest.completed) button('Regal virtuell fertigstellen', () => act({ type: 'finish', stepId: step.id }));
+    else {
+      paragraph('Dein Ergebnis im Raum bleibt nach dem Neuladen erhalten.', 'observation');
+      const answers = Object.entries(state.quest.answers).map(([id, value]) => {
+        const s = quest.steps.find(item => item.id === id);
+        return s?.type === 'choice' ? s.options.find(o => o.id === value)?.label ?? String(value) : `${value} cm`;
+      });
+      paragraph(`Dein Plan: ${answers.join(' · ')}`);
+      paragraph(`Diese Tätigkeiten begegnen dir unter anderem in: ${step.careerFields.join(', ')}.`);
+      paragraph(step.reflection);
+      button('Zurück in den Raum', () => dialog.close());
+    }
+  }
+  hintSection(step); focusContent();
+}
+function inspect(id: string) {
+  if (id === 'jonas') return renderQuest();
+  const object = objects.find(o => o.id === id);
+  if (!object) return;
+  beginDialog(object.label, 'ENTDECKEN'); paragraph(object.description);
+  if (id === 'shelf' && state.quest.completed) {
+    const result = currentStep(quest, state.quest);
+    if (result.type === 'result') paragraph(result.completedText, 'observation');
+  }
+  button('Zurück in den Raum', () => dialog.close());
+  button('Auftrag fortsetzen', renderQuest); focusContent();
+}
+$('resume').onclick = renderQuest;
+$('close-dialog').onclick = () => dialog.close();
+dialog.addEventListener('close', () => { (lastFocus?.isConnected ? lastFocus : $('resume')).focus(); });
+for (const id of ['mode', 'avatar', 'help'] as const) {
+  $(id).onchange = () => {
+    if (id === 'mode') state.mode = $<HTMLSelectElement>(id).value === 'direct' ? 'direct' : 'tap';
+    if (id === 'avatar') state.avatar = $<HTMLSelectElement>(id).value === 'orange' ? 'orange' : 'mint';
+    if (id === 'help') state.help = $<HTMLSelectElement>(id).value === 'more' ? 'more' : 'normal';
+    room?.stop(); settings(); updateLog(); persist();
+  };
+}
 $('reset').onclick = async () => {
-  if (!confirm('Gespeicherte Position und Testwert dieser Runde löschen?')) return;
-  scene?.stop();
-  await saveQueue;
-  try { await store.clear(); state = fresh(); canSave = true; input.value = ''; mode.value = state.mode; scene?.resetPosition(); applyMode(); persist(); say('Teststand zurückgesetzt.'); }
-  catch { say('Zurücksetzen fehlgeschlagen. Der gespeicherte Stand wurde nicht als gelöscht bestätigt.'); }
+  if (!confirm('Diese Runde mit Avatar, Antworten und Fortschritt wirklich zurücksetzen?')) return;
+  room?.stop(); await saveQueue;
+  try { await store.clear(); state = fresh(); canSave = true; room?.resetPosition(); settings(); updateLog(); persist(); say('Neue Runde bereit. Sprich mit Jonas.'); }
+  catch { say('Zurücksetzen fehlgeschlagen. Der bisherige Stand ist nicht als gelöscht bestätigt.'); }
 };
-const offsets: Record<string, Cell> = { up: { x: -1, y: 0 }, right: { x: 0, y: -1 }, down: { x: 1, y: 0 }, left: { x: 0, y: 1 } };
-let held: string | null = null;
-for (const button of document.querySelectorAll<HTMLButtonElement>('[data-dir]')) {
-  const direction = button.dataset.dir!;
-  button.textContent = ({ up: '↖', right: '↗', down: '↘', left: '↙' } as Record<string, string>)[direction];
-  button.onpointerdown = event => { event.preventDefault(); button.setPointerCapture(event.pointerId); held = direction; scene?.cancelRoute(); };
-  button.onpointerup = button.onpointercancel = button.onlostpointercapture = () => { held = null; };
+for (const b of document.querySelectorAll<HTMLButtonElement>('[data-dir]')) {
+  b.onpointerdown = e => { e.preventDefault(); if (dialog.open) return; b.setPointerCapture(e.pointerId); room?.direct(b.dataset.dir!); };
+  b.onpointerup = b.onpointercancel = b.onlostpointercapture = () => room?.direct(null);
 }
-window.addEventListener('blur', () => { held = null; scene?.stop(); });
-document.addEventListener('visibilitychange', () => { held = null; scene?.stop(); });
-
-class Lab extends Phaser.Scene {
-  cell = { ...state.cell };
-  route: Cell[] = [];
-  target: Cell | null = null;
-  pending: string | null = null;
-  actor!: Phaser.GameObjects.Container;
-  origin = { x: 400, y: 90 };
-  keys = new Set<string>();
-  frames = 0; sampleStart = performance.now(); fps = 0;
-  constructor() { super('lab'); }
-  stop() { this.route = []; this.pending = null; this.keys.clear(); held = null; }
-  cancelRoute() { this.route = []; this.pending = null; }
-  resetPosition() { this.target = null; this.cell = { ...state.cell }; const p = this.screen(this.cell); this.actor.setPosition(p.x, p.y); this.actor.setDepth(p.y); $('position').textContent=`${this.cell.x}, ${this.cell.y}`; }
-  screen(p: Cell) { const q = iso(p); return { x: q.x + this.origin.x, y: q.y + this.origin.y }; }
-  create() {
-    scene = this;
-    const floor = this.add.graphics();
-    for (let x = 0; x < SIZE; x++) for (let y = 0; y < SIZE; y++) {
-      const p = this.screen({ x, y });
-      floor.fillStyle((x + y) % 2 ? 0x394750 : 0x414f58); floor.lineStyle(1, 0x63727b);
-      floor.fillPoints([new Phaser.Math.Vector2(p.x,p.y-16),new Phaser.Math.Vector2(p.x+32,p.y),new Phaser.Math.Vector2(p.x,p.y+16),new Phaser.Math.Vector2(p.x-32,p.y)], true);
-      floor.strokePoints([new Phaser.Math.Vector2(p.x,p.y-16),new Phaser.Math.Vector2(p.x+32,p.y),new Phaser.Math.Vector2(p.x,p.y+16),new Phaser.Math.Vector2(p.x-32,p.y)], true);
-    }
-    const walls = this.add.graphics().setDepth(-1);
-    walls.fillStyle(0x52616c); walls.fillPoints([new Phaser.Math.Vector2(112,218),new Phaser.Math.Vector2(400,74),new Phaser.Math.Vector2(400,24),new Phaser.Math.Vector2(112,168)],true);
-    walls.fillStyle(0x626e77); walls.fillPoints([new Phaser.Math.Vector2(400,74),new Phaser.Math.Vector2(688,218),new Phaser.Math.Vector2(688,168),new Phaser.Math.Vector2(400,24)],true);
-    this.add.text(365, 38, 'TÜR', { fontSize: '15px', color: '#ffffff', backgroundColor: '#354049' }).setDepth(0);
-    for (const o of objects) {
-      const p = this.screen(o); const g = this.add.graphics().setDepth(p.y);
-      g.fillStyle(o.color); g.fillPoints([new Phaser.Math.Vector2(p.x-29,p.y-o.height),new Phaser.Math.Vector2(p.x,p.y-o.height+14),new Phaser.Math.Vector2(p.x,p.y+14),new Phaser.Math.Vector2(p.x-29,p.y)],true);
-      g.fillStyle(o.color - 0x161616); g.fillPoints([new Phaser.Math.Vector2(p.x,p.y-o.height+14),new Phaser.Math.Vector2(p.x+29,p.y-o.height),new Phaser.Math.Vector2(p.x+29,p.y),new Phaser.Math.Vector2(p.x,p.y+14)],true);
-      g.fillStyle(o.color + 0x171717); g.fillPoints([new Phaser.Math.Vector2(p.x-29,p.y-o.height),new Phaser.Math.Vector2(p.x,p.y-o.height-14),new Phaser.Math.Vector2(p.x+29,p.y-o.height),new Phaser.Math.Vector2(p.x,p.y-o.height+14)],true);
-      const zone = this.add.zone(p.x,p.y-o.height/2,58,o.height+28).setDepth(1000+p.y).setInteractive();
-      zone.on('pointerdown', (_p: Phaser.Input.Pointer, _x:number, _y:number, event:Phaser.Types.Input.EventData) => { event.stopPropagation(); this.visit(o.id); });
-      const button = document.createElement('button'); button.textContent = o.label; button.onclick = () => this.visit(o.id); $('objects').append(button);
-    }
-    const body = this.add.graphics();
-    body.fillStyle(0x101a21,0.45); body.fillEllipse(0,0,22,10);
-    body.fillStyle(0xe9cf87); body.fillRect(-8,-45,16,14);
-    body.fillStyle(0x8dbdb4); body.fillRect(-10,-31,20,21);
-    body.fillStyle(0x1d252b); body.fillRect(-8,-10,6,10); body.fillRect(2,-10,6,10);
-    this.actor = this.add.container(0,0,[body]); this.resetPosition();
-    this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-      if (dialog.open || state.mode !== 'tap') return;
-      const local = { x: pointer.worldX - this.origin.x, y: pointer.worldY - this.origin.y };
-      const raw = unproject(local); const destination = { x: Math.round(raw.x), y: Math.round(raw.y) };
-      const from = this.target ?? this.cell;
-      const route = path(from,destination);
-      if (!route) { say('Dieses Feld ist blockiert oder liegt außerhalb des Raums.'); return; }
-      this.route = route; this.pending = null; say('Ziel gewählt.');
-    });
-    window.addEventListener('keydown', event => {
-      if (dialog.open || ['INPUT','SELECT','TEXTAREA','BUTTON'].includes((event.target as HTMLElement)?.tagName)) return;
-      const map: Record<string,string> = { ArrowUp:'up',w:'up',ArrowRight:'right',d:'right',ArrowDown:'down',s:'down',ArrowLeft:'left',a:'left' };
-      if (map[event.key]) { event.preventDefault(); this.keys.add(map[event.key]); this.cancelRoute(); }
-      if (event.key.toLowerCase() === 'e') openDialog();
-    });
-    window.addEventListener('keyup', event => {
-      const map: Record<string,string> = { ArrowUp:'up',w:'up',ArrowRight:'right',d:'right',ArrowDown:'down',s:'down',ArrowLeft:'left',a:'left' };
-      if(map[event.key]) this.keys.delete(map[event.key]);
-    });
-    this.game.canvas.addEventListener('webglcontextlost', () => { this.stop(); say('Grafikkontext verloren. Nach Wiederherstellung prüfen oder Seite neu laden.'); });
-    this.game.canvas.addEventListener('webglcontextrestored', () => say('Grafikkontext wiederhergestellt. Darstellung und Eingaben bitte prüfen.'));
-    ready = true; say('Testraum bereit. Beide Steuerungen ausprobieren.');
-    performance.mark('werk-ready');
-    $('metrics').textContent = `Start ${Math.round(performance.now())} ms · FPS-Messung läuft`;
-  }
-  visit(id: string) {
-    if(dialog.open) return;
-    const object = objects.find(o => o.id === id)!;
-    const from = this.target ?? this.cell;
-    const routes = adjacent(object).map(goal => path(from,goal)).filter((p): p is Cell[] => p !== null).sort((a,b) => a.length-b.length);
-    if (!routes.length) return say('Kein Weg zum Objekt.');
-    this.route = routes[0]; this.pending = id;
-    say(`Unterwegs: ${object.label}`);
-  }
-  update(_time: number, delta: number) {
-    this.frames++; const sampleDuration = performance.now() - this.sampleStart;
-    if (sampleDuration >= 1000) {
-      this.fps = Math.round(this.frames * 1000 / sampleDuration); this.frames=0; this.sampleStart=performance.now();
-      $('metrics').textContent = `${this.fps} fps · Start ${Math.round(performance.getEntriesByName('werk-ready')[0]?.startTime ?? 0)} ms · ${this.game.renderer.type === Phaser.WEBGL ? 'WebGL' : 'Canvas'}`;
-    }
-    if(!this.actor || dialog.open || document.hidden) return;
-    if (!this.target) {
-      const direction = held ?? this.keys.values().next().value;
-      if(direction) {
-        const offset = offsets[direction]; const next = { x:this.cell.x+offset.x,y:this.cell.y+offset.y };
-        if(walkable(next)) this.target=next;
-      } else if(this.route.length) this.target=this.route.shift()!;
-      else if(this.pending) { const name=objects.find(o=>o.id===this.pending)!.label; this.pending=null; say(`${name} erreicht. HTML-Testdialog geöffnet.`); openDialog(); return; }
-    }
-    if(this.target) {
-      const goal=this.screen(this.target), dx=goal.x-this.actor.x, dy=goal.y-this.actor.y, distance=Math.hypot(dx,dy), step=150*Math.min(delta,50)/1000;
-      if(distance<=step) {
-        this.actor.setPosition(goal.x,goal.y); this.cell={...this.target}; this.target=null; state.cell={...this.cell}; persist();
-        $('position').textContent=`${this.cell.x}, ${this.cell.y}`;
-      } else this.actor.setPosition(this.actor.x+dx/distance*step,this.actor.y+dy/distance*step);
-      this.actor.setDepth(this.actor.y);
-    }
-  }
+const keymap: Record<string, string> = { ArrowUp: 'up', w: 'up', ArrowRight: 'right', d: 'right', ArrowDown: 'down', s: 'down', ArrowLeft: 'left', a: 'left' };
+window.addEventListener('keydown', e => {
+  if (dialog.open || ['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON'].includes((e.target as HTMLElement)?.tagName)) return;
+  if (keymap[e.key]) { e.preventDefault(); room?.direct(keymap[e.key]); }
+  if (e.key.toLowerCase() === 'e') renderQuest();
+});
+window.addEventListener('keyup', e => { if (keymap[e.key]) room?.direct(null); });
+window.addEventListener('blur', () => room?.stop());
+document.addEventListener('visibilitychange', () => room?.stop());
+for (const object of objects) {
+  const b = document.createElement('button'); b.textContent = object.label;
+  // Direct HTML access intentionally does not require steering skill.
+  b.onclick = () => room?.visit(object.id); $('objects').append(b);
 }
-new Phaser.Game({ type:Phaser.AUTO,parent:'game',width:800,height:500,backgroundColor:'#222e38',pixelArt:true,roundPixels:true,scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},scene:Lab });
+settings(); updateLog();
+room = new Room({ state: () => state, paused: () => dialog.open,
+  moved: p => { state.cell = { ...p }; persist(); }, interact: inspect, say,
+  metrics: text => { $('metrics').textContent = text; },
+  position: (p: Cell) => { $('position').textContent = `${p.x}, ${p.y}`; },
+  ready: () => { performance.mark('werk-ready'); say('Raum bereit. Sprich mit Jonas oder starte über den Auftrag.'); },
+});
+new Phaser.Game({ type: Phaser.AUTO, parent: 'game', width: 800, height: 440, backgroundColor: '#222e38', pixelArt: true, roundPixels: true, scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH }, scene: room });
 
-let offlineReady=false;
-if(import.meta.env.PROD && 'serviceWorker' in navigator) {
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   try {
     const registration = await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);
-    const refresh = async () => {
+    const refresh = () => {
       const active = registration.active;
       if (!active) return;
       const channel = new MessageChannel();
-      channel.port1.onmessage = event => { offlineReady=event.data.ready===true; $('offline-status').textContent=offlineReady ? 'Offlinepaket vollständig · Wiederstart testen' : 'Offlinepaket unvollständig'; };
-      active.postMessage('status',[channel.port2]);
+      channel.port1.onmessage = e => { offlineReady = e.data.ready === true; $('offline-status').textContent = offlineReady ? 'Offlinepaket vollständig' : 'Offlinepaket unvollständig'; };
+      active.postMessage('status', [channel.port2]);
     };
-    await navigator.serviceWorker.ready; await refresh();
-    if(registration.waiting) $('offline-status').textContent='Update vorhanden. Nach beendetem Test alle Spieltabs schließen und erneut öffnen.';
-    registration.addEventListener('updatefound',()=> { const worker=registration.installing; worker?.addEventListener('statechange',()=>{ if(worker.state==='installed' && navigator.serviceWorker.controller) $('offline-status').textContent='Update bereit: nach Test alle Spieltabs schließen.'; else void refresh(); }); });
-  } catch { $('offline-status').textContent='Offlineinstallation fehlgeschlagen. Online weitertesten; HTTPS und Speicher prüfen.'; }
+    await navigator.serviceWorker.ready; refresh();
+    const waiting = () => { if (registration.waiting) $('offline-status').textContent = 'Update bereit. Nach dieser Runde alle Spieltabs schließen und erneut öffnen.'; };
+    waiting();
+    registration.addEventListener('updatefound', () => { const worker = registration.installing; worker?.addEventListener('statechange', () => { if (worker.state === 'installed' && navigator.serviceWorker.controller) waiting(); else refresh(); }); });
+  } catch { $('offline-status').textContent = 'Offlineinstallation fehlgeschlagen. HTTPS und Speicher prüfen.'; }
 }
-$('export').onclick=()=>{
-  const report={phase:1,date:new Date().toISOString(),userAgent:navigator.userAgent,viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},ready,offlineReady,mode:state.mode,state,saveStatus:$('save-status').textContent,metrics:$('metrics').textContent,resources:performance.getEntriesByType('resource').map(e=>{const r=e as PerformanceResourceTiming;return {name:new URL(r.name).pathname,transferSize:r.transferSize,duration:Math.round(r.duration)};}),note:'Lokaler Messbericht. Kein Nachweis eines realen iPadtests; Gerät und Bedingungen manuell ergänzen.'};
-  const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='werk-phase1-test.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+$('export').onclick = () => {
+  const report = { phase: 2, date: new Date().toISOString(), userAgent: navigator.userAgent, offlineReady, state, metrics: $('metrics').textContent, saveStatus: $('save-status').textContent, note: 'Lokaler Bericht. Keine reale iPad-Abnahme.' };
+  const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' }));
+  const a = document.createElement('a'); a.href = url; a.download = 'werk-phase2-test.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };

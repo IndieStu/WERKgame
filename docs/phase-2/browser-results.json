@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-21T11:11:32.248Z",
+  "results": [
+    {
+      "environment": "Chrome headless on Mac, SwiftShader",
+      "browserVersion": "155.0.8059.86",
+      "firstLoad": {
+        "readyMs": 3852.699999988079
+      },
+      "metrics": "34 fps · WebGL",
+      "checks": {
+        "tapMovement": true,
+        "directMovement": true,
+        "approachJonas": true,
+        "reloadEachCheckpoint": true,
+        "retryWithoutPenalty": true,
+        "hintsPersist": true,
+        "alternateChoices": true,
+        "visibleWorldState": true,
+        "offlineReload": true,
+        "offlineNewTab": true,
+        "reset": true
+      },
+      "errors": []
+    },
+    {
+      "environment": "Chromium touch emulation, NOT Safari or real iPad",
+      "browserVersion": "155.0.8059.86",
+      "firstLoad": {
+        "readyMs": 307.5999999642372
+      },
+      "metrics": "44 fps · WebGL",
+      "checks": {
+        "tapMovement": true,
+        "directMovement": true,
+        "approachJonas": true,
+        "reloadEachCheckpoint": true,
+        "retryWithoutPenalty": true,
+        "hintsPersist": true,
+        "alternateChoices": true,
+        "visibleWorldState": true,
+        "offlineReload": true,
+        "offlineNewTab": true,
+        "reset": true
+      },
+      "errors": []
+    }
+  ],
+  "restart": {
+    "browserRestartOffline": true,
+    "resumedStep": "material",
+    "savedMeasurement": 40
+  },
+  "narrowViewportNoOverflow": true,
+  "phase1Migration": true,
+  "unknownSavePreserved": true
+}

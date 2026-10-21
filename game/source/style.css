@@ -1,1 +1,31 @@
 :root{font-family:system-ui,sans-serif;color:#e8edf0;background:#171e25;font-size:18px;color-scheme:dark}*{box-sizing:border-box}body{margin:0}main{max-width:1320px;margin:auto;padding:24px}header span{font-size:.7rem;letter-spacing:.16em;color:#b6c6cc}h1{font-size:clamp(1.5rem,3vw,2.2rem);margin:.4em 0}p{line-height:1.5}header p{color:#b7c3cb}.toolbar,.buttons{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:20px 0}button,select,input{font:inherit;padding:10px 14px;min-height:48px;border:1px solid #7d919c;border-radius:5px;background:#283640;color:inherit}button{cursor:pointer}button:hover{background:#3b4e59}:focus-visible{outline:3px solid #ffda7d;outline-offset:3px}label{display:block}select{display:block;margin-top:6px}.workspace{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:22px}.world{min-width:0}#game{width:100%;aspect-ratio:16/10;touch-action:none;background:#222e38;overflow:hidden;border:1px solid #63757e}canvas{display:block;image-rendering:pixelated}aside{background:#222e38;padding:18px}aside h2{margin-top:0}aside p,dt,dd{font-size:.86rem}dd{margin:0 0 12px;overflow-wrap:anywhere}#objects{display:grid;gap:8px}#pad{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,56px);justify-content:center;gap:6px;margin-top:12px;touch-action:none}#pad[hidden]{display:none}#pad button:first-child{grid-column:2}#pad button:nth-child(2){grid-column:1;grid-row:2}#pad button:nth-child(3){grid-column:2;grid-row:2}#pad button:nth-child(4){grid-column:3;grid-row:2}#instruction,#message{min-height:2em}dialog{max-width:540px;width:calc(100% - 32px);max-height:85dvh;overflow:auto;border:1px solid #a4b8c3;background:#222e38;color:inherit;padding:24px}dialog::backdrop{background:#080d13b8}input{width:100%;margin-top:8px}#feedback{min-height:1.5em}@media(max-width:800px){main{padding:12px}.workspace{grid-template-columns:1fr}aside{padding:14px}#game{aspect-ratio:4/3}.toolbar{align-items:stretch}.toolbar>*{flex:1 1 190px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+/* Phase 2: the quest remains readable independently of the canvas scale. */
+#game { aspect-ratio: 20 / 11; }
+#objects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#objects button { text-align: left; }
+.objects-panel { padding: 12px 0; }
+.objects-panel h2 { font-size: 1.1rem; }
+.eyebrow, #speaker { letter-spacing: .12em; font-size: .75rem; color: #b5cbd0; }
+aside { align-self: start; }
+aside #resume { width: 100%; background: #42665f; }
+progress { width: 100%; height: 12px; accent-color: #8dbdb4; }
+#outcome { color: #b6e4c9; }
+details { border-top: 1px solid #63757e; margin-top: 24px; padding-top: 16px; }
+summary { min-height: 44px; cursor: pointer; }
+.dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+#dialog-body > button, .choices button { display: block; width: 100%; margin-top: 12px; text-align: left; }
+#dialog-body form { margin: 20px 0; }
+#dialog-body form button { width: 100%; }
+.notice { border-left: 3px solid #c7b17f; padding-left: 12px; color: #d8d0bd; font-size: .92rem; }
+.observation { border: 1px dashed #8dbdb4; padding: 14px; background: #293f43; }
+.hints { border-top: 1px solid #63757e; margin-top: 24px; padding-top: 10px; }
+.hints p { font-size: .92rem; }
+.hints h3 { font-size: 1rem; }
+button:disabled { opacity: .7; cursor: default; }
+@media (max-width: 950px) { .workspace { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { #objects { grid-template-columns: 1fr; } dialog { padding: 16px; } }
+#pad { grid-template-columns: repeat(2, 64px); }
+#pad button[data-dir="up"] { grid-row: 1; grid-column: 1; }
+#pad button[data-dir="right"] { grid-row: 1; grid-column: 2; }
+#pad button[data-dir="left"] { grid-row: 2; grid-column: 1; }
+#pad button[data-dir="down"] { grid-row: 2; grid-column: 2; }
