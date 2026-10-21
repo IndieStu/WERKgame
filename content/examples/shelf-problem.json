@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "shelf_problem",
+  "revision": 1,
+  "roomId": "prototype_room",
+  "npcId": "jonas",
+  "startStepId": "briefing",
+  "steps": [
+    {
+      "id": "briefing",
+      "type": "dialogue",
+      "speakerId": "jonas",
+      "text": "Für unser Fest brauchen wir ein Regal. Lass uns zuerst die Kiste prüfen.",
+      "next": "observe"
+    },
+    {
+      "id": "observe",
+      "type": "real_world_task",
+      "stationId": "prototype_box",
+      "mode": "simulated",
+      "text": "Im Prototyp ist das Messen simuliert: Öffne die Messkarte der Kiste. Später messen wir ein vorbereitetes Objekt vor Ort.",
+      "safetyText": "Nur die vorbereitete Kiste untersuchen. Keine Maschinen bedienen.",
+      "unavailableAlternative": "Nutze die Messkarte mit dem Beispielmaß 40 cm.",
+      "completion": "confirm",
+      "next": "measure"
+    },
+    {
+      "id": "measure",
+      "type": "measurement",
+      "text": "Wie breit ist die Beispielkiste?",
+      "quantity": "width",
+      "unit": "cm",
+      "expected": { "value": 40, "tolerance": 0.5 },
+      "hints": [
+        "Schau auf die Messkarte der Kiste.",
+        "Gesucht ist die Breite in Zentimetern.",
+        "Die Beispielkarte zeigt 40 cm."
+      ],
+      "retryFeedback": "Prüfe die Einheit und lies die Breite noch einmal ab.",
+      "next": "material"
+    },
+    {
+      "id": "material",
+      "type": "choice",
+      "text": "Für unser virtuelles Beispiel sind beide Platten ausreichend dimensioniert. Sichtbare Kanten sind uns wichtig. Was bevorzugst du?",
+      "context": "Nur didaktische Beispielannahmen, keine reale Belastungsberechnung. Multiplex kostet im Beispiel mehr; MDF benötigt eine zusätzliche Kantenbeschichtung.",
+      "options": [
+        { "id": "multiplex", "label": "Multiplex: sichtbare Kante, höherer Preis", "feedback": "Das spart uns die zusätzliche Kantenbeschichtung. Dafür zahlen wir mehr.", "next": "process" },
+        { "id": "mdf", "label": "MDF: günstiger, Kanten beschichten", "feedback": "Das ist hier ebenfalls begründbar. Wir planen den zusätzlichen Beschichtungsschritt ein.", "next": "process" }
+      ]
+    },
+    {
+      "id": "process",
+      "type": "choice",
+      "text": "Wir brauchen mehrere rechteckige Platten aus einer großen Ausgangsplatte. Es gibt keinen Bedarf für Konturfräsungen. Welchen Ablauf würdest du virtuell planen?",
+      "options": [
+        { "id": "panel_cut", "label": "Maße und Anschläge für einen wiederholbaren Plattenzuschnitt planen", "feedback": "Das passt zu den angegebenen rechteckigen Teilen. Die Ausführung übernehmen im echten WERK ausschließlich eingewiesene Personen.", "next": "complete" },
+        { "id": "cnc", "label": "Ein CNC-Fräsprogramm für jedes Rechteck vorbereiten", "feedback": "Das wäre möglich, benötigt hier aber zusätzliche Programmierung. Welche einfachere Lösung erfüllt denselben Zweck?", "next": "process" }
+      ],
+      "hints": [
+        "Welche Form haben die Teile?",
+        "Es sind einfache Rechtecke, keine besonderen Konturen.",
+        "Ein wiederholbar eingestellter Plattenzuschnitt reicht für dieses Beispiel."
+      ]
+    },
+    {
+      "id": "complete",
+      "type": "result",
+      "text": "Das virtuelle Regal ist fertig. Du hast gemessen, Material abgewogen und einen Ablauf geplant.",
+      "outcomeId": "shelf_finished",
+      "careerFields": ["Tischlerei", "Holzmechanik", "Technische Planung"],
+      "reflection": "Welche dieser Tätigkeiten würdest du gern im echten WERK näher kennenlernen?"
+    }
+  ]
+}
