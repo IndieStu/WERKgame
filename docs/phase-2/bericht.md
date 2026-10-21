@@ -1,8 +1,12 @@
-# Phase 2 – Regalquest als Vertical Slice
+# Phase 2 – technische Questvorarbeit und Reviewstatus
 
-Stand: 21.10.2026. Phase 1 wurde vom Auftraggeber abgenommen; ausschließlich Phase 2 wurde fortgeführt. **Der Slice ist implementiert und zur Durchsicht bereit.** Die formative Nutzungsprobe mit drei bis fünf Personen, das fachliche Gegenlesen und die reale iPad-/Safari-Prüfung sind weiterhin offen. Phase 3 wurde nicht begonnen.
+Stand der technischen Nachweise: 21.10.2026. **Aktuelle Einordnung nach Testfeedback:** Phase 2 ist inhaltlich und UX-seitig nicht abgenommen. Der Build ist eine technisch vollständig ausführbare Quest-State-Machine mit Developer UI, kein Nachweis einer spielbaren Quest, pädagogischer Qualität oder unterhaltsamer Player Experience. Die frühere Bezeichnung „durchspielbarer Slice“ war zu weitgehend.
 
-## Spielbarer Umfang
+Die technischen Grundlagen und folgenden Nachweise bleiben erhalten. Maßgeblich für den nächsten Entwurf sind die [Creative-Direction-/Player-Experience-Revision](../design/creative-direction.md) und das [Regalquest-Storyboard](../design/regalquest-storyboard.md). Diese Dokumentationsrevision wartet vor jeder weiteren Umsetzung auf Review. Kein neuer Produktionscode, keine finalen Assets und kein Beginn von Phase 3.
+
+Phase 1 wurde zuvor technisch akzeptiert; diese Korrektur setzt die Chronologie nicht zurück. Fachreview, Nutzungsprobe und reale iPad-/Safari-Prüfung bleiben getrennte offene Nachweise.
+
+## Technisch ausführbarer Umfang
 
 Ein kleiner erfundener WERK-Raum mit Boden, Wänden, Türmarker, Werkbank, Regal, Maschinen-Infopunkt, Kiste, Materialproben und Kaffeetasse. Zwei Figuren: beweglicher Avatar und Jonas mit blauer Jacke, Cap und Brille als geometrische Placeholder. Zwei vorgefertigte Avatarfarben; kein Character Creator und keine finalen Assets. Raummaß, 64×32-Projektion und Figurenmaßstab bleiben vorläufig.
 
@@ -109,4 +113,4 @@ Es wurden keine echten Werkstätten produziert, keine QR-/NFC-Laufzeitadapter, F
 
 Phase 1 liegt auf `phase-1-technical-prototype`. Phase 2 liegt darauf aufbauend auf `phase-2-vertical-slice`; beide werden mit ausdrücklich erteilter Uploadfreigabe bereitgestellt. `main` wird nicht eigenmächtig gemergt. Die GitHub-Integration meldet beim Anlegen eines Pull Requests HTTP 403 („Resource not accessible by integration“); Branchupload per SSH ist davon unabhängig.
 
-**Hier stoppen:** zuerst den Slice durchspielen, Rückmeldung und fachliche/Nutzungsprüfungen sammeln. Kein automatischer Beginn von Phase 3.
+**Hier stoppen:** zuerst Creative Direction und Storyboard prüfen und freigeben. Die bisherige Oberfläche definiert weder Player UI noch Art Direction. Kein Produktionscode in diesem Revisionsschritt und kein Beginn von Phase 3.

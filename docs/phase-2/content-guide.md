@@ -1,5 +1,7 @@
 # Inhalte des Vertical Slice bearbeiten
 
+**Reviewstatus:** Die bestehende Präsentation ist inhaltlich und UX-seitig nicht freigegeben. [Creative Direction](../design/creative-direction.md) und [Storyboard](../design/regalquest-storyboard.md) definieren den Entwurf für das Review. Diese Anleitung beschreibt die erhaltene Technik und ist keine Anweisung zum sofortigen Contentumbau.
+
 Der Raum und die Quest sind Placeholder. Es gibt noch keinen grafischen Editor und keine ausführbaren Ausdrücke in Contentdateien.
 
 ## Dateien

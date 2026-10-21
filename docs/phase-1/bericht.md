@@ -1,6 +1,14 @@
 # Phase 1 – Technikprototyp und Validierungsstand
 
-Stand der technischen Nachweise: 21.10.2026. **Nachträglicher Status: Phase 1 wurde vom Auftraggeber abgenommen und Phase 2 freigegeben.** Die nachfolgenden Messwerte bleiben der historische Phase-1-Stand. Aus der Abnahme wird kein zusätzlicher iPad-/Safari-Nachweis abgeleitet. Die Entwicklung von Phase 2 steht im [Phase-2-Bericht](../phase-2/bericht.md). Es gibt derzeit kein Schul-iPad; verfügbar sind laut Auftraggeber MacBook Pro und iPhone 15. Ein manueller iPhone-/Safari-Test wurde noch nicht durchgeführt.
+Stand der technischen Nachweise: 21.10.2026. **Phase 1 bleibt technisch abgenommen.** Nach der damaligen Weiterarbeitsfreigabe entstand die [technische Questvorarbeit aus Phase 2](../phase-2/bericht.md). Deren inhaltliche und UX-seitige Abnahme steht nach dem aktuellen Testfeedback aus; zuerst wird die Creative-Direction-/Player-Experience-Revision vor Phase 3 geprüft. Aus keiner dieser Rückmeldungen wird ein zusätzlicher iPad-/Safari-Nachweis abgeleitet.
+
+Die folgenden Messwerte beschreiben den historischen Phase-1-Build. Ein Schul-iPad war dabei nicht verfügbar; MacBook Pro und iPhone 15 wurden als verfügbare Geräte benannt. Ein zusätzlicher manueller iPhone-/Safari-Test ist in diesen technischen Nachweisen nicht dokumentiert.
+
+## Spätere Einordnung nach dem Phase-2-Test
+
+Die technische Phase-1-Arbeit bleibt akzeptierte Grundlage. Nach dem Test der anschließenden Questvorarbeit hat der Auftraggeber die Creative Direction und Player Experience korrigiert. Die vorhandenen permanenten Webelemente und großen Modals sind Debug-/Test-UI; sie sind keine Player-UI- oder Art-Direction-Vorgabe. Aus bestandenen Browserchecks folgt keine Bestätigung unterhaltsamen Gameplays.
+
+Der aktuelle Zwischenschritt vor Phase 3 ist ausschließlich die [Creative-Direction-/Player-Experience-Revision](../design/creative-direction.md) mit [konkretem Storyboard](../design/regalquest-storyboard.md). Phase 2 ist inhaltlich/UX-seitig nicht freigegeben. Die folgenden Phase-1-Messwerte bleiben historische technische Nachweise.
 
 ## Ergebnis
 
