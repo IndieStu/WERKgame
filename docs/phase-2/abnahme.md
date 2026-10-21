@@ -1,10 +1,12 @@
-# Phase 2 – kurzer Abnahmelauf
+# Phase 2 – technische Funktionsprüfung
+
+**Aktuelle Einordnung:** Dieser Ablauf prüft technische Zustände. Er ist kein Nachweis für spielbare oder unterhaltsame Quests. Die inhaltliche/UX-Abnahme steht aus; zuerst [Creative Direction](../design/creative-direction.md) und [Storyboard](../design/regalquest-storyboard.md) prüfen. Kein Produktionscode in diesem Revisionsschritt.
 
 Lokale Vorschau aktuell: `http://localhost:4175/`. Der eigene Port vermeidet einen noch aktiven Phase-1-Service-Worker auf Port 4173. Verschiedene Ports haben getrennte Browserdaten; Savemigration im selben Origin wird separat automatisiert geprüft.
 
 Für einen frischen Start „Neue Runde“ nutzen. Avatarpreset und Hinweisunterstützung auswählen; beide Bewegungsvarianten sind weiter verfügbar. Keine Altersangabe erforderlich.
 
-## Spielrunde, Ziel 5–10 Minuten
+## Technischer Ablauf; Spielrundendauer noch nicht validiert
 
 1. Jonas im Raum oder über die HTML-Liste ansprechen; alternativ den Auftrag rechts fortsetzen.
 2. Auftrag annehmen. Messkarte öffnen und die Breite der fiktiven Kiste merken. Dieser Schritt simuliert die spätere reale Messaufgabe.

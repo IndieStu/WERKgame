@@ -2,13 +2,13 @@
 
 Ein webbasiertes isometrisches Spiel verbindet virtuelle Aufträge mit sicheren Entdeckungsaufgaben im realen WERK Bremerhaven. Zielgruppe: Jugendliche von etwa 13 bis 18 Jahren.
 
-**Status:** Phase 0 und Phase 1 sind abgenommen. Der Phase-2-Vertical-Slice ist umgesetzt und zur Durchsicht bereit: ein Placeholder-Raum, Jonas, Regalquest, Hinweise, Auswahlentscheidungen, sichtbares Ergebnis und lokaler Fortschritt. Die reale iPad-Prüfung bleibt offen. Phase 3 wurde nicht begonnen.
+**Status:** Phase 1 bleibt technisch abgenommen. Der vorhandene Phase-2-Build ist nützliche technische Questvorarbeit, aber **inhaltlich und UX-seitig nicht freigegeben**. Die permanente Weboberfläche ist Developer-/Test-UI und keine Vorlage für das Produkt. Vor Phase 3 liegt jetzt eine Creative-Direction-/Player-Experience-Revision zum Review vor. In diesem Zwischenschritt werden nur Dokumente geändert.
 
-[Phase-2-Bericht](docs/phase-2/bericht.md) · [Abnahmelauf](docs/phase-2/abnahme.md) · [Inhalte bearbeiten](docs/phase-2/content-guide.md)
+[Creative Direction / Player Experience](docs/design/creative-direction.md) · [Konkretes Regalquest-Storyboard](docs/design/regalquest-storyboard.md) · [Visuelle Inspiration](docs/design/visual-reference-01.md) · [Technischer Phase-2-Bericht](docs/phase-2/bericht.md)
 
 **Repository:** [IndieStu/WERKgame](https://github.com/IndieStu/WERKgame) · SSH: `git@github.com:IndieStu/WERKgame.git`.
 
-## Prototyp starten
+## Technische Vorarbeit starten
 
 Node **24.19.0**, pnpm **11.25.0**. Alle direkten Paketversionen und die Lockdatei sind fixiert.
 
@@ -37,7 +37,7 @@ Der Browsercheck startet selbst einen lokalen Produktionsserver auf Port 4174. A
 
 ## Dokumentation
 
-- [Phase-2-Bericht](docs/phase-2/bericht.md): kompletter Slice, Prüfungen und offene Abnahme
+- [Phase-2-Bericht](docs/phase-2/bericht.md): technische Abläufe und Tests; kein Nachweis für Gameplay oder Player Experience
 - [Phase-1-Bericht](docs/phase-1/bericht.md): Ergebnisse, Messwerte, Screenshots und offene Prüfungen
 - [Manueller Gerätevergleich](docs/phase-1/geraetetest.md): MacBook, iPhone und später iPad
 - [Phase-0-Analyse](docs/phase-0.md): recherchierte Entscheidung und Architektur
@@ -52,4 +52,4 @@ Alle visuellen Maße bleiben vorläufig. Keine finalen WERK-Assets, keine reale 
 
 Die Projektlizenz ist noch nicht entschieden. Vorschlag: MIT für eigenen Code, getrennte Rechte für Content, Personen und Logos. Hinweise für enthaltene Drittsoftware liegen in [THIRD_PARTY_NOTICES.txt](public/THIRD_PARTY_NOTICES.txt) und werden mit dem statischen Build ausgeliefert.
 
-Nach dem Phase-2-Slice stoppen. Kein Beginn von Phase 3 ohne Freigabe; fachliches Review, Nutzungsprobe und offene reale Geräteprüfungen sichtbar belassen.
+Nach der Creative-Direction-/UX-Revision stoppen und auf Review warten. Kein Produktionscode, keine finalen Assets und kein Beginn von Phase 3 in diesem Zwischenschritt. Technische Questlogik, spielbare Quest, pädagogische Qualität und unterhaltsame Player Experience werden getrennt beurteilt.

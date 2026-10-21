@@ -1,6 +1,6 @@
 # Entwicklungsplan und erster Vertical Slice
 
-Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 und Phase 1 sind abgenommen. Phase 2 ist zur Umsetzung freigegeben; Phase 3 und folgende bleiben gesperrt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
+Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 und die technische Phase 1 bleiben abgenommen. Phase 2 ist nach dem Testfeedback inhaltlich und UX-seitig nicht freigegeben. Vor Phase 3 liegt eine reine Creative-Direction-/UX-Revision zum Review vor; kein neuer Produktionscode oder finale Assets in diesem Zwischenschritt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
 
 ## Phase 0 – Analyse und Entscheidungen
 
@@ -28,16 +28,27 @@ Status: vom Auftraggeber abgenommen. Technische Nachweise: [Phase-1-Bericht](pha
 
 ## Phase 2 – Vertical Slice · 8–14 PT
 
-Status und Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Der Slice ist zur Durchsicht vorbereitet; fachliches Review und formative Tests mit drei bis fünf Personen stehen aus.
+Status und technische Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Technische Questvorarbeit bleibt erhalten, Player Experience und Inhalt sind nicht abgenommen. Die permanente Debug-UI und Placeholder sind keine Produktvorlage.
 
-- **Ziel:** eine vollständige 5–10-Minuten-Spielschleife mit simulierter Realweltaufgabe.
+- **Ziel:** eine Adventure-Sequenz mit freiwilliger Erkundung, NPC-Gespräch, virtueller/realer Handlung, selbst gefundenen Informationen, kurzem Planungsproblem und sichtbarem Ergebnis. Technisch ausführbare Dialogfolgen allein erfüllen dieses Ziel nicht. 5–10 Minuten bleiben ein zu prüfendes Dauerziel.
 - **Deliverables:** ein Raum, zwei Figuren, Regalquest, Questlog, Hinweise, Antwortfeedback, Abschluss und Reset.
 - **Technik:** generische Questzustände, JSON Schema, Contentprüfung, Dialog-/Hint-UI, versionierte Saves, HTML-Objektliste, Eingabevalidierung; Zustands- und Browserkernabläufe testen.
-- **Content:** kurze Jonas-Dialoge, sichere Messanweisung, Materialinfos mit Randbedingungen, Verfahrensvergleich und Berufsbezug. Redaktionelles Review durch fachkundige Person.
+- **Content:** kurze charaktervolle RPG-Dialoge, Objektinformationen in drei Ebenen, sichere reale Aufgabe mit räumlichem Prototyp-Stellvertreter, freiwillige natürliche Berufsbezüge. Fachreview separat; kein Pflicht-Abschlussbogen.
 - **Assets:** Placeholderliste unten; zwei Avatarpresets statt Creator.
 - **Abhängigkeiten:** abgenommene Phase 1.
 - **Risiken:** aus einer Miniquest einen Werkstattsimulator machen; überlange Texte; vermeintlich eindeutige Maschinenantwort.
-- **Done:** Akzeptanzliste unten erfüllt; mindestens drei bis fünf freiwillige Testpersonen finden Kernaktionen mit höchstens kurzer Starthilfe. Das ist eine formative UX-Probe, kein Wirksamkeitsnachweis.
+- **Done:** technische Checks separat bestanden; zusätzlich Spielbarkeit und unterhaltsame Experience mit Personen beobachten und pädagogischen Inhalt fachlich prüfen. Finden sie aus eigener Neugier Informationen, verstehen sie Handlungen und Folgen und möchten sie einen weiteren Raum erkunden? Ein Completed-State genügt nicht. Die formative Probe ist kein Wirksamkeitsnachweis.
+
+## Zwischenschritt: Creative Direction und Player Experience revidieren
+
+- **Ziel:** die technische Questvorarbeit als Adventure statt Web-/E-Learning-UI weiterdenken, bevor Phase 3 beginnt.
+- **Deliverables:** [Creative-Direction-/Player-Experience-Revision](design/creative-direction.md), [konkretes Regalquest-Storyboard](design/regalquest-storyboard.md), korrigierte Einordnung der bisherigen Nachweise.
+- **Technik:** keine Implementierung. Phaser, TypeScript, Vite, Questlogik, alternative Lösungen, Retries, IndexedDB, Migration, Offline, Accessibility, Tests und Weltzustände bleiben erhalten.
+- **Content:** Einstieg, kurze RPG-Gespräche, Erkundung, Informationsschichten, reale Aufgabe, räumliche Planung und freiwillige Berufseinblicke spezifizieren.
+- **Assets:** keine neuen Produktionsassets; Pixel-Art-Zielrichtung nur beschreiben.
+- **Abhängigkeiten:** Testfeedback zum vorhandenen Build.
+- **Risiko:** technische Ausführbarkeit erneut mit Gameplay oder Experience verwechseln. Vier Nachweise strikt trennen.
+- **Done:** Dokumente zur Durchsicht bereitstellen und stoppen. Ein Umbau folgt erst nach Review/Freigabe; Phase 3 bleibt gesperrt.
 
 ## Phase 3 – Eine reale Werkstatt · 6–10 PT
 
@@ -145,7 +156,7 @@ Ablauf:
 
 Keine kompletten Workshoptilesets, keine Sitz-/Trageanimationen, keine große Garderobe, keine Fotos, keine Filmclips und kein echter Maschinenbetrieb.
 
-### Abnahmecheckliste
+### Technische Abnahmecheckliste – kein Gameplay-/Experience-Nachweis
 
 - [ ] Zielgeräte und Versionen protokolliert; keine bloße Desktopemulation.
 - [ ] Tap/Klick erreichen freie Ziele; blockierte Ziele erzeugen verständliches Verhalten.
