@@ -1,6 +1,6 @@
 # Phase 1 – Technikprototyp und Validierungsstand
 
-Stand: 21.10.2026. **Die technische Implementierung ist zur Prüfung bereit; die reale Zielgeräteabnahme ist noch nicht abgeschlossen.** Phase 2 wurde nicht begonnen. Es gibt derzeit kein Schul-iPad; verfügbar sind laut Auftraggeber MacBook Pro und iPhone 15. Ein manueller iPhone-/Safari-Test wurde noch nicht durchgeführt.
+Stand der technischen Nachweise: 21.10.2026. **Nachträglicher Status: Phase 1 wurde vom Auftraggeber abgenommen und Phase 2 freigegeben.** Die nachfolgenden Messwerte bleiben der historische Phase-1-Stand. Aus der Abnahme wird kein zusätzlicher iPad-/Safari-Nachweis abgeleitet. Die Entwicklung von Phase 2 steht im [Phase-2-Bericht](../phase-2/bericht.md). Es gibt derzeit kein Schul-iPad; verfügbar sind laut Auftraggeber MacBook Pro und iPhone 15. Ein manueller iPhone-/Safari-Test wurde noch nicht durchgeführt.
 
 ## Ergebnis
 
@@ -126,4 +126,4 @@ Der erste Offlinetest scheiterte, obwohl das Paket vollständig gecacht war. Der
 
 Langfristiges Designprinzip vorgemerkt: Abgeschlossene Werkstattquests verändern die gemeinsame WERK-/Festivalwelt sichtbar und ersetzen XP/Level. In Phase 1 nicht implementiert.
 
-**Hier endet die freigegebene Umsetzung. Phase 1 ist technisch prüfbereit, aber nicht vollständig auf realen Zielgeräten abgenommen.**
+**Historischer Abschluss: Die technische Phase 1 wurde anschließend vom Auftraggeber akzeptiert. Weiterhin kein Nachweis einer vollständigen realen iPad-Abnahme.**

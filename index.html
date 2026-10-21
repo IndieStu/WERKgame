@@ -1,10 +1,48 @@
 <!doctype html>
-<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><meta name="theme-color" content="#202830"><title>WERK · Techniklabor Phase 1</title></head>
-<body><main>
-<header><span>WERK / TECHNIKLABOR</span><h1>Ein Raum. Zwei Steuerungen.</h1><p>Phase 1 · nur Placeholder · alle Pixelmaße vorläufig</p></header>
-<section class="toolbar" aria-label="Teststeuerung"><label>Bewegungsvariante <select id="mode"><option value="tap">A · Tap-to-Move</option><option value="direct">B · Direkte Richtungstasten</option></select></label><button id="open-dialog">Testdialog öffnen</button><button id="reset">Teststand zurücksetzen</button></section>
-<div class="workspace"><section class="world"><div id="game" aria-label="Isometrischer Testraum" tabindex="0"></div><div id="pad" hidden aria-label="Direkte Touchsteuerung"><button data-dir="up" aria-label="Nach oben bewegen">↑</button><button data-dir="left" aria-label="Nach links bewegen">←</button><button data-dir="down" aria-label="Nach unten bewegen">↓</button><button data-dir="right" aria-label="Nach rechts bewegen">→</button></div><p id="instruction">Tippe auf ein freies Bodenfeld. Tippe einen Block an, um dorthin zu laufen.</p></section>
-<aside><h2>Messstation</h2><p>Testaufbau, kein echter WERK-Raum. Laufe vor und hinter den hohen Regalblock und prüfe die Überdeckung.</p><h3>Dinge im Raum</h3><div id="objects"></div><p>Alternativ: Pfeiltasten oder WASD. E öffnet den Testdialog. Escape schließt ihn.</p><h3>Technikstatus</h3><dl><dt>Speichern</dt><dd id="save-status">Wird geladen …</dd><dt>Offline</dt><dd id="offline-status">Nur Produktionsbuild</dd><dt>Messung</dt><dd id="metrics">Start …</dd><dt>Position</dt><dd id="position">–</dd></dl><button id="export">Testbericht herunterladen</button><p>Bericht enthält technische Geräteangaben und lokalen Teststand. Kein Upload.</p></aside></div>
-<p id="message" role="status" aria-live="polite">Bereit.</p>
-<dialog id="dialog"><form id="measurement"><h2>HTML über Canvas</h2><p>Die Welt pausiert während dieses Dialogs. Dies ist nur ein Formular- und Speichertest.</p><label for="width">Breite der fiktiven Kiste in cm</label><input id="width" type="text" inputmode="decimal" autocomplete="off" maxlength="12" placeholder="Zum Beispiel 40,5"><p id="feedback" role="status"></p><div class="buttons"><button type="submit">Wert lokal speichern</button><button type="button" id="close-dialog">Schließen</button></div></form></dialog>
-</main><script type="module" src="/game/source/main.ts"></script></body></html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#202830">
+  <link rel="icon" href="data:,">
+  <title>WERK · Das Regal fürs Fest</title>
+</head>
+<body>
+<main>
+  <header><span>WERK / VERTICAL SLICE</span><h1>Ein Regal fürs Fest.</h1><p>Ein erfundener Raum, ein gemeinsamer Plan. Alle Grafiken und Maße sind vorläufig.</p></header>
+  <section class="toolbar" aria-label="Steuerung und Start">
+    <label>Bewegungsvariante<select id="mode"><option value="tap">A · Tap-to-Move</option><option value="direct">B · Direkte Richtungstasten</option></select></label>
+    <label>Avatarpreset<select id="avatar"><option value="mint">Mint</option><option value="orange">Ocker</option></select></label>
+    <label>Unterstützung<select id="help"><option value="normal">Hinweise auf Anfrage</option><option value="more">Erste Hinweise direkt zeigen</option></select></label>
+    <button id="reset">Neue Runde</button>
+  </section>
+  <div class="workspace">
+    <section class="world" aria-label="Virtueller Raum">
+      <div id="game" tabindex="0" aria-label="Isometrischer Fantasie-WERK-Raum. Alternativ die Objektliste verwenden."></div>
+      <div id="pad" hidden aria-label="Direkte Touchsteuerung">
+        <button data-dir="up" aria-label="Nach links oben bewegen">↖</button>
+        <button data-dir="right" aria-label="Nach rechts oben bewegen">↗</button>
+        <button data-dir="left" aria-label="Nach links unten bewegen">↙</button>
+        <button data-dir="down" aria-label="Nach rechts unten bewegen">↘</button>
+      </div>
+      <p id="instruction"></p>
+      <section class="objects-panel"><h2>Dinge im Raum</h2><p>Klick oder Tap läuft zum Objekt. Die Liste funktioniert auch mit Tastatur.</p><div id="objects"></div></section>
+    </section>
+    <aside aria-label="Questlog">
+      <span class="eyebrow">DEIN AUFTRAG</span><h2 id="quest-title"></h2>
+      <p id="quest-progress"></p><progress id="progress" max="7" value="0" aria-label="Questfortschritt"></progress>
+      <h3 id="step-title"></h3><p id="objective"></p>
+      <button id="resume">Mit Jonas sprechen</button>
+      <p id="outcome" role="status"></p>
+      <details><summary>Technik &amp; Testbericht</summary><dl><dt>Speichern</dt><dd id="save-status">Wird geladen …</dd><dt>Offline</dt><dd id="offline-status">Nur Produktionsbuild</dd><dt>Messung</dt><dd id="metrics">Start …</dd><dt>Position</dt><dd id="position">–</dd></dl><button id="export">Testbericht herunterladen</button><p>Nur lokal. Kein Upload. E öffnet den Auftrag; Pfeile oder WASD bewegen die Figur.</p></details>
+    </aside>
+  </div>
+  <p id="message" role="status" aria-live="polite">Wird geladen …</p>
+  <dialog id="dialog" aria-labelledby="dialog-title">
+    <div class="dialog-header"><span id="speaker">JONAS</span><button id="close-dialog" aria-label="Dialog schließen">Schließen</button></div>
+    <h2 id="dialog-title"></h2><div id="dialog-body"></div>
+  </dialog>
+</main>
+<script type="module" src="/game/source/main.ts"></script>
+</body>
+</html>

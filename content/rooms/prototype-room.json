@@ -1,0 +1,74 @@
+{
+  "objects": [
+    {
+      "id": "shelf",
+      "label": "Regal",
+      "x": 4,
+      "y": 4,
+      "height": 90,
+      "color": 7634311,
+      "description": "Hier soll das Regal für unsere Festkisten entstehen. Nach dem Abschluss steht hier dein virtuelles Ergebnis.",
+      "shortLabel": "Regal"
+    },
+    {
+      "id": "bench",
+      "label": "Werkbank",
+      "x": 2,
+      "y": 3,
+      "height": 32,
+      "color": 9867658,
+      "description": "Auf einer Werkbank werden Teile vorbereitet und geprüft. In diesem Slice musst du hier nichts mit echten Werkzeugen tun.",
+      "shortLabel": "Werkbank"
+    },
+    {
+      "id": "machine",
+      "label": "Maschinen-Infopunkt",
+      "x": 6,
+      "y": 3,
+      "height": 57,
+      "color": 8885659,
+      "description": "Wiederholbarer Plattenzuschnitt kann bei einfachen Rechtecken sinnvoll sein. CNC kann Konturen wiederholen, braucht aber Programmierung und Einrichtung. Maschinen bleiben hier rein virtuell.",
+      "shortLabel": "Maschine"
+    },
+    {
+      "id": "box",
+      "label": "Kiste und Messkarte",
+      "x": 1,
+      "y": 4,
+      "height": 23,
+      "color": 11642238,
+      "description": "Messkarte · Kiste A: Breite 40 cm, Tiefe 30 cm, Höhe 25 cm. Gesucht ist die Breite, von links nach rechts.",
+      "shortLabel": "Kiste"
+    },
+    {
+      "id": "materials",
+      "label": "Drei Materialproben",
+      "x": 6,
+      "y": 6,
+      "height": 22,
+      "color": 11512725,
+      "description": "Multiplex: sichtbare Schichtkante, höherer Preis. MDF: glatte Fläche, zusätzliche Kantenbeschichtung. OSB: markante Struktur. Im Beispiel sind alle ausreichend dimensioniert und trocken eingesetzt; keine reale Belastungszusage.",
+      "shortLabel": "Proben"
+    },
+    {
+      "id": "coffee",
+      "label": "Jonas’ Kaffeetasse",
+      "x": 2,
+      "y": 6,
+      "height": 17,
+      "color": 13294809,
+      "description": "Für die Regalplanung nicht nötig. Für Jonas offenbar schon. Die Tasse gibt keine Punkte und schaltet nichts frei.",
+      "shortLabel": "Tasse"
+    },
+    {
+      "id": "jonas",
+      "label": "Jonas",
+      "x": 5,
+      "y": 6,
+      "height": 48,
+      "color": 7244992,
+      "description": "Jonas plant mit dir ein Regal für das WERK-Fest. Ein Placeholder mit blauer Jacke, Cap und Brille; keine finale Personenillustration.",
+      "shortLabel": "JONAS"
+    }
+  ]
+}

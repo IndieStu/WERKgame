@@ -1,6 +1,6 @@
 # Phase 0: WERK-Spiel
 
-Stand: 21.10.2026 · Phase 0 abgeschlossen und nach Auftraggeberentscheidungen aktualisiert. Phaser ist als Engine bestätigt; NFC bleibt eine mögliche spätere Ergänzung. Phase 0 ist freigegeben; ausschließlich Phase 1 ist zur Umsetzung freigegeben. Phase 2 bleibt gesperrt.
+Stand: 21.10.2026 · Phase 0 abgeschlossen und nach Auftraggeberentscheidungen aktualisiert. Phaser ist als Engine bestätigt; NFC bleibt eine mögliche spätere Ergänzung. Phase 0 und Phase 1 sind abgenommen. Phase 2 ist freigegeben; die folgenden Planungsdetails dokumentieren weiterhin den ursprünglichen Phase-0-Entscheidungsstand. Aktueller Stand siehe [Roadmap](roadmap.md).
 
 Projektbasis: [IndieStu/WERKgame](https://github.com/IndieStu/WERKgame).
 

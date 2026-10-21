@@ -1,6 +1,6 @@
 # Entwicklungsplan und erster Vertical Slice
 
-Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 ist freigegeben, ausschließlich Phase 1 ist zur Umsetzung freigegeben. Phase 2 und folgende bleiben gesperrt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
+Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 und Phase 1 sind abgenommen. Phase 2 ist zur Umsetzung freigegeben; Phase 3 und folgende bleiben gesperrt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
 
 ## Phase 0 – Analyse und Entscheidungen
 
@@ -15,7 +15,7 @@ Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche sp
 
 ## Phase 1 – Technischer Prototyp · 4–7 PT
 
-Status und Nachweise: [Phase-1-Bericht](phase-1/bericht.md). Reale iPad-Abnahme bleibt offen, da aktuell nur MacBook Pro und iPhone 15 verfügbar sind.
+Status: vom Auftraggeber abgenommen. Technische Nachweise: [Phase-1-Bericht](phase-1/bericht.md). Reale iPad-Abnahme bleibt offen, da aktuell nur MacBook Pro und iPhone 15 verfügbar sind.
 
 - **Ziel:** die risikoreichsten technischen Annahmen auf echten Geräten prüfen.
 - **Deliverables:** ein kleiner grauer Iso-Raum, klick-/touchfähige Bewegung, Testprotokoll und reproduzierbarer statischer Build.
@@ -27,6 +27,8 @@ Status und Nachweise: [Phase-1-Bericht](phase-1/bericht.md). Reale iPad-Abnahme 
 - **Done:** Bewegung und Interaktion auf Zieltablet/Laptop; Regalüberdeckung korrekt; Formular mit Bildschirmtastatur nutzbar; Save über Reload; vollständiger Download und Offline-Wiederstart; Framerate/Transfer/Startzeit protokolliert. Bleiben Blocker, Blocker dokumentieren und das weitere Vorgehen gemeinsam festlegen.
 
 ## Phase 2 – Vertical Slice · 8–14 PT
+
+Status und Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Der Slice ist zur Durchsicht vorbereitet; fachliches Review und formative Tests mit drei bis fünf Personen stehen aus.
 
 - **Ziel:** eine vollständige 5–10-Minuten-Spielschleife mit simulierter Realweltaufgabe.
 - **Deliverables:** ein Raum, zwei Figuren, Regalquest, Questlog, Hinweise, Antwortfeedback, Abschluss und Reset.

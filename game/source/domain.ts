@@ -1,10 +1,10 @@
+import room from '../../content/rooms/prototype-room.json' with { type: 'json' };
+import questData from '../../content/quests/shelf-problem.json' with { type: 'json' };
+import { initialProgress, validProgress, type Progress, type Quest } from './quest.ts';
+export const quest = questData as Quest;
 export type Cell = { x: number; y: number };
 export const SIZE = 9;
-export const objects = [
-  { id: 'shelf', label: 'Hoher Regalblock', x: 4, y: 4, height: 90, color: 0x747d87 },
-  { id: 'bench', label: 'Werkbankblock', x: 2, y: 3, height: 32, color: 0x96918a },
-  { id: 'machine', label: 'Maschinenblock', x: 6, y: 3, height: 57, color: 0x87959b },
-];
+export const objects = room.objects;
 export const iso = ({ x, y }: Cell): Cell => ({ x: (x - y) * 32, y: (x + y) * 16 });
 export const unproject = ({ x, y }: Cell): Cell => ({ x: x / 64 + y / 32, y: y / 32 - x / 64 });
 export const walkable = (p: Cell) => Number.isInteger(p.x) && Number.isInteger(p.y) && p.x >= 0 && p.y >= 0 && p.x < SIZE && p.y < SIZE && !objects.some(o => o.x === p.x && o.y === p.y);
@@ -38,12 +38,20 @@ export function measurement(raw: string): number | null {
   const value = Number(normalized);
   return Number.isFinite(value) && value > 0 && value <= 300 ? value : null;
 }
-export type Save = { version: 1; cell: Cell; mode: 'tap' | 'direct'; width: number | null };
-export const fresh = (): Save => ({ version: 1, cell: { x: 1, y: 6 }, mode: 'tap', width: null });
+export type Save = {
+  version: 2; cell: Cell; mode: 'tap' | 'direct'; width: number | null;
+  avatar: 'mint' | 'orange'; help: 'normal' | 'more'; quest: Progress;
+};
+export const fresh = (): Save => ({ version: 2, cell: { x: 1, y: 6 }, mode: 'tap', width: null, avatar: 'mint', help: 'normal', quest: initialProgress(quest) });
 export function decode(raw: unknown): Save {
-  if (!raw || typeof raw !== 'object') throw Error('Ungültiger Teststand');
+  if (!raw || typeof raw !== 'object') throw Error('Ungültiger Spielstand');
   const s = raw as Save;
-  if (s.version !== 1) throw Error('Unbekannte Saveversion. Vorhandenen Stand nicht überschreiben.');
-  if (!s.cell || !walkable(s.cell) || !['tap', 'direct'].includes(s.mode) || !(s.width === null || typeof s.width === 'number' && Number.isFinite(s.width) && s.width > 0 && s.width <= 300)) throw Error('Beschädigter Teststand');
-  return { version: 1, cell: { ...s.cell }, mode: s.mode, width: s.width };
+  // Phase-1 saves retain their valid settings; the quest always starts fresh.
+  if ((s as { version: number }).version === 1) {
+    if (!s.cell || !Number.isInteger(s.cell.x) || !Number.isInteger(s.cell.y) || s.cell.x < 0 || s.cell.y < 0 || s.cell.x >= SIZE || s.cell.y >= SIZE || !['tap', 'direct'].includes(s.mode) || !(s.width === null || typeof s.width === 'number' && Number.isFinite(s.width) && s.width > 0 && s.width <= 300)) throw Error('Beschädigter Phase-1-Spielstand');
+    return { ...fresh(), cell: walkable(s.cell) ? { ...s.cell } : fresh().cell, mode: s.mode, width: s.width };
+  }
+  if (s.version !== 2) throw Error('Unbekannte Saveversion. Vorhandenen Stand nicht überschreiben.');
+  if (!s.cell || !walkable(s.cell) || !['tap', 'direct'].includes(s.mode) || !['mint', 'orange'].includes(s.avatar) || !['normal', 'more'].includes(s.help) || !(s.width === null || typeof s.width === 'number' && Number.isFinite(s.width) && s.width > 0 && s.width <= 300) || !validProgress(quest, s.quest)) throw Error('Beschädigter oder inkompatibler Queststand. Bitte vor einem Reset prüfen.');
+  return { version: 2, cell: { ...s.cell }, mode: s.mode, width: s.width, avatar: s.avatar, help: s.help, quest: structuredClone(s.quest) };
 }

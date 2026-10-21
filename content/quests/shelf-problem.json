@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "shelf_problem",
+  "revision": 1,
+  "title": "Ein Regal fürs WERK-Fest",
+  "roomId": "prototype_room",
+  "npcId": "jonas",
+  "startStepId": "briefing",
+  "steps": [
+    {
+      "id": "briefing",
+      "type": "dialogue",
+      "title": "Ein Platz für die Festkisten",
+      "text": "Für unser WERK-Fest brauchen wir ein Regal. Bevor wir etwas bauen, brauchen wir einen Plan. Hilfst du mir?",
+      "objective": "Sprich mit Jonas und finde heraus, was gebraucht wird.",
+      "next": "observe"
+    },
+    {
+      "id": "observe",
+      "type": "real_world_task",
+      "title": "Erst schauen, dann planen",
+      "text": "Später würdest du jetzt eine vorbereitete Kiste im echten WERK vermessen. Hier üben wir den Wechsel mit einer Messkarte.",
+      "objective": "Untersuche die fiktive Kiste und merke dir ihre Breite.",
+      "safetyText": "Dies ist eine Simulation. Keine Maschinen bedienen und keine echten Werkzeuge holen.",
+      "stationId": "box",
+      "mode": "simulated",
+      "observation": "Messkarte · Kiste A: Breite 40 cm, Tiefe 30 cm, Höhe 25 cm. Gesucht ist die Breite, von links nach rechts.",
+      "hints": [
+        "Öffne die Messkarte bei der Kiste.",
+        "Die Karte unterscheidet Breite, Tiefe und Höhe.",
+        "Für den nächsten Schritt brauchst du die Breite: 40 cm."
+      ],
+      "next": "measure"
+    },
+    {
+      "id": "measure",
+      "type": "measurement",
+      "title": "Wie breit ist die Kiste?",
+      "text": "Welche Breite hast du auf der Messkarte gefunden? Wir brauchen erst einmal das Kistenmaß, noch kein fertiges Regalmaß.",
+      "objective": "Gib die Breite der Beispielkiste in Zentimetern ein.",
+      "unit": "cm",
+      "expected": {
+        "value": 40,
+        "tolerance": 0.5
+      },
+      "retryFeedback": "Prüf noch einmal Breite und Einheit. Ein Kistenmaß ist schnell mit Tiefe oder Millimetern verwechselt.",
+      "successFeedback": "Genau, ungefähr 40 cm. Für ein echtes Regal müssten wir später noch Spielraum, Brettstärke und Last einplanen.",
+      "hints": [
+        "Du kannst die Messkarte jederzeit erneut öffnen.",
+        "Gesucht ist die Breite in Zentimetern, nicht die Tiefe.",
+        "Die Breite der Beispielkiste ist 40 cm."
+      ],
+      "next": "material"
+    },
+    {
+      "id": "material",
+      "type": "choice",
+      "title": "Welches Material – und warum?",
+      "text": "Im Beispiel sind alle drei Platten passend dimensioniert und trocken eingesetzt. Das Regal soll auch gut aussehen. Wofür würdest du dich entscheiden?",
+      "objective": "Vergleiche drei Materialkarten und entscheide dich mit einer Begründung.",
+      "context": "Didaktische Annahmen, keine Belastungsberechnung: Multiplex kostet mehr; MDF braucht Kantenbeschichtung; OSB hat eine deutlich sichtbare Struktur.",
+      "hints": [
+        "Es geht um eine Abwägung, nicht um einen einzigen richtigen Werkstoff.",
+        "Vergleiche Preis, Oberfläche und zusätzliche Arbeit.",
+        "Alle drei sind hier möglich. Wähle die Eigenschaft, die dir für das Fest wichtig ist."
+      ],
+      "options": [
+        {
+          "id": "multiplex",
+          "label": "Multiplex – sichtbare Kanten, dafür höherer Preis",
+          "feedback": "Du priorisierst die fertige Kantenansicht und nimmst höhere Kosten in Kauf. Unter unseren Beispielannahmen ist das nachvollziehbar.",
+          "next": "process"
+        },
+        {
+          "id": "mdf",
+          "label": "MDF – glatte Fläche, Kanten zusätzlich beschichten",
+          "feedback": "Du wählst eine glatte Fläche und planst zusätzliche Arbeit an den Kanten ein. Auch das kann zum Fest passen.",
+          "next": "process"
+        },
+        {
+          "id": "osb",
+          "label": "OSB – markante Struktur als Teil der Gestaltung",
+          "feedback": "Du machst die sichtbare Struktur zum Gestaltungselement. Das ist eine begründbare Wahl, wenn sie zum gewünschten Look passt.",
+          "next": "process"
+        }
+      ]
+    },
+    {
+      "id": "process",
+      "type": "choice",
+      "title": "Mehrere gleiche Bretter",
+      "text": "Die Teile sind einfache Rechtecke aus einer großen Platte. Mehrere sollen gleich groß werden. Welchen virtuellen Ablauf planst du?",
+      "objective": "Wähle ein Fertigungsverfahren und beachte den Vorbereitungsaufwand.",
+      "context": "Die echte Ausführung übernehmen ausschließlich eingewiesene Personen. Wir planen hier nur im Spiel.",
+      "hints": [
+        "Denk an Form und Ausgangsmaterial.",
+        "Für Rechtecke braucht man keine besonderen Fräskonturen.",
+        "Wiederholbarer Plattenzuschnitt ist hier einfach. CNC ist ebenfalls möglich, braucht aber mehr Vorbereitung."
+      ],
+      "options": [
+        {
+          "id": "panel_cut",
+          "label": "Plattenzuschnitt – Maße und wiederholbare Einstellung planen",
+          "feedback": "Das passt gut zu den einfachen Rechtecken. Gleiche Einstellungen helfen bei gleichen Teilen; prüfen müssen wir das Ergebnis trotzdem.",
+          "next": "complete"
+        },
+        {
+          "id": "cnc",
+          "label": "CNC – ein Programm vorbereiten und danach wiederholen",
+          "feedback": "Auch das funktioniert grundsätzlich. Für diese Rechtecke ist der Programmier- und Einrichtungsaufwand höher. Bei besonderen Konturen könnte sich das eher lohnen.",
+          "next": "complete"
+        },
+        {
+          "id": "printer",
+          "label": "3D-Druck – die Holzplatte in den Drucker legen",
+          "feedback": "Ein Filamentdrucker verarbeitet keine Holzplatte. Schau noch einmal darauf, welches Ausgangsmaterial wir haben. Du kannst ohne Nachteil neu wählen.",
+          "next": "process"
+        }
+      ]
+    },
+    {
+      "id": "complete",
+      "type": "result",
+      "title": "Aus dem Plan wird ein Regal",
+      "text": "Du hast ein Maß geprüft, Materialien verglichen und einen Fertigungsweg abgewogen. Jetzt setzen wir den Plan virtuell um.",
+      "objective": "Stelle das Regal virtuell fertig und schau auf die erlebten Tätigkeiten zurück.",
+      "outcomeId": "shelf_finished",
+      "careerFields": [
+        "Tischlerei",
+        "Holzmechanik",
+        "Technische Planung",
+        "Produktgestaltung"
+      ],
+      "reflection": "Was würdest du gern näher ausprobieren: messen, gestalten, Materialien vergleichen oder Abläufe planen? Deine Wahl ist keine Berufseignungsdiagnose.",
+      "completedText": "Dein Beitrag zum Fest: ein fertiges Regal. Die Kisten haben jetzt einen Platz."
+    }
+  ]
+}

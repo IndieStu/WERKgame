@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "dist/index.html",
+      "rawBytes": 3235,
+      "gzipBytes": 1462
+    },
+    {
+      "path": "dist/sw.js",
+      "rawBytes": 1255,
+      "gzipBytes": 616
+    },
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "rawBytes": 2542,
+      "gzipBytes": 983
+    },
+    {
+      "path": "dist/assets/index-CzN5WZ8u.css",
+      "rawBytes": 3524,
+      "gzipBytes": 1410
+    },
+    {
+      "path": "dist/assets/index-D9k77ZAV.js",
+      "rawBytes": 1414215,
+      "gzipBytes": 382280
+    }
+  ],
+  "rawBytes": 1424771,
+  "gzipBytes": 386751,
+  "note": "Dateigrößen, gzip lokal berechnet, kein vollständiger gemessener Netztransfer."
+}
