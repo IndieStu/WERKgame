@@ -1,6 +1,6 @@
 # Entwicklungsplan und erster Vertical Slice
 
-Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; die folgenden Entwicklungsphasen sind noch nicht zur Umsetzung freigegeben. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
+Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche spätere Ergänzung; Phase 0 ist freigegeben, ausschließlich Phase 1 ist zur Umsetzung freigegeben. Phase 2 und folgende bleiben gesperrt. Aufwand und Detailplanung bleiben Vorschläge. Ein Personentag (PT) entspricht etwa sechs konzentrierten Arbeitsstunden einschließlich Dokumentation und Prüfung. Spannen enthalten normale Korrekturen, aber keine langen Wartezeiten auf Rechte, Geräte oder Termine. Keine parallele Umsetzung sämtlicher Phasen.
 
 ## Phase 0 – Analyse und Entscheidungen
 
@@ -15,12 +15,14 @@ Stand 21.10.2026. Phaser ist als Engine bestätigt. NFC bleibt eine mögliche sp
 
 ## Phase 1 – Technischer Prototyp · 4–7 PT
 
+Status und Nachweise: [Phase-1-Bericht](phase-1/bericht.md). Reale iPad-Abnahme bleibt offen, da aktuell nur MacBook Pro und iPhone 15 verfügbar sind.
+
 - **Ziel:** die risikoreichsten technischen Annahmen auf echten Geräten prüfen.
 - **Deliverables:** ein kleiner grauer Iso-Raum, klick-/touchfähige Bewegung, Testprotokoll und reproduzierbarer statischer Build.
-- **Technik:** Phaser/TS/Vite exakt fixieren; 64×32-Tiles, Kamera, Grid/A*, Fußanker, Tiefensortierung, HTML-Dialog/Formular, IndexedDB-Minimalsave und erster Service Worker. CI für Build und kleine relevante Logiktests.
+- **Technik:** Phaser/TS/Vite exakt fixieren; 64×32-Tiles, Kamera, Grid/A*, Fußanker, Tiefensortierung, HTML-Dialog/Formular, ausdrücklich vergleichbare Varianten Tap-to-Move und direkte Richtungstasten, IndexedDB-Minimalsave und erster Service Worker. CI für Build und kleine relevante Logiktests.
 - **Content:** ein Testdialog und ein Eingabeschritt, keine fertige Quest.
 - **Assets:** Bodenraute, zwei Wandteile, Türmarker, drei Objektblöcke, eine einfache bewegte Figur; keine finalen Portraits.
-- **Abhängigkeiten:** Phaser-Entscheidung liegt vor; Umsetzung von Phase 1 freigeben, mindestens ein reales Zieltablet und ein Laptop, HTTPS-Testadresse oder geeignete lokale sichere Testumgebung.
+- **Abhängigkeiten:** Phaser-/TypeScript-/Vite-Entscheidung und Phase-1-Freigabe liegen vor; mindestens ein reales Zieltablet und ein Laptop, HTTPS-Testadresse oder geeignete lokale sichere Testumgebung.
 - **Risiken:** Pointerkoordinaten, Safari, WebGL-Verlust, Speicherverweigerung, UI über Canvas.
 - **Done:** Bewegung und Interaktion auf Zieltablet/Laptop; Regalüberdeckung korrekt; Formular mit Bildschirmtastatur nutzbar; Save über Reload; vollständiger Download und Offline-Wiederstart; Framerate/Transfer/Startzeit protokolliert. Bleiben Blocker, Blocker dokumentieren und das weitere Vorgehen gemeinsam festlegen.
 
@@ -158,3 +160,7 @@ Keine kompletten Workshoptilesets, keine Sitz-/Trageanimationen, keine große Ga
 - [ ] Update unterbricht keine aktive Entscheidung; kein Mix alter/neuer Inhalte.
 - [ ] Daten-/Zustandschecks und Build erfolgreich; Transfer-/Start-/Frameratebudget gemessen.
 - [ ] Nutzungsprobe dokumentiert; reale Aufgabe ausdrücklich noch nicht als vor Ort validiert dargestellt.
+
+## Vorgemerktes Fortschrittsprinzip für spätere Phasen
+
+Abgeschlossene Werkstattquests sollen die gemeinsame WERK-/Festivalwelt sichtbar verändern, etwa durch ein fertiges Regal, ausgestellte Produkte oder vorbereitete Festivalbereiche. Diese Veränderungen ersetzen ein klassisches XP-/Levelsystem. In Phase 1 wird das nicht implementiert; der technische Teststand bleibt davon unabhängig.

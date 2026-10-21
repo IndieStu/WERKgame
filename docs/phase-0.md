@@ -1,6 +1,6 @@
 # Phase 0: WERK-Spiel
 
-Stand: 21.10.2026 · Phase 0 abgeschlossen und nach Auftraggeberentscheidungen aktualisiert. Phaser ist als Engine bestätigt; NFC bleibt eine mögliche spätere Ergänzung. Keine Implementierungsfreigabe für Phase 1.
+Stand: 21.10.2026 · Phase 0 abgeschlossen und nach Auftraggeberentscheidungen aktualisiert. Phaser ist als Engine bestätigt; NFC bleibt eine mögliche spätere Ergänzung. Phase 0 ist freigegeben; ausschließlich Phase 1 ist zur Umsetzung freigegeben. Phase 2 bleibt gesperrt.
 
 Projektbasis: [IndieStu/WERKgame](https://github.com/IndieStu/WERKgame).
 
@@ -18,7 +18,9 @@ Das Vorhaben ist als kleines, statisch gehostetes Webspiel technisch machbar. Di
 
 ## B. Interpretation und pädagogische Grenzen
 
-Das Spiel ist eine Brücke zum Lernort. Ein Erfolg ist eine nachvollziehbare Entscheidung nach einer realen Beobachtung, nicht das Einsammeln von Quizpunkten. Jede Quest braucht einen Zweck, zugängliche Informationen, eine Handlung und eine verständliche Konsequenz. Berufsfelder werden erst danach mit den erlebten Tätigkeiten verknüpft.
+Das Spiel ist eine Brücke zum Lernort. Langfristig verändern abgeschlossene Werkstattquests die gemeinsame WERK-/Festivalwelt sichtbar. Dies ersetzt XP-/Levelsysteme; die Umsetzung gehört ausdrücklich nicht zu Phase 1.
+
+Ein Erfolg ist eine nachvollziehbare Entscheidung nach einer realen Beobachtung, nicht das Einsammeln von Quizpunkten. Jede Quest braucht einen Zweck, zugängliche Informationen, eine Handlung und eine verständliche Konsequenz. Berufsfelder werden erst danach mit den erlebten Tätigkeiten verknüpft.
 
 Die Festival-Rahmenhandlung passt: Verschiedene Werkstätten tragen zu einem gemeinsamen Ergebnis bei. Empfehlung: ein kleines offenes WERK-Fest als Rahmen, drei unabhängige Aufträge im ersten Pilot und ein sichtbar wachsender Veranstaltungsraum. Keine strikte Kette, in der eine gesperrte Werkstatt alle weiteren Aufträge blockiert. Das Finale darf auch nach einer ausgewählten Route erreichbar sein.
 
@@ -221,7 +223,7 @@ Gleiche Kernaufgabe und gleichwertiger Abschluss für alle. „Mehr Hilfen“ ze
 
 ## P. Accessibility und Steuerung
 
-Tabletstandard: Tap-to-move plus Tap auf Objekt. Laptop: Klick und WASD/Pfeile; sichtbare Interaktion per Enter/E. Joystick benötigt Dauerberührung und verdeckt Welt, Richtungstasten beanspruchen Platz; beide zunächst nur als späterer Vergleich bei beobachteten Problemen. A/B-Test im Slice mit wenigen Jugendlichen: Ziel finden, zum Regal laufen, Jonas ansprechen, Questlog öffnen. Fehler, benötigte Hinweise und subjektive Verständlichkeit erfassen, ohne verdeckte Telemetrie.
+Für Phase 1 werden Tap-to-Move und eine einfache direkte Touchsteuerung ausdrücklich verglichen. Keine Variante ist bislang als Produktstandard festgelegt. Laptop: Klick und WASD/Pfeile; sichtbare Interaktion per Enter/E. Joystick benötigt Dauerberührung und verdeckt Welt, Richtungstasten beanspruchen Platz; beide zunächst nur als späterer Vergleich bei beobachteten Problemen. A/B-Test im Slice mit wenigen Jugendlichen: Ziel finden, zum Regal laufen, Jonas ansprechen, Questlog öffnen. Fehler, benötigte Hinweise und subjektive Verständlichkeit erfassen, ohne verdeckte Telemetrie.
 
 HTML-Oberfläche mit sichtbarem Fokus, sinnvollen Überschriften, Buttons und Formularlabels. Bedienung ohne Hover, ohne verpflichtendes Drag-and-drop und ohne Zeitdruck. Text üblicherweise 18–20 CSS-Pixel, skalierbar; UI-Touchziele mindestens 44×44 CSS-Pixel als Projektziel. [WCAG 2.2 beschreibt ein niedrigeres AA-Minimum von 24×24 mit Ausnahmen](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum); unser Ziel ersetzt keine vollständige Accessibility-Prüfung.
 
@@ -306,7 +308,7 @@ Das Regalbeispiel muss präzisiert werden: „Welche Maschine macht gleiche Bret
 | Fotos | Außerhalb des ersten Slice | Spätere Medienquest |
 | Interessen | Freiwillige Tätigkeitsreflexion, keine Scores | Nach Kernpilot |
 
-Die Enginefreigabe für Phaser liegt vor. Vor Umsetzung von Phase 1 fehlen deren ausdrückliche Freigabe und die Geräte-/Browserinformationen für die spätere Technikabnahme. Für Phase 3 brauchen wir die ausgewählte Werkstatt, sichere Besucherroute, Ansprechpartner:in, Stationsverfügbarkeit, Grundrissskizze und Fotos nach Vorlage. Noch keine komplette Fotodokumentation aller Räume erstellen.
+Die Enginefreigabe für Phaser liegt vor. Vor Umsetzung von Phase 1 fehlen die Geräte-/Browserinformationen für die spätere Technikabnahme. Für Phase 3 brauchen wir die ausgewählte Werkstatt, sichere Besucherroute, Ansprechpartner:in, Stationsverfügbarkeit, Grundrissskizze und Fotos nach Vorlage. Noch keine komplette Fotodokumentation aller Räume erstellen.
 
 ## U. Roadmap und Abschluss
 
