@@ -10,7 +10,8 @@
     "build": "node tools/validate-content.mjs && tsc --noEmit && vite build && node tools/offline-build.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test:browser": "node tools/browser-check.mjs",
-    "validate:content": "node tools/validate-content.mjs"
+    "validate:content": "node tools/validate-content.mjs",
+    "test:visit": "node tools/visit-check.mjs"
   },
   "dependencies": {
     "phaser": "4.2.1"

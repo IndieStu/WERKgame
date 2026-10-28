@@ -1,4 +1,4 @@
-name: Phase 2B checks
+name: WERK prototype checks
 on: [push, pull_request]
 permissions:
   contents: read
@@ -16,3 +16,4 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:browser
+      - run: pnpm test:visit

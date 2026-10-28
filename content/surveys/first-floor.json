@@ -1,12 +1,14 @@
 {
   "id": "first_floor_survey",
-  "revision": 1,
+  "revision": 2,
   "status": "planning_only_not_runtime_geometry",
   "date": "2026-10-28",
   "source": {
     "filename": "Holzwerkstatt_Vorlage.png",
     "kind": "user_supplied_floor_plan",
-    "originalCopiedToRepository": false
+    "originalCopiedToRepository": false,
+    "photoArchive": "Holzwerkstatt_Bilder_Proto.zip",
+    "photoCount": 16
   },
   "floor": 1,
   "scope": {
@@ -17,7 +19,8 @@
       "woodshop"
     ],
     "futureAreas": "Other first-floor rooms: empty shells, doors closed in initial test",
-    "questImplementation": "deferred_until_room_review"
+    "questImplementation": "deferred_until_room_review",
+    "visitorDemo": "Separate condensed scene: content/rooms/workshop-demo.json; not the full first-floor geometry"
   },
   "wallReferences": [
     {
@@ -147,7 +150,7 @@
       "label": "Holzwerkstatt, Bereiche mit Wandreferenzen A–R",
       "initialAccess": "open",
       "geometryStatus": "derive_from_plan_then_review",
-      "interiorStatus": "photos_pending"
+      "interiorStatus": "16_photo_references_received_visitor_demo_subset_implemented"
     },
     {
       "id": "first_floor_future",

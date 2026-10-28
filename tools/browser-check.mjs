@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import assert from 'node:assert/strict';
-const output='docs/phase-2b', url='http://127.0.0.1:4184/';
+const output=process.env.WERK_BROWSER_OUTPUT||'docs/phase-2b', url='http://127.0.0.1:4184/';
 const objectLabels=JSON.parse(await readFile('content/rooms/prototype-room.json','utf8')).objects;
 const launch={executablePath:process.env.CHROME_PATH||undefined,headless:true,args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']};
 await mkdir(`${output}/screenshots`,{recursive:true});

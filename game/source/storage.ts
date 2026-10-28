@@ -1,9 +1,10 @@
 import { decode, type Save } from './domain';
 export class Store {
   private db?: IDBDatabase;
+  constructor(private name = 'werk-phase1') {}
   async open() {
     this.db = await new Promise<IDBDatabase>((resolve, reject) => {
-      const request = indexedDB.open('werk-phase1', 1);
+      const request = indexedDB.open(this.name, 1);
       request.onupgradeneeded = () => request.result.createObjectStore('state');
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);

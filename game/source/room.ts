@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import { adjacent, iso, objects, path, SIZE, unproject, walkable, type Cell, type Save } from './domain';
+import { adjacent, footprint, iso, objects, path, SIZE, unproject, visitDemo, walkable, type Cell, type Save } from './domain';
+import { workshopObject, workshopPerson, workshopShell } from './demo-art';
 export type Hotspot = { id: string; x: number; y: number; label: string };
 type RoomHooks = {
   state(): Save; paused(): boolean; moved(p: Cell): void; interact(id: string): void;
@@ -38,9 +39,9 @@ export class Room extends Phaser.Scene {
   private cameraSize = () => {
     if (!this.actor) return;
     const camera = this.cameras.main, w = this.scale.width, h = this.scale.height;
-    camera.setZoom(Math.max(w < 650 ? 1 : .65, Math.min(1.8, Math.min(w / 780, h / 570))) * this.zoomFactor);
+    camera.setZoom(Math.max(w < 650 ? 1 : .65, Math.min(1.8, Math.min(w / (visitDemo ? 1080 : 780), h / (visitDemo ? 720 : 570)))) * this.zoomFactor);
     if (w < 650 || this.zoomFactor > 1.25) camera.startFollow(this.actor, true, .12, .12);
-    else { camera.stopFollow(); camera.centerOn(480, 275); }
+    else { camera.stopFollow(); camera.centerOn(480, visitDemo ? 290 : 275); }
   };
   zoom(amount: number) { this.zoomFactor = Math.max(.8, Math.min(1.6, this.zoomFactor + amount)); this.cameraSize(); }
   setMeasuring(value: boolean) { this.measuring = value; this.refresh(); }
@@ -91,6 +92,7 @@ export class Room extends Phaser.Scene {
     this.lastCompleted = null; this.measuring = false; this.refresh(); this.cameraSize();
   }
   private figure(x: number, y: number, jonas: boolean) {
+    if(visitDemo){const person=workshopPerson(this,x,y,jonas);if(!jonas)this.shirt=person.shirt;return person.container;}
     const body = this.add.graphics().fillStyle(0x101a21,.4).fillEllipse(0,0,22,10);
     body.fillStyle(0xe8c68d).fillRect(-8,-45,16,14).fillStyle(0x202c35).fillRect(-8,-10,6,10).fillRect(2,-10,6,10);
     const shirt = this.add.graphics().fillStyle(jonas ? 0x4279bd : 0x8dbdb4).fillRect(-10,-31,20,21);
@@ -101,6 +103,8 @@ export class Room extends Phaser.Scene {
     return this.add.container(x,y,[shirt,body]).setDepth(y);
   }
   create() {
+    if(visitDemo)workshopShell(this,p=>this.world(p));
+    else {
     const floor = this.add.graphics();
     for (let x=0;x<SIZE;x++) for(let y=0;y<SIZE;y++) {
       const p=this.world({x,y}), diamond=vectors([[p.x,p.y-16],[p.x+32,p.y],[p.x,p.y+16],[p.x-32,p.y]]);
@@ -110,6 +114,7 @@ export class Room extends Phaser.Scene {
     walls.fillStyle(0x696f66).fillPoints(vectors([[192,283],[480,139],[480,59],[192,203]]),true);
     walls.fillStyle(0x75796b).fillPoints(vectors([[480,139],[768,283],[768,203],[480,59]]),true);
     this.add.text(290,180,'WERK',{fontSize:'22px',color:'#e6d5b5'}).setDepth(0);
+    }
     for(const o of objects) {
       const p=this.world(o);
       if(o.kind==='npc') this.figure(p.x,p.y,true);
@@ -120,6 +125,7 @@ export class Room extends Phaser.Scene {
           c.lineStyle(2,0x776143).strokeRect(0,-(i?30:21),34,i?30:21).lineBetween(0,-10,34,-10);
           this.crates.push(c);
         }
+      } else if(visitDemo) { workshopObject(this,o,p=>this.world(p));
       } else if(o.kind==='coffee') {
         const g=this.add.graphics().setDepth(p.y);
         g.fillStyle(0xdcd9ba).fillRoundedRect(p.x-8,p.y-20,16,18,3).lineStyle(2,0xdcd9ba).strokeCircle(p.x+10,p.y-12,5);
@@ -156,14 +162,15 @@ export class Room extends Phaser.Scene {
     this.hooks.ready();
   }
   nearby() {
-    const o=objects.filter(o=>!(o.id==='crates'&&this.hooks.state().quest.completed)).map(o=>({o,d:Math.abs(o.x-this.cell.x)+Math.abs(o.y-this.cell.y)})).filter(v=>v.d<=1).sort((a,b)=>a.d-b.d)[0]?.o;
+    const o=objects.filter(o=>!(o.id==='crates'&&this.hooks.state().quest.completed)).map(o=>({o,d:Math.min(...footprint(o).map(c=>Math.abs(c.x-this.cell.x)+Math.abs(c.y-this.cell.y)))})).filter(v=>v.d<=1).sort((a,b)=>a.d-b.d)[0]?.o;
     if(o)this.hooks.interact(o.id);else this.hooks.say('Geh näher an eine Person oder einen Gegenstand.');
   }
   visit(id:string) {
     if(this.hooks.paused())return;
     const o=objects.find(o=>o.id===id);if(!o)return;
     const done=this.hooks.state().quest.completed;
-    const routes=adjacent(o,done).map(goal=>path(this.target??this.cell,goal,done)).filter((r):r is Cell[]=>r!==null).sort((a,b)=>a.length-b.length);
+    const approaches=footprint(o).flatMap(c=>adjacent(c,done)).filter((c,i,all)=>all.findIndex(a=>a.x===c.x&&a.y===c.y)===i);
+    const routes=approaches.map(goal=>path(this.target??this.cell,goal,done)).filter((r):r is Cell[]=>r!==null).sort((a,b)=>a.length-b.length);
     if(!routes.length)return this.hooks.say('Hier ist gerade kein Weg frei.');
     this.route=routes[0];this.pending=id;this.held=null;
   }
@@ -173,7 +180,7 @@ export class Room extends Phaser.Scene {
     if(elapsed>=1000){this.hooks.metrics(`${Math.round(this.frames*1000/elapsed)} fps`);this.frames=0;this.sampleStart=performance.now();}
     const cam=this.cameras.main;
     const points:Hotspot[]=objects.filter(o=>!(o.id==='crates'&&this.hooks.state().quest.completed)).map(o=>{
-      const p=this.world(o);return{id:o.id,label:o.label,x:(p.x-cam.worldView.x)*cam.zoom,y:(p.y-Math.min(o.height/2,25)-cam.worldView.y)*cam.zoom};
+      const p=this.world({x:o.x+((o.w??1)-1)/2,y:o.y+((o.d??1)-1)/2});return{id:o.id,label:o.label,x:(p.x-cam.worldView.x)*cam.zoom,y:(p.y-Math.min(o.height/2,25)-cam.worldView.y)*cam.zoom};
     });
     if(this.measuring){const p=this.world(objects.find(o=>o.id==='site')!);for(const [id,offset]of [['measure_start',-55],['measure_end',55]] as const)points.push({id,label:id==='measure_start'?'Anfang des Maßbands':'Ende des Maßbands',x:(p.x+offset-cam.worldView.x)*cam.zoom,y:(p.y+28-cam.worldView.y)*cam.zoom});}
     this.hooks.hotspots(points);

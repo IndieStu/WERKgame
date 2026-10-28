@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import './style.css';
-import { decode, fresh, objects, quest, type Save } from './domain';
+import { decode, fresh, objects, quest, visitDemo, type Save } from './domain';
 import { currentStep, nextHint, requirementsMet, transition, type Action, type Transition } from './quest';
 import { BOXES, compartments, HEIGHT, LEVELS, layoutReady, type BoxId } from './planning';
 import { Store } from './storage';
@@ -9,7 +9,9 @@ import words from '../../content/rooms/experience.json';
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const talk = $<HTMLDialogElement>('talk'), panel = $<HTMLDialogElement>('panel'), planner = $<HTMLDialogElement>('planner');
-const store = new Store();
+const store = new Store(visitDemo ? 'werk-visit-demo' : 'werk-phase1');
+if(visitDemo){document.body.dataset.demo='visit';document.title='WERK · Holzwerkstatt – Besuchsdemo';$('start-title').textContent='WERK';document.querySelector('.eyebrow')!.textContent='HOLZWERKSTATT · BESUCHSDEMO';}
+let speakingAt = 'jonas';
 let state = fresh(), canSave = true, hasSave = false, started = false, room: Room;
 let saveQueue = Promise.resolve(), offlineReady = false, offlineText = 'Noch nicht offline bereit', metrics = 'Start …', saveText = 'Lokal bereit';
 let toastTimer: ReturnType<typeof setTimeout>, focusBeforeDialog: HTMLElement | null = null;
@@ -97,6 +99,7 @@ for (const d of [talk, panel, planner]) d.addEventListener('close', () => {
 $('close-talk').onclick = () => talk.close(); $('close-panel').onclick = () => panel.close(); $('close-plan').onclick = () => planner.close();
 function feedback(text: string) { speak('JONAS', text, [{ label: 'Alles klar.', action: () => talk.close() }]); }
 function askJonas() {
+  speakingAt = 'jonas';
   const step = currentStep(quest, state.quest);
   if (state.quest.completed) {
     speak('JONAS', words.jonas.after, [
@@ -146,6 +149,7 @@ function showHint(inConversation = false) {
   });
 }
 function inspect(id: string) {
+  speakingAt = id;
   if (id === 'jonas') return askJonas();
   const object = objects.find(o => o.id === id); if (!object) return;
   if (id === 'site') {
@@ -170,6 +174,7 @@ function endpoint(id: string) {
   if (id === 'measure_start') say('Anfang sitzt. Jetzt das rechte Ende.'); else measurementInput();
 }
 function measurementInput() {
+  speakingAt = 'site';
   const step = currentStep(quest, state.quest); if (step.type !== 'measurement') return;
   speak('AM MASSBAND', words.site.prompt, [], body => {
     const form = document.createElement('form');
@@ -247,9 +252,14 @@ function menu() {
   });
 }
 $('menu-button').onclick = menu;
+if(visitDemo){
+ const badge=document.createElement('div');badge.id='demo-badge';badge.textContent='WERK / HOLZWERKSTATT';document.getElementById('play')!.append(badge);
+ const restart=document.createElement('button');restart.id='demo-restart';restart.textContent='Demo neu starten';restart.onclick=()=>{for(const d of [talk,panel,planner])if(d.open)d.close();$('new-game').click();};$('hud').append(restart);
+ const note=document.createElement('p');note.className='secondary';note.textContent='Spielbare Technikdemo · vereinfachter Raum nach Werkstattfotos. Messung und Bau sind simuliert.';$('start').append(note);
+}
 async function exportState(previous = false) {
   let raw: unknown; try { raw = previous ? await store.backup() : await store.raw(); } catch { raw = null; }
-  const data = previous ? raw : { phase: '2B', state, stored: raw, offlineReady, saveText, metrics, userAgent: navigator.userAgent };
+  const data = previous ? raw : { phase: visitDemo ? 'visit-demo' : '2B', state, stored: raw, offlineReady, saveText, metrics, userAgent: navigator.userAgent };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = previous ? 'werk-vorheriger-teststand.json' : 'werk-2b-testbericht.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
@@ -314,6 +324,16 @@ $('confirm-plan').onclick = () => {
 };
 const hotspotButtons = new Map<string, HTMLButtonElement>();
 function hotspots(points: Hotspot[]) {
+  if(visitDemo && talk.open){
+    const anchor=points.find(p=>p.id===speakingAt);
+    if(anchor){
+      const w=talk.offsetWidth,h=talk.offsetHeight;
+      const left=Math.max(12,Math.min(innerWidth-w-12,anchor.x-40));
+      const top=Math.max(78,Math.min(innerHeight-h-16,anchor.y-h-38));
+      talk.style.left=`${left}px`;talk.style.top=`${top}px`;
+      talk.style.setProperty('--bubble-tip',`${Math.max(24,Math.min(w-32,anchor.x-left))}px`);
+    }
+  }
   const active = new Set(points.map(p => p.id));
   for (const [id, b] of hotspotButtons) if (!active.has(id)) { b.remove(); hotspotButtons.delete(id); }
   for (const p of points) {

@@ -66,3 +66,24 @@ dialog::backdrop { background: #0a141d35; }
 }
 @media(prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
 html[data-text-size="large"] { font-size: 21px; }
+/* Visitor demo: a warm, game-led skin; the checked Phase-2B surface remains available. */
+body[data-demo=visit] { background: #252b2b; color: #f1e4c7; }
+body[data-demo=visit] button { border-radius: 2px; border: 2px solid #a78b5e; background: #333d3c; box-shadow: inset 0 0 0 1px #e9cd9520; }
+body[data-demo=visit] button:hover { background: #56645a; border-color: #e8c880; }
+body[data-demo=visit] #start { border: 2px solid #bda16f; border-radius: 2px; background: #253332f5; box-shadow: 8px 8px 0 #1118; }
+#demo-badge { position: absolute; top: 22px; left: 24px; color: #e3d1ac; font: 700 12px/1.4 monospace; letter-spacing: .16em; text-shadow: 1px 2px #111; pointer-events: none; }
+body[data-demo=visit] #talk { width: min(440px,calc(100% - 24px)); max-height: min(65dvh,550px); top: 100px; bottom: auto; left: 20px; right: auto; margin: 0; background: #ead9ae; border: 3px solid #725b3c; border-radius: 2px; color: #332d24; box-shadow: 5px 6px 0 #171b1d55; overflow: visible; }
+body[data-demo=visit] #talk::after { content: ''; position: absolute; bottom: -17px; left: var(--bubble-tip,28px); width: 22px; height: 18px; background: #ead9ae; clip-path: polygon(0 0,100% 0,0 100%); }
+body[data-demo=visit] #speaker { color: #725334; }
+body[data-demo=visit] #talk-body { max-height: 48dvh; overflow: auto; }
+body[data-demo=visit] #talk-body p { font-size: 1rem; }
+body[data-demo=visit] #talk .actions { display: grid; gap: 5px; }
+body[data-demo=visit] #talk button { color: #372e21; border: 1px solid #ad9367; background: #dbc695; box-shadow: none; text-align: left; }
+body[data-demo=visit] #talk button:hover { background: #f6e8bd; }
+body[data-demo=visit] #close-talk { background: transparent; border: 0; }
+body[data-demo=visit] #talk input { background: #fff3d5; border-color: #947a51; color: #302a21; }
+body[data-demo=visit] #planner { border: 2px solid #bda16f; border-radius: 2px; background: #263b3a; }
+body[data-demo=visit] .world-hotspot { background: transparent; border-color: transparent; box-shadow: none; }
+body[data-demo=visit] .world-hotspot:hover, body[data-demo=visit] .world-hotspot:focus-visible { border-color: #ffe0a1; background: #f3d69425; }
+body[data-demo=visit] .measure-point { background: #f6d48d; color: #302a21; border-color: #fff1c6; }
+@media(max-width:750px) { #demo-badge { top: 76px; left: 16px; font-size: 10px; } #demo-restart { font-size: .75rem; padding: 7px; } }

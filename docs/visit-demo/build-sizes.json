@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28T15:20:27.904Z",
+  "files": [
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "bytes": 2542,
+      "gzipBytes": 983
+    },
+    {
+      "path": "dist/assets/index-Bpw-32Ce.js",
+      "bytes": 1444660,
+      "gzipBytes": 392906
+    },
+    {
+      "path": "dist/assets/index-CgyVNaKz.css",
+      "bytes": 7595,
+      "gzipBytes": 2537
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 2787,
+      "gzipBytes": 1192
+    },
+    {
+      "path": "dist/sw.js",
+      "bytes": 1256,
+      "gzipBytes": 615
+    }
+  ],
+  "totalBytes": 1458840,
+  "totalGzipBytes": 398233,
+  "note": "Computed sizes, not measured transfer or device performance."
+}

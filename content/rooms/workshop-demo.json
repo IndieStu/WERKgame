@@ -1,0 +1,234 @@
+{
+  "id": "woodshop_visit_demo",
+  "size": 12,
+  "spawn": {
+    "x": 8,
+    "y": 10
+  },
+  "floorRegions": [
+    {
+      "x": 4,
+      "y": 0,
+      "w": 8,
+      "d": 12
+    },
+    {
+      "x": 0,
+      "y": 7,
+      "w": 4,
+      "d": 5
+    }
+  ],
+  "barriers": [
+    {
+      "x": 4,
+      "y": 3
+    },
+    {
+      "x": 5,
+      "y": 3
+    },
+    {
+      "x": 6,
+      "y": 3
+    },
+    {
+      "x": 7,
+      "y": 3
+    },
+    {
+      "x": 9,
+      "y": 3
+    },
+    {
+      "x": 10,
+      "y": 3
+    },
+    {
+      "x": 11,
+      "y": 3
+    },
+    {
+      "x": 4,
+      "y": 7
+    },
+    {
+      "x": 4,
+      "y": 8
+    },
+    {
+      "x": 4,
+      "y": 10
+    },
+    {
+      "x": 4,
+      "y": 11
+    }
+  ],
+  "objects": [
+    {
+      "id": "site",
+      "label": "Freier Regalplatz",
+      "x": 7,
+      "y": 4,
+      "height": 8,
+      "color": 11054228,
+      "kind": "site",
+      "shortLabel": "Platz",
+      "description": "Hier wäre Platz für unser Regal. Für die Besuchsdemo messen wir virtuell.",
+      "detail": "Der Standort und das 90-cm-Maß sind Demoannahmen, keine Aufnahme eines echten Messortes."
+    },
+    {
+      "id": "bench",
+      "label": "Hobelbank mit Regalplan",
+      "x": 4,
+      "y": 5,
+      "w": 1,
+      "d": 2,
+      "height": 30,
+      "color": 12163178,
+      "kind": "bench",
+      "shortLabel": "Werkbank",
+      "description": "Eine schwere Hobelbank mit Schraubstock. Hier lässt sich etwas planen.",
+      "detail": "Erst die Fächer aufteilen, dann die Kisten ausprobieren."
+    },
+    {
+      "id": "cut",
+      "label": "Zuschnittplanung",
+      "x": 10,
+      "y": 9,
+      "height": 28,
+      "color": 12163178,
+      "kind": "cut",
+      "shortLabel": "Zuschnitt",
+      "description": "Einfache Rechtecke lassen sich mit gleicher Einstellung wiederholt zuschneiden. Die Maschine bleibt aus.",
+      "detail": "Im echten Betrieb übernehmen eingewiesene Personen die Maschinenarbeit. Hier vergleichen wir nur die Verfahren."
+    },
+    {
+      "id": "cnc",
+      "label": "CNC-Fräse",
+      "x": 1,
+      "y": 9,
+      "w": 2,
+      "d": 2,
+      "height": 32,
+      "color": 4343377,
+      "kind": "cnc",
+      "shortLabel": "CNC",
+      "description": "Die Fräse fährt ein vorbereitetes Programm ab. Für gleiche Teile praktisch, das Programm braucht Vorbereitung.",
+      "detail": "Konturen oder Bohrbilder sind typische Gründe für CNC. Einfache Rechtecke gehen auch ohne Programm. Keine echte Maschine bedienen."
+    },
+    {
+      "id": "multiplex",
+      "label": "Multiplexprobe",
+      "x": 5,
+      "y": 1,
+      "height": 12,
+      "color": 13935484,
+      "kind": "sample",
+      "shortLabel": "Multiplex",
+      "description": "An der Kante siehst du mehrere Holzschichten. Die Kante kann sichtbar bleiben.",
+      "detail": "Im Demo-Beispiel etwas teurer, dafür spart eine sichtbare Kante einen Gestaltungsschritt."
+    },
+    {
+      "id": "mdf",
+      "label": "MDF-Probe",
+      "x": 10,
+      "y": 1,
+      "height": 12,
+      "color": 12829342,
+      "kind": "sample",
+      "shortLabel": "MDF",
+      "description": "Glatte Fläche, feine Kante. Für unser Beispiel planen wir eine Kantenbeschichtung mit ein.",
+      "detail": "Oberfläche und Kantenbehandlung gehören gemeinsam zur Materialentscheidung."
+    },
+    {
+      "id": "osb",
+      "label": "OSB-Probe",
+      "x": 11,
+      "y": 6,
+      "height": 12,
+      "color": 12689240,
+      "kind": "sample",
+      "shortLabel": "OSB",
+      "description": "Große Holzspäne bilden eine markante Struktur. Die kann Teil der Gestaltung sein.",
+      "detail": "Für das Fest ist auch diese Optik eine sinnvolle Möglichkeit. Es gibt hier kein einziges richtiges Material."
+    },
+    {
+      "id": "coffee",
+      "label": "Jonas’ Tasse",
+      "x": 6,
+      "y": 8,
+      "height": 18,
+      "color": 14737082,
+      "kind": "coffee",
+      "shortLabel": "Tasse",
+      "description": "Noch warm.",
+      "detail": "Ein ziemlich guter Grund, kurz stehen zu bleiben."
+    },
+    {
+      "id": "crates",
+      "label": "Festkisten",
+      "x": 9,
+      "y": 7,
+      "height": 28,
+      "color": 12689240,
+      "kind": "crates",
+      "shortLabel": "Kisten",
+      "description": "Fürs Fest gesammelt. Im Weg stehen sie trotzdem.",
+      "detail": "Ein Regal könnte hier etwas ändern."
+    },
+    {
+      "id": "jonas",
+      "label": "Jonas",
+      "x": 8,
+      "y": 8,
+      "height": 52,
+      "color": 4343377,
+      "kind": "npc",
+      "shortLabel": "Jonas",
+      "description": "Jonas schaut auf die Festkisten.",
+      "detail": "Er könnte Hilfe gebrauchen."
+    },
+    {
+      "id": "laser",
+      "label": "Blauer Laser",
+      "x": 0,
+      "y": 7,
+      "w": 2,
+      "d": 1,
+      "height": 24,
+      "color": 4480675,
+      "kind": "laser",
+      "shortLabel": "Laser",
+      "description": "Der blaue Laser steht beim Fenster im Nebenraum. Für unser Regal brauchen wir ihn heute nicht.",
+      "detail": "Ein weiteres Werkzeug für spätere Geschichten. Die reale Maschine wird hier nicht bedient."
+    },
+    {
+      "id": "timber",
+      "label": "Holzlager",
+      "x": 6,
+      "y": 0,
+      "w": 3,
+      "d": 1,
+      "height": 62,
+      "color": 12163178,
+      "kind": "timber",
+      "shortLabel": "Holzlager",
+      "description": "Lange Leisten, Plattenreste und Bretter. Gut sortiert findet man schneller das passende Stück.",
+      "detail": "Für die Demo ist das Lager aufgeräumt und vereinfacht dargestellt."
+    },
+    {
+      "id": "cabinet",
+      "label": "Werkzeugschrank",
+      "x": 10,
+      "y": 5,
+      "height": 50,
+      "color": 12163178,
+      "kind": "cabinet",
+      "shortLabel": "Werkzeug",
+      "description": "Werkzeug hat hier seinen Platz. Der kleine Raum muss nicht leer aussehen, um übersichtlich zu sein.",
+      "detail": "Wiedererkennbares Detail aus den Werkstattfotos; keine vollständige Werkzeugliste."
+    }
+  ]
+}

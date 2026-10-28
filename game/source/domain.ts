@@ -1,13 +1,25 @@
 import room from '../../content/rooms/prototype-room.json' with { type: 'json' };
+import demoRoom from '../../content/rooms/workshop-demo.json' with { type: 'json' };
 import questData from '../../content/quests/shelf-problem.json' with { type: 'json' };
 import { initialProgress, validProgress, type Progress, type Quest } from './quest.ts';
-export const quest = questData as Quest;
+
 export type Cell = { x: number; y: number };
-export const SIZE = 9;
-export const objects = room.objects;
+export const visitDemo = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('demo') === 'visit';
+export const quest:Quest = visitDemo ? structuredClone(questData) as Quest : questData as Quest;
+if(visitDemo){
+ const material=quest.steps.find(s=>s.id==='material')!;material.blockedText='Vergleiche erst zwei Proben. Zwei findest du im Holzlager hinten, eine rechts in der Werkstatt.';
+ material.hints=['Schau ins Holzlager hinter dem Durchgang.','Zwei Proben liegen hinten im Lager, die OSB-Probe rechts im Werkstattraum.','Untersuche mindestens zwei und kehre zu Jonas zurück.'];
+ const process=quest.steps.find(s=>s.id==='process')!;process.hints=['Die CNC steht links im Nebenraum. Die Zuschnittplanung liegt vorn auf der Bank.','Untersuche beide Möglichkeiten und achte auf Form und Vorbereitung.','Rechtecke lassen sich einfach zuschneiden; CNC braucht ein Programm.'];
+}
+export type RoomObject = { id:string; label:string; x:number; y:number; height:number; color:number; kind:string; shortLabel:string; description:string; detail:string; w?:number; d?:number };
+export const roomConfig = visitDemo ? demoRoom : null;
+export const SIZE = roomConfig?.size ?? 9;
+export const objects: RoomObject[] = visitDemo ? demoRoom.objects : room.objects;
+export function onFloor(p:Cell) { return !roomConfig || roomConfig.floorRegions.some(r=>p.x>=r.x && p.x<r.x+r.w && p.y>=r.y && p.y<r.y+r.d); }
+export const footprint = (o: RoomObject) => Array.from({length:(o.w??1)*(o.d??1)},(_,i)=>({x:o.x+i%(o.w??1),y:o.y+Math.floor(i/(o.w??1))}));
 export const iso = ({ x, y }: Cell): Cell => ({ x: (x - y) * 32, y: (x + y) * 16 });
 export const unproject = ({ x, y }: Cell): Cell => ({ x: x / 64 + y / 32, y: y / 32 - x / 64 });
-export const walkable = (p: Cell, completed = false) => Number.isInteger(p.x) && Number.isInteger(p.y) && p.x >= 0 && p.y >= 0 && p.x < SIZE && p.y < SIZE && !objects.some(o => o.x === p.x && o.y === p.y && !(o.id === 'crates' && completed));
+export const walkable = (p: Cell, completed = false) => Number.isInteger(p.x) && Number.isInteger(p.y) && p.x >= 0 && p.y >= 0 && p.x < SIZE && p.y < SIZE && onFloor(p) && !roomConfig?.barriers.some(b=>b.x===p.x&&b.y===p.y) && !objects.some(o => footprint(o).some(c=>c.x===p.x&&c.y===p.y) && !(o.id === 'crates' && completed));
 const key = (p: Cell) => `${p.x},${p.y}`;
 export const adjacent = (p: Cell, completed = false): Cell[] => [{ x: p.x + 1, y: p.y }, { x: p.x - 1, y: p.y }, { x: p.x, y: p.y + 1 }, { x: p.x, y: p.y - 1 }].filter(p => walkable(p, completed));
 export function path(start: Cell, goal: Cell, completed = false): Cell[] | null {
@@ -43,7 +55,7 @@ export type Save = {
   avatar: 'mint' | 'orange'; help: 'normal' | 'more'; quest: Progress;
   legacy?: { version: 1 | 2; completed: boolean };
 };
-export const fresh = (): Save => ({ version: 3, cell: { x: 2, y: 7 }, mode: 'tap', width: null, avatar: 'mint', help: 'normal', quest: initialProgress(quest) });
+export const fresh = (): Save => ({ version: 3, cell: roomConfig ? {...roomConfig.spawn} : { x: 2, y: 7 }, mode: 'tap', width: null, avatar: 'mint', help: 'normal', quest: initialProgress(quest) });
 function oldCell(p: Cell): boolean {
   return !!p && Number.isInteger(p.x) && Number.isInteger(p.y) && p.x >= 0 && p.y >= 0 && p.x < SIZE && p.y < SIZE;
 }

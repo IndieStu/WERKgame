@@ -19,7 +19,11 @@ Im ersten isolierten Teststockwerk sind Treppenankunft, Flur und Holzwerkstatt b
 ## Aktuell offen
 
 - Übertragung der Wände/Türen in einen geometrischen Blockout und Abgleich mit dem Auftraggeber.
-- Fotos A–R und daraus ableitbare Einrichtung, sobald die Werkstatt bereit ist.
+- 16 Fotoansichten liegen für die Besuchsdemo vor. Fehlende Perspektiven und Detailmaße für das vollständige 1. OG später gezielt ergänzen.
 - Später: reale Stationsaufgabe und fachliche Ansprechperson.
 
-Der Grundriss ist vorhanden; Fotoaufnahme und Stationsfreigabe stehen aus. NFC bleibt eine mögliche spätere Ergänzung. Kein allgemeines Mehrquest-System oder Festfinale in Phase 3 vorziehen. Das Planungsmanifest ist noch keine geladene Spielszene; der vorhandene Build bleibt bis zur Blockout-Implementierung Phase 2B.
+Grundriss und erste 16 Fotoansichten sind vorhanden; vollständiger räumlicher Abgleich und Stationsfreigabe stehen aus. NFC bleibt eine mögliche spätere Ergänzung. Kein allgemeines Mehrquest-System oder Festfinale in Phase 3 vorziehen. Das Planungsmanifest ist noch keine geladene Spielszene; der vorhandene Build bleibt bis zur Blockout-Implementierung Phase 2B.
+
+## Vorgezogene Besuchsdemo · 28.10.2026
+
+Für den offiziellen Besuch am Folgetag ist eine kompakte [Holzwerkstatt-Techdemo](../visit-demo/bericht.md) mit bestehender Regalquest umgesetzt. Zielgerät ist MacBook mit externem Touchscreen. Die nun gelieferten 16 Fotoansichten sind als Arbeitsreferenzen ausgewertet; Originale werden nicht veröffentlicht. Der Raum ist für die Vorführung verdichtet, Messen/Bauen bleiben simuliert. Das reguläre erste OG und die spätere reale Stationsaufgabe bleiben eigene Arbeitspakete. Raumdaten, Objektgrundflächen, Art-Bausteine und räumliche Dialoge sind im weiteren Spiel nutzbar.
