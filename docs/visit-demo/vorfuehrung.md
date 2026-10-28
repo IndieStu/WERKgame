@@ -1,10 +1,10 @@
 # WERK-Holzwerkstatt – Besuchsdemo
 
-Stand 28.10.2026 · Kleiner vorgezogener Demonstrator für den Besuch am 29.10.2026. Zielgerät: MacBook mit externem Touchscreen. Keine abgeschlossene Phase-3-Raumaufnahme und keine reale Stationsfreigabe.
+Stand 28.10.2026 · Aktualisiert für [V2](v2/bericht.md). Kleiner vorgezogener Demonstrator für den Besuch am 29.10.2026. Zielgerät: MacBook mit externem Touchscreen. Keine abgeschlossene Phase-3-Raumaufnahme und keine reale Stationsfreigabe.
 
 ## Start und Vorbereitung
 
-[Demo öffnen](http://localhost:4190/?demo=visit). Alternativ im Projektordner **Besuchsdemo-starten.command** doppelklicken. Die Startdatei verwendet den vorhandenen Produktionsbuild und startet bei Bedarf die lokale Vorschau. Das Terminalfenster offen lassen. Die Projektabhängigkeiten und Node müssen auf diesem Mac vorhanden sein; hier sind sie bereits eingerichtet. Kein Internetdownload beim Start erforderlich.
+[Demo öffnen](http://localhost:4193/?demo=visit). Alternativ im Projektordner **Besuchsdemo-starten.command** doppelklicken. Die Startdatei verwendet den vorhandenen Produktionsbuild und startet bei Bedarf die lokale Vorschau. Das Terminalfenster offen lassen. Die Projektabhängigkeiten und Node müssen auf diesem Mac vorhanden sein; hier sind sie bereits eingerichtet. Kein Internetdownload beim Start erforderlich.
 
 Browserfenster auf den externen Bildschirm ziehen. In der Demo Menü → Vollbild. Browserzoom zunächst 100 %. Touchscreen heute einmal real prüfen: Antippen von Jonas, eine freie Bodenfläche und eine Antwort. Bei Bedarf Touchscreen-Zuordnung/Herstellertreiber des vorhandenen Geräts prüfen; die reale Hardware konnte nicht automatisiert getestet werden. Maus und Trackpad bleiben als Alternative verfügbar.
 
@@ -16,9 +16,9 @@ Wenn „Update bereit“ im Menü steht: alle Tabs dieses Demo-Ports schließen 
 
 1. Raum zeigen: Fenster/Hobelbank, Holzlager, CNC und blauer Laser. Auf freien Boden tippen zum Gehen, auf Dinge zum Untersuchen. Die Tasse ist eine freiwillige kleine Entdeckung.
 2. Jonas mit blauer Kappe antippen → „Was brauchst du?“ → „Ich schau nach.“ Er braucht Platz für Festkisten.
-3. Freien Regalplatz am niedrigen hinteren Wandabschnitt antippen. Linken und rechten Messpunkt wählen. **90** cm eingeben und das Maß mitnehmen. Für diesen Besuch ist die Messung virtuell.
-4. Zu Jonas zurück, dann mindestens zwei Proben ansehen. Zwei liegen im Lager hinter dem Durchgang, OSB rechts im Werkstattraum. Bei Jonas eines der angesehenen Materialien wählen.
-5. Zuschnittplanung auf der vorderen kleinen Bank und CNC links nebenan untersuchen. Zu Jonas zurück und eines der Verfahren wählen. Alle echten Maschinen bleiben aus.
+3. Freien Regalplatz im Hobelraum beim Eingangsbereich antippen. Linken und rechten Messpunkt wählen. **90** cm eingeben und das Maß mitnehmen. Für diesen Besuch ist die Messung virtuell.
+4. Zu Jonas zurück, dann mindestens zwei Proben ansehen. Zwei liegen im Lager hinter dem Durchgang, OSB neben der Hobelbank. Bei Jonas eines der angesehenen Materialien wählen.
+5. Kapp-/Gehrungssäge an G und CNC im unteren Nebenraum untersuchen. Zu Jonas zurück und eines der Verfahren wählen. Alle echten Maschinen bleiben aus.
 6. Zur Hobelbank am Fenster: Regal planen. Für einen sicheren Vorführweg Boden A auf **30**, Boden B auf **70** cm; hohe Kiste in die Mitte, kleine nach unten. „Den Plan mitnehmen“.
 7. Jonas → „Bauen wir’s.“ Das Regal erscheint mit der gewählten Materialfarbe und Fachaufteilung, die Kisten wandern hinein. Danach freiwillig bei Jonas nach Tätigkeiten und Berufsfeldern fragen.
 

@@ -8,10 +8,10 @@ export const visitDemo = typeof window !== 'undefined' && new URLSearchParams(wi
 export const quest:Quest = visitDemo ? structuredClone(questData) as Quest : questData as Quest;
 if(visitDemo){
  const material=quest.steps.find(s=>s.id==='material')!;material.blockedText='Vergleiche erst zwei Proben. Zwei findest du im Holzlager hinten, eine rechts in der Werkstatt.';
- material.hints=['Schau ins Holzlager hinter dem Durchgang.','Zwei Proben liegen hinten im Lager, die OSB-Probe rechts im Werkstattraum.','Untersuche mindestens zwei und kehre zu Jonas zurück.'];
- const process=quest.steps.find(s=>s.id==='process')!;process.hints=['Die CNC steht links im Nebenraum. Die Zuschnittplanung liegt vorn auf der Bank.','Untersuche beide Möglichkeiten und achte auf Form und Vorbereitung.','Rechtecke lassen sich einfach zuschneiden; CNC braucht ein Programm.'];
+ material.hints=['Schau ins Holzlager hinter dem Durchgang.','Zwei Proben liegen im Lager, die OSB-Probe neben der Hobelbank.','Untersuche mindestens zwei und kehre zu Jonas zurück.'];
+ const process=quest.steps.find(s=>s.id==='process')!;process.hints=['Die CNC steht unten im Nebenraum. Die Kappsäge steht an Wand G gegenüber der Hobelbank.','Untersuche beide Möglichkeiten und achte auf Form und Vorbereitung.','Rechtecke lassen sich einfach zuschneiden; CNC braucht ein Programm.'];
 }
-export type RoomObject = { id:string; label:string; x:number; y:number; height:number; color:number; kind:string; shortLabel:string; description:string; detail:string; w?:number; d?:number };
+export type RoomObject = { id:string; label:string; x:number; y:number; height:number; color:number; kind:string; shortLabel:string; description:string; detail:string; w?:number; d?:number; wallRef?:string };
 export const roomConfig = visitDemo ? demoRoom : null;
 export const SIZE = roomConfig?.size ?? 9;
 export const objects: RoomObject[] = visitDemo ? demoRoom.objects : room.objects;

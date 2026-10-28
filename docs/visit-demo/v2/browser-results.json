@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-28T16:40:03.808Z",
+  "browser": "156.0.8078.48",
+  "viewport": "1600×900 / 1024×768",
+  "input": "Chromium touchscreen events on Mac; physical external screen not tested",
+  "checks": {
+    "fullQuest": true,
+    "allThreeSamples": true,
+    "physicalApproach": true,
+    "measurementRetry": true,
+    "anchoredDialogue": true,
+    "planning": true,
+    "worldChange": true,
+    "offlineReload": true,
+    "browserRestartOffline": true,
+    "dedicatedRestartFlow": true,
+    "baselineEntry": true,
+    "separateSave": true
+  },
+  "errors": []
+}

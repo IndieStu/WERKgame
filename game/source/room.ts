@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { adjacent, footprint, iso, objects, path, SIZE, unproject, visitDemo, walkable, type Cell, type Save } from './domain';
-import { workshopObject, workshopPerson, workshopShell } from './demo-art';
+import { adjacent, footprint, iso, objects, path, roomConfig, SIZE, unproject, visitDemo, walkable, type Cell, type Save } from './domain';
+import { preloadWorkshop, workshopObject, workshopPerson, workshopShell } from './demo-art';
 export type Hotspot = { id: string; x: number; y: number; label: string };
 type RoomHooks = {
   state(): Save; paused(): boolean; moved(p: Cell): void; interact(id: string): void;
@@ -17,7 +17,8 @@ export class Room extends Phaser.Scene {
   private actor!: Phaser.GameObjects.Container;
   private shirt!: Phaser.GameObjects.Graphics;
   private shelf!: Phaser.GameObjects.Graphics;
-  private crates: Phaser.GameObjects.Graphics[] = [];
+  private crates: (Phaser.GameObjects.Graphics | Phaser.GameObjects.Image)[] = [];
+  private shelfArt: Phaser.GameObjects.Image[] = [];
   private ruler!: Phaser.GameObjects.Graphics;
   private rulerText!: Phaser.GameObjects.Text;
   private jonasBubble!: Phaser.GameObjects.Text;
@@ -39,7 +40,14 @@ export class Room extends Phaser.Scene {
   private cameraSize = () => {
     if (!this.actor) return;
     const camera = this.cameras.main, w = this.scale.width, h = this.scale.height;
-    camera.setZoom(Math.max(w < 650 ? 1 : .65, Math.min(1.8, Math.min(w / (visitDemo ? 1080 : 780), h / (visitDemo ? 720 : 570)))) * this.zoomFactor);
+    if(visitDemo){
+      const corners=roomConfig!.floorRegions.flatMap(r=>[{x:r.x-.5,y:r.y-.5},{x:r.x+r.w-.5,y:r.y-.5},{x:r.x-.5,y:r.y+r.d-.5},{x:r.x+r.w-.5,y:r.y+r.d-.5}]).map(p=>this.world(p));
+      const minX=Math.min(...corners.map(p=>p.x)),maxX=Math.max(...corners.map(p=>p.x)),minY=Math.min(...corners.map(p=>p.y))-140,maxY=Math.max(...corners.map(p=>p.y));
+      camera.setZoom(Math.max(.55,Math.min(1.5,(w-80)/(maxX-minX+80),(h-120)/(maxY-minY+80)))*this.zoomFactor);
+      if(w<650||this.zoomFactor>1.25)camera.startFollow(this.actor,true,.12,.12);else{camera.stopFollow();camera.centerOn((minX+maxX)/2,(minY+maxY)/2);}
+      return;
+    }
+    camera.setZoom(Math.max(w < 650 ? 1 : .65, Math.min(1.8, Math.min(w / 780, h / 570))) * this.zoomFactor);
     if (w < 650 || this.zoomFactor > 1.25) camera.startFollow(this.actor, true, .12, .12);
     else { camera.stopFollow(); camera.centerOn(480, visitDemo ? 290 : 275); }
   };
@@ -55,12 +63,19 @@ export class Room extends Phaser.Scene {
   refresh() {
     if (!this.actor) return;
     const state = this.hooks.state(), complete = state.quest.completed;
-    this.shirt.clear().fillStyle(state.avatar === 'mint' ? 0x8dbdb4 : 0xd6a279).fillRect(-10, -31, 20, 21);
+    if(visitDemo){this.shirt.clear();const body=this.actor.getByName('body') as Phaser.GameObjects.Image;body.clearTint();if(state.avatar==='orange')body.setTint(0xf1cc97);}
+    else this.shirt.clear().fillStyle(state.avatar === 'mint' ? 0x8dbdb4 : 0xd6a279).fillRect(-10, -31, 20, 21);
     this.jonasBubble.setVisible(state.quest.stepId === 'briefing');
     const site = this.world(objects.find(o => o.id === 'site')!);
     this.shelf.clear();
+    this.shelfArt.forEach(image=>image.setVisible(complete));
     if (!complete) {
       this.shelf.lineStyle(2, 0xc7bb94, .8).strokePoints(vectors([[site.x-40,site.y],[site.x,site.y+20],[site.x+40,site.y],[site.x,site.y-20]]), true);
+    } else if(visitDemo){
+      const tint=state.quest.answers.material==='mdf'?0xd7d6ca:state.quest.answers.material==='osb'?0xd3b482:0xffffff;
+      this.shelfArt[0].setPosition(site.x,site.y+18).setTint(tint);
+      this.shelfArt[1].setPosition(site.x,site.y-Number(state.quest.layout.boards[0])+18).setTint(tint);
+      this.shelfArt[2].setPosition(site.x,site.y-Number(state.quest.layout.boards[1])+18).setTint(tint);
     } else {
       const color = state.quest.answers.material === 'mdf' ? 0xc8c1a3 : state.quest.answers.material === 'osb' ? 0xb58c4e : 0xd8b17c;
       this.shelf.fillStyle(color).fillRect(site.x-34, site.y-90, 7, 94).fillRect(site.x+26, site.y-90, 7, 94);
@@ -71,8 +86,8 @@ export class Room extends Phaser.Scene {
     const floor = this.world(objects.find(o => o.id === 'crates')!);
     this.crates.forEach((crate, i) => {
       const slot = state.quest.layout.boxes[i === 0 ? 'small' : 'tall'] ?? 0;
-      const x = complete ? site.x-18 : floor.x+(i ? 18 : -18);
-      const y = complete ? site.y-Number(intervals[slot] ?? 0)-3 : floor.y+(i ? -9 : 8);
+      const x = complete ? site.x-(visitDemo?0:18) : floor.x+(i ? 18 : -18);
+      const y = complete ? site.y-Number(intervals[slot] ?? 0)+(visitDemo?10:-3) : floor.y+(i ? -9 : 8);
       if (this.lastCompleted === false && complete && !this.reduced) {
         this.tweens.add({ targets: crate, x, y, duration: 650, delay: i*120, onComplete: () => crate.setDepth(site.y+1) });
       } else { this.tweens.killTweensOf(crate); crate.setPosition(x,y).setDepth(complete ? site.y+1 : floor.y+1); }
@@ -102,6 +117,7 @@ export class Room extends Phaser.Scene {
     } else this.shirt = shirt;
     return this.add.container(x,y,[shirt,body]).setDepth(y);
   }
+  preload() { if(visitDemo)preloadWorkshop(this); }
   create() {
     if(visitDemo)workshopShell(this,p=>this.world(p));
     else {
@@ -118,9 +134,17 @@ export class Room extends Phaser.Scene {
     for(const o of objects) {
       const p=this.world(o);
       if(o.kind==='npc') this.figure(p.x,p.y,true);
-      else if(o.id==='site') this.shelf=this.add.graphics().setDepth(p.y);
+      else if(o.id==='site') {
+        this.shelf=this.add.graphics().setDepth(p.y);
+        if(visitDemo){
+          const frame=this.add.image(p.x,p.y+18,'wood-finish','frame').setOrigin(.5,1).setDisplaySize(90,115).setDepth(p.y);
+          const boards=[0,1].map(()=>this.add.image(p.x,p.y,'wood-finish','board').setOrigin(.5,1).setDisplaySize(78,40).setDepth(p.y+.5));
+          this.shelfArt=[frame,...boards];
+        }
+      }
       else if(o.id==='crates') {
         for(let i=0;i<2;i++) {
+          if(visitDemo){this.crates.push(this.add.image(0,0,'wood-finish',i?'tall':'small').setOrigin(.5,1).setDisplaySize(37,i?44:34));continue;}
           const c=this.add.graphics().fillStyle(i?0xba9b6e:0xd2b789).fillRect(0,-(i?30:21),34,i?30:21);
           c.lineStyle(2,0x776143).strokeRect(0,-(i?30:21),34,i?30:21).lineBetween(0,-10,34,-10);
           this.crates.push(c);
@@ -195,6 +219,7 @@ export class Room extends Phaser.Scene {
       if(distance<=step){this.actor.setPosition(p.x,p.y);this.cell={...this.target};this.target=null;this.hooks.moved(this.cell);}
       else this.actor.setPosition(this.actor.x+dx/distance*step,this.actor.y+dy/distance*step);
       this.actor.setDepth(this.actor.y);
+      if(visitDemo&&Math.abs(dx)>1)(this.actor.getByName('body') as Phaser.GameObjects.Image).setFlipX(dx>0);
       if(!this.reduced)this.actor.setScale(1,1+Math.sin(time/70)*.025);
     }else this.actor.setScale(1);
   }

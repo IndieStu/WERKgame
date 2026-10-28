@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-28T16:39:40.080Z",
+  "files": [
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "bytes": 2542,
+      "gzipBytes": 983
+    },
+    {
+      "path": "dist/art/woodshop-v2/characters.png",
+      "bytes": 1472832,
+      "gzipBytes": 1460705
+    },
+    {
+      "path": "dist/art/woodshop-v2/extra.png",
+      "bytes": 2001601,
+      "gzipBytes": 1988777
+    },
+    {
+      "path": "dist/art/woodshop-v2/finish.png",
+      "bytes": 1238778,
+      "gzipBytes": 1210981
+    },
+    {
+      "path": "dist/art/woodshop-v2/machines-v2.png",
+      "bytes": 1667420,
+      "gzipBytes": 1637589
+    },
+    {
+      "path": "dist/art/woodshop-v2/materials.png",
+      "bytes": 2449454,
+      "gzipBytes": 2400855
+    },
+    {
+      "path": "dist/assets/index-CgyVNaKz.css",
+      "bytes": 7595,
+      "gzipBytes": 2537
+    },
+    {
+      "path": "dist/assets/index-D5pmHpyL.js",
+      "bytes": 1448663,
+      "gzipBytes": 393669
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 2787,
+      "gzipBytes": 1194
+    },
+    {
+      "path": "dist/sw.js",
+      "bytes": 1422,
+      "gzipBytes": 667
+    }
+  ],
+  "totalBytes": 10293094,
+  "totalGzipBytes": 9097957,
+  "note": "Computed file/gzip sizes; local demo, not measured transfer or physical-screen performance."
+}

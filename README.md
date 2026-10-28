@@ -4,7 +4,7 @@ Ein webbasiertes isometrisches Spiel verbindet virtuelle Aufträge mit sicheren 
 
 **Status · 28.10.2026:** Phase 2B ist gemergt; **Phase 3 ist ausdrücklich freigegeben**. Zuerst werden Holzwerkstatt und 1. OG als isolierter Raum-/Orientierungstest vorbereitet, die reale Quest folgt später. Grundriss und Umfang liegen vor: A–R sind Wandreferenzen für Fotos; Treppenankunft, Flur und Holzwerkstatt werden begehbar, weitere Räume zunächst leer und geschlossen. [Aktueller Plan](docs/phase-3/plan.md) · [Raumaufnahme](docs/phase-3/raumgrundlage.md). Der vorhandene Spielbuild bleibt bis zur Blockout-Implementierung der technisch geprüfte Phase-2B-Prototyp.
 
-**Besuchsdemo:** [Holzwerkstatt mit Regalquest öffnen](http://localhost:4190/?demo=visit) · [Start / Vorführablauf](docs/visit-demo/vorfuehrung.md) · [Nachweise und Grenzen](docs/visit-demo/bericht.md). Im Projektordner kann `Besuchsdemo-starten.command` die lokale Fassung öffnen. Verdichteter Raum nach den Fotos, eigener Demospielstand, virtuelle Messung, kein fertiges 1. OG.
+**Besuchsdemo:** [Holzwerkstatt mit Regalquest öffnen](http://localhost:4193/?demo=visit) · [Start / Vorführablauf](docs/visit-demo/vorfuehrung.md) · [Nachweise und Grenzen](docs/visit-demo/v2/bericht.md). Im Projektordner kann `Besuchsdemo-starten.command` die lokale Fassung öffnen. Verdichteter Raum nach den Fotos, eigener Demospielstand, virtuelle Messung, kein fertiges 1. OG.
 
 [Creative Direction / Player Experience](docs/design/creative-direction.md) · [Konkretes Regalquest-Storyboard](docs/design/regalquest-storyboard.md) · [Visuelle Inspiration](docs/design/visual-reference-01.md) · [Technischer Phase-2-Bericht](docs/phase-2/bericht.md)
 

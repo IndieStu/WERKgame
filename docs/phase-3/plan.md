@@ -27,3 +27,7 @@ Grundriss und erste 16 Fotoansichten sind vorhanden; vollständiger räumlicher 
 ## Vorgezogene Besuchsdemo · 28.10.2026
 
 Für den offiziellen Besuch am Folgetag ist eine kompakte [Holzwerkstatt-Techdemo](../visit-demo/bericht.md) mit bestehender Regalquest umgesetzt. Zielgerät ist MacBook mit externem Touchscreen. Die nun gelieferten 16 Fotoansichten sind als Arbeitsreferenzen ausgewertet; Originale werden nicht veröffentlicht. Der Raum ist für die Vorführung verdichtet, Messen/Bauen bleiben simuliert. Das reguläre erste OG und die spätere reale Stationsaufgabe bleiben eigene Arbeitspakete. Raumdaten, Objektgrundflächen, Art-Bausteine und räumliche Dialoge sind im weiteren Spiel nutzbar.
+
+## Reviewkorrektur Besuchsdemo V2
+
+Die erste Besuchsfassung wurde wegen unzureichender Grafik, fehlender Maschinen und falscher Fensterplatzierung kritisiert. [V2](../visit-demo/v2/bericht.md) ersetzt die Blockgrafik durch Raster-Assets und die frei verdichtete Raumdarstellung durch eine aus A–R abgeleitete Geometrie mit an Wände gebundenen Fenstern. Funktion und visuelle Richtigkeit werden getrennt geprüft; noch keine visuelle Abnahme behaupten.

@@ -9,7 +9,7 @@ import words from '../../content/rooms/experience.json';
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const talk = $<HTMLDialogElement>('talk'), panel = $<HTMLDialogElement>('panel'), planner = $<HTMLDialogElement>('planner');
-const store = new Store(visitDemo ? 'werk-visit-demo' : 'werk-phase1');
+const store = new Store(visitDemo ? 'werk-visit-demo-v2' : 'werk-phase1');
 if(visitDemo){document.body.dataset.demo='visit';document.title='WERK · Holzwerkstatt – Besuchsdemo';$('start-title').textContent='WERK';document.querySelector('.eyebrow')!.textContent='HOLZWERKSTATT · BESUCHSDEMO';}
 let speakingAt = 'jonas';
 let state = fresh(), canSave = true, hasSave = false, started = false, room: Room;

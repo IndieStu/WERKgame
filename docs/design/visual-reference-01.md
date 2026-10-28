@@ -36,3 +36,7 @@ Nicht die komplette Darstellung auf ein Tablet verkleinern: Kameraausschnitt und
 Die technischen Placeholder bleiben unverändert und stellen weiterhin keine Art Direction dar. Auch diese Inspiration legt keine endgültigen Tile-/Spritegrößen, keine realen Raumverhältnisse, keine Maschinenmodelle und keinen Produktionsumfang fest. Es wird jetzt weder das Bild nachgebaut noch neue Produktionsgrafik erstellt.
 
 Die [Creative Direction](creative-direction.md) regelt die Player Experience; das [Storyboard](regalquest-storyboard.md) regelt die geplante Handlung. Diese Referenz ergänzt deren Atmosphäre und visuelles Ziel. Die reale Identität des WERK kommt später aus der gemeinsamen Raumdokumentation hinzu.
+
+## Konkretisierung durch Besuchsdemo-Review · 28.10.2026
+
+Der Auftraggeber hat ausdrücklich klargestellt, dass ein eingefärbter Blockout dem gewünschten grafischen Ziel nicht genügt. Die Referenz bleibt Maßstab für Materialwirkung, erkennbare Geräte und ausgearbeitete Figuren. Die [Besuchsdemo V2](../visit-demo/v2/bericht.md) verwendet dafür Raster-Assets; die Raumgeometrie und Fenster müssen dennoch aus den realen Unterlagen kommen. Funktionstests ersetzen weder diesen Abgleich noch die visuelle Abnahme. Ältere Aussagen über unveränderte Placeholder beschreiben den früheren Planungsstand.

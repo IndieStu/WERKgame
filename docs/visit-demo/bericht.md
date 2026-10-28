@@ -1,4 +1,6 @@
-# Besuchsdemo – Umsetzung und Nachweise
+# Besuchsdemo V1 – historischer Funktionsstand
+
+**Durch Review verworfen:** Raum-/Fensterfehler, fehlende Maschinen und unzureichende Grafik. Aktueller Korrekturstand: [V2](v2/bericht.md). Die folgenden Angaben dokumentieren ausschließlich den ersten Funktionsstand.
 
 28.10.2026 · Separater kurzer Demonstrator neben der laufenden Phase 3. [Start und Vorführung](vorfuehrung.md). Der tatsächliche externe Touchscreen und die menschliche Vorführung sind noch zu prüfen.
 

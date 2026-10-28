@@ -4,7 +4,7 @@ import {spawn} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
-const output='docs/visit-demo',base='http://127.0.0.1:4191/',url=base+'?demo=visit';
+const output='docs/visit-demo/v2',base='http://127.0.0.1:4191/',url=base+'?demo=visit';
 const launch={executablePath:process.env.CHROME_PATH||undefined,headless:true,args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']};
 await mkdir(output+'/screenshots',{recursive:true});
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4191','--strictPort'],{stdio:'pipe'});
@@ -12,7 +12,7 @@ const listen=new Promise((resolve,reject)=>{server.stdout.on('data',b=>{if(b.toS
 let browser,page;
 const ready=p=>p.waitForFunction(()=>document.body.dataset.ready==='true');
 const tap=(p,name)=>p.getByRole('button',{name,exact:true}).tap();
-async function save(p){return p.evaluate(()=>new Promise((resolve,reject)=>{const r=indexedDB.open('werk-visit-demo',1);r.onsuccess=()=>{const db=r.result,tx=db.transaction('state','readonly'),q=tx.objectStore('state').get('current');q.onsuccess=()=>{resolve(q.result);db.close();};};r.onerror=()=>reject(r.error);}));}
+async function save(p){return p.evaluate(()=>new Promise((resolve,reject)=>{const r=indexedDB.open('werk-visit-demo-v2',1);r.onsuccess=()=>{const db=r.result,tx=db.transaction('state','readonly'),q=tx.objectStore('state').get('current');q.onsuccess=()=>{resolve(q.result);db.close();};};r.onerror=()=>reject(r.error);}));}
 async function step(p,id,complete=false){for(let i=0;i<60;i++){const s=await save(p);if(s?.quest.stepId===id&&s.quest.completed===complete)return s;await p.waitForTimeout(100);}throw Error('Missing step '+id);}
 async function visit(p,id){console.log('Visit',id);await p.locator(`[data-object="${id}"]`).tap();await p.waitForFunction(()=>document.querySelector('#talk').open||document.querySelector('#planner').open||document.querySelector('[data-object="measure_start"]'));}
 async function close(p){await tap(p,'Gespräch schließen');}

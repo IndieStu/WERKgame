@@ -1,234 +1,641 @@
 {
   "id": "woodshop_visit_demo",
-  "size": 12,
+  "size": 26,
   "spawn": {
-    "x": 8,
+    "x": 10,
     "y": 10
   },
   "floorRegions": [
     {
-      "x": 4,
+      "x": 6,
       "y": 0,
-      "w": 8,
-      "d": 12
+      "w": 6,
+      "d": 22
     },
     {
       "x": 0,
-      "y": 7,
-      "w": 4,
-      "d": 5
+      "y": 15,
+      "w": 6,
+      "d": 10
     }
   ],
   "barriers": [
     {
-      "x": 4,
-      "y": 3
-    },
-    {
-      "x": 5,
-      "y": 3
-    },
-    {
       "x": 6,
-      "y": 3
-    },
-    {
-      "x": 7,
-      "y": 3
-    },
-    {
-      "x": 9,
-      "y": 3
-    },
-    {
-      "x": 10,
-      "y": 3
-    },
-    {
-      "x": 11,
-      "y": 3
-    },
-    {
-      "x": 4,
       "y": 7
     },
     {
-      "x": 4,
-      "y": 8
+      "x": 7,
+      "y": 7
     },
     {
-      "x": 4,
-      "y": 10
+      "x": 8,
+      "y": 7
     },
     {
-      "x": 4,
-      "y": 11
+      "x": 9,
+      "y": 7
+    },
+    {
+      "x": 10,
+      "y": 7
+    },
+    {
+      "x": 6,
+      "y": 9
+    },
+    {
+      "x": 7,
+      "y": 9
+    },
+    {
+      "x": 9,
+      "y": 9
+    },
+    {
+      "x": 8,
+      "y": 19
+    },
+    {
+      "x": 9,
+      "y": 19
+    },
+    {
+      "x": 10,
+      "y": 19
+    },
+    {
+      "x": 11,
+      "y": 19
+    },
+    {
+      "x": 6,
+      "y": 15
+    },
+    {
+      "x": 6,
+      "y": 18
+    },
+    {
+      "x": 6,
+      "y": 20
+    },
+    {
+      "x": 6,
+      "y": 21
     }
   ],
   "objects": [
     {
       "id": "site",
       "label": "Freier Regalplatz",
-      "x": 7,
-      "y": 4,
+      "x": 9,
+      "y": 10,
       "height": 8,
       "color": 11054228,
       "kind": "site",
       "shortLabel": "Platz",
       "description": "Hier wäre Platz für unser Regal. Für die Besuchsdemo messen wir virtuell.",
-      "detail": "Der Standort und das 90-cm-Maß sind Demoannahmen, keine Aufnahme eines echten Messortes."
+      "detail": "Der Standort und das 90-cm-Maß sind Demoannahmen, keine Aufnahme eines echten Messortes.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "bench",
       "label": "Hobelbank mit Regalplan",
-      "x": 4,
-      "y": 5,
-      "w": 1,
-      "d": 2,
+      "x": 6,
+      "y": 11,
+      "w": 2,
+      "d": 3,
       "height": 30,
       "color": 12163178,
       "kind": "bench",
       "shortLabel": "Werkbank",
       "description": "Eine schwere Hobelbank mit Schraubstock. Hier lässt sich etwas planen.",
-      "detail": "Erst die Fächer aufteilen, dann die Kisten ausprobieren."
+      "detail": "Erst die Fächer aufteilen, dann die Kisten ausprobieren.",
+      "wallRef": "E"
     },
     {
       "id": "cut",
-      "label": "Zuschnittplanung",
+      "label": "Kapp- und Gehrungssäge / Zuschnitt",
       "x": 10,
-      "y": 9,
+      "y": 13,
       "height": 28,
       "color": 12163178,
-      "kind": "cut",
+      "kind": "mitre",
       "shortLabel": "Zuschnitt",
-      "description": "Einfache Rechtecke lassen sich mit gleicher Einstellung wiederholt zuschneiden. Die Maschine bleibt aus.",
-      "detail": "Im echten Betrieb übernehmen eingewiesene Personen die Maschinenarbeit. Hier vergleichen wir nur die Verfahren."
+      "description": "An Wand G steht die Kapp- und Gehrungssäge. Gleiche Einstellungen helfen bei wiederholten Zuschnitten. Wir vergleichen hier nur die Verfahren.",
+      "detail": "Im echten Betrieb übernehmen eingewiesene Personen die Maschinenarbeit. Hier vergleichen wir nur die Verfahren.",
+      "w": 2,
+      "d": 2,
+      "wallRef": "G"
     },
     {
       "id": "cnc",
       "label": "CNC-Fräse",
       "x": 1,
-      "y": 9,
-      "w": 2,
-      "d": 2,
+      "y": 21,
+      "w": 4,
+      "d": 3,
       "height": 32,
       "color": 4343377,
       "kind": "cnc",
       "shortLabel": "CNC",
       "description": "Die Fräse fährt ein vorbereitetes Programm ab. Für gleiche Teile praktisch, das Programm braucht Vorbereitung.",
-      "detail": "Konturen oder Bohrbilder sind typische Gründe für CNC. Einfache Rechtecke gehen auch ohne Programm. Keine echte Maschine bedienen."
+      "detail": "Konturen oder Bohrbilder sind typische Gründe für CNC. Einfache Rechtecke gehen auch ohne Programm. Keine echte Maschine bedienen.",
+      "wallRef": "A"
     },
     {
       "id": "multiplex",
       "label": "Multiplexprobe",
-      "x": 5,
+      "x": 8,
       "y": 1,
       "height": 12,
       "color": 13935484,
       "kind": "sample",
       "shortLabel": "Multiplex",
       "description": "An der Kante siehst du mehrere Holzschichten. Die Kante kann sichtbar bleiben.",
-      "detail": "Im Demo-Beispiel etwas teurer, dafür spart eine sichtbare Kante einen Gestaltungsschritt."
+      "detail": "Im Demo-Beispiel etwas teurer, dafür spart eine sichtbare Kante einen Gestaltungsschritt.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "mdf",
       "label": "MDF-Probe",
-      "x": 10,
-      "y": 1,
+      "x": 9,
+      "y": 5,
       "height": 12,
       "color": 12829342,
       "kind": "sample",
       "shortLabel": "MDF",
       "description": "Glatte Fläche, feine Kante. Für unser Beispiel planen wir eine Kantenbeschichtung mit ein.",
-      "detail": "Oberfläche und Kantenbehandlung gehören gemeinsam zur Materialentscheidung."
+      "detail": "Oberfläche und Kantenbehandlung gehören gemeinsam zur Materialentscheidung.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "osb",
       "label": "OSB-Probe",
-      "x": 11,
-      "y": 6,
+      "x": 9,
+      "y": 11,
       "height": 12,
       "color": 12689240,
       "kind": "sample",
       "shortLabel": "OSB",
       "description": "Große Holzspäne bilden eine markante Struktur. Die kann Teil der Gestaltung sein.",
-      "detail": "Für das Fest ist auch diese Optik eine sinnvolle Möglichkeit. Es gibt hier kein einziges richtiges Material."
+      "detail": "Für das Fest ist auch diese Optik eine sinnvolle Möglichkeit. Es gibt hier kein einziges richtiges Material.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "coffee",
       "label": "Jonas’ Tasse",
-      "x": 6,
-      "y": 8,
+      "x": 8,
+      "y": 12,
       "height": 18,
       "color": 14737082,
       "kind": "coffee",
       "shortLabel": "Tasse",
       "description": "Noch warm.",
-      "detail": "Ein ziemlich guter Grund, kurz stehen zu bleiben."
+      "detail": "Ein ziemlich guter Grund, kurz stehen zu bleiben.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "crates",
       "label": "Festkisten",
-      "x": 9,
-      "y": 7,
+      "x": 8,
+      "y": 16,
       "height": 28,
       "color": 12689240,
       "kind": "crates",
       "shortLabel": "Kisten",
       "description": "Fürs Fest gesammelt. Im Weg stehen sie trotzdem.",
-      "detail": "Ein Regal könnte hier etwas ändern."
+      "detail": "Ein Regal könnte hier etwas ändern.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "jonas",
       "label": "Jonas",
-      "x": 8,
-      "y": 8,
+      "x": 9,
+      "y": 14,
       "height": 52,
       "color": 4343377,
       "kind": "npc",
       "shortLabel": "Jonas",
       "description": "Jonas schaut auf die Festkisten.",
-      "detail": "Er könnte Hilfe gebrauchen."
+      "detail": "Er könnte Hilfe gebrauchen.",
+      "w": 1,
+      "d": 1,
+      "wallRef": ""
     },
     {
       "id": "laser",
       "label": "Blauer Laser",
-      "x": 0,
-      "y": 7,
+      "x": 3,
+      "y": 15,
       "w": 2,
-      "d": 1,
+      "d": 2,
       "height": 24,
       "color": 4480675,
       "kind": "laser",
       "shortLabel": "Laser",
       "description": "Der blaue Laser steht beim Fenster im Nebenraum. Für unser Regal brauchen wir ihn heute nicht.",
-      "detail": "Ein weiteres Werkzeug für spätere Geschichten. Die reale Maschine wird hier nicht bedient."
+      "detail": "Ein weiteres Werkzeug für spätere Geschichten. Die reale Maschine wird hier nicht bedient.",
+      "wallRef": "C"
     },
     {
       "id": "timber",
       "label": "Holzlager",
       "x": 6,
-      "y": 0,
-      "w": 3,
-      "d": 1,
+      "y": 1,
+      "w": 1,
+      "d": 3,
       "height": 62,
       "color": 12163178,
       "kind": "timber",
       "shortLabel": "Holzlager",
       "description": "Lange Leisten, Plattenreste und Bretter. Gut sortiert findet man schneller das passende Stück.",
-      "detail": "Für die Demo ist das Lager aufgeräumt und vereinfacht dargestellt."
+      "detail": "Für die Demo ist das Lager aufgeräumt und vereinfacht dargestellt.",
+      "wallRef": "L"
     },
     {
       "id": "cabinet",
       "label": "Werkzeugschrank",
-      "x": 10,
-      "y": 5,
+      "x": 8,
+      "y": 18,
       "height": 50,
       "color": 12163178,
       "kind": "cabinet",
       "shortLabel": "Werkzeug",
       "description": "Werkzeug hat hier seinen Platz. Der kleine Raum muss nicht leer aussehen, um übersichtlich zu sein.",
-      "detail": "Wiedererkennbares Detail aus den Werkstattfotos; keine vollständige Werkzeugliste."
+      "detail": "Wiedererkennbares Detail aus den Werkstattfotos; keine vollständige Werkzeugliste.",
+      "w": 1,
+      "d": 1,
+      "wallRef": "H"
+    },
+    {
+      "id": "table_saw",
+      "label": "Tischkreissäge",
+      "x": 10,
+      "y": 16,
+      "w": 2,
+      "d": 2,
+      "height": 56,
+      "color": 10451830,
+      "kind": "table_saw",
+      "shortLabel": "Tischkreissäge",
+      "description": "Neben der Kappsäge steht die kompakte Tischkreissäge mit Verstellrad und roter Absaugung darunter.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "G"
+    },
+    {
+      "id": "bandsaw",
+      "label": "Bandsäge",
+      "x": 8,
+      "y": 9,
+      "w": 1,
+      "d": 1,
+      "height": 56,
+      "color": 10451830,
+      "kind": "bandsaw",
+      "shortLabel": "Bandsäge",
+      "description": "Die schmale Bandsäge steht an F in der Nähe des Eingangs. Ihr dünnes Sägeband läuft durch den kleinen Tisch.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "F"
+    },
+    {
+      "id": "drill",
+      "label": "Tischbohrmaschine",
+      "x": 10,
+      "y": 18,
+      "w": 1,
+      "d": 1,
+      "height": 56,
+      "color": 10451830,
+      "kind": "drill",
+      "shortLabel": "Tischbohrmaschine",
+      "description": "An H steht die Tischbohrmaschine auf dem hellen Schubladenschrank, neben dem Durchgang zur Absaugung.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "H"
+    },
+    {
+      "id": "diode",
+      "label": "Offener Diodenlaser",
+      "x": 0,
+      "y": 15,
+      "w": 2,
+      "d": 1,
+      "height": 56,
+      "color": 10451830,
+      "kind": "diode",
+      "shortLabel": "Offener Diodenlaser",
+      "description": "Neben dem blauen Laser steht der zweite, offene Laserrahmen. Beide gehören zum Nebenraum.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "C"
+    },
+    {
+      "id": "extractor",
+      "label": "Zentrale Absaugung",
+      "x": 7,
+      "y": 20,
+      "w": 1,
+      "d": 1,
+      "height": 90,
+      "color": 10451830,
+      "kind": "extractor",
+      "shortLabel": "Zentrale Absaugung",
+      "description": "Die hohe Filtereinheit steht im kleinen Absaugraum hinter H. Sie sammelt Späne und Staub über Schläuche.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "I"
+    },
+    {
+      "id": "cnc_stock",
+      "label": "Ablage im CNC-Raum",
+      "x": 0,
+      "y": 18,
+      "w": 1,
+      "d": 2,
+      "height": 56,
+      "color": 10451830,
+      "kind": "timber",
+      "shortLabel": "Ablage im CNC-Raum",
+      "description": "An B liegt Material unter der hohen Wandablage. Für die Demo ist der Gang freigeräumt.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "B"
+    },
+    {
+      "id": "plate_stock",
+      "label": "Platten und Restholz",
+      "x": 11,
+      "y": 1,
+      "w": 1,
+      "d": 3,
+      "height": 56,
+      "color": 10451830,
+      "kind": "timber",
+      "shortLabel": "Platten und Restholz",
+      "description": "Platten und Reststücke stehen an N im Lager. Nicht alles muss neu gekauft werden.",
+      "detail": "Aus den Werkstattfotos übernommen. In dieser Demo bleibt die reale Maschine aus.",
+      "wallRef": "N"
+    }
+  ],
+  "revision": 2,
+  "walls": [
+    {
+      "id": "L",
+      "from": {
+        "x": 5.5,
+        "y": -0.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 6.5
+      },
+      "height": 105,
+      "windows": []
+    },
+    {
+      "id": "M",
+      "from": {
+        "x": 5.5,
+        "y": -0.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": -0.5
+      },
+      "height": 105,
+      "windows": [
+        {
+          "start": 0.7,
+          "length": 1.6,
+          "sill": 12,
+          "height": 78
+        },
+        {
+          "start": 3.2,
+          "length": 1.6,
+          "sill": 12,
+          "height": 78
+        }
+      ]
+    },
+    {
+      "id": "N",
+      "from": {
+        "x": 11.5,
+        "y": -0.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 6.5
+      },
+      "height": 20,
+      "windows": []
+    },
+    {
+      "id": "O",
+      "from": {
+        "x": 5.5,
+        "y": 6.5
+      },
+      "to": {
+        "x": 10.5,
+        "y": 6.5
+      },
+      "height": 28,
+      "windows": []
+    },
+    {
+      "id": "F",
+      "from": {
+        "x": 5.5,
+        "y": 8.5
+      },
+      "to": {
+        "x": 9.5,
+        "y": 8.5
+      },
+      "height": 105,
+      "windows": []
+    },
+    {
+      "id": "E",
+      "from": {
+        "x": 5.5,
+        "y": 8.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 14.5
+      },
+      "height": 105,
+      "windows": [
+        {
+          "start": 1.2,
+          "length": 2.4,
+          "sill": 24,
+          "height": 70
+        }
+      ]
+    },
+    {
+      "id": "G",
+      "from": {
+        "x": 11.5,
+        "y": 8.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 14.5
+      },
+      "height": 24,
+      "windows": []
+    },
+    {
+      "id": "H",
+      "from": {
+        "x": 7.5,
+        "y": 18.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 18.5
+      },
+      "height": 22,
+      "windows": []
+    },
+    {
+      "id": "C",
+      "from": {
+        "x": -0.5,
+        "y": 14.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 14.5
+      },
+      "height": 105,
+      "windows": [
+        {
+          "start": 1.1,
+          "length": 2.1,
+          "sill": 24,
+          "height": 70
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "from": {
+        "x": -0.5,
+        "y": 14.5
+      },
+      "to": {
+        "x": -0.5,
+        "y": 24.5
+      },
+      "height": 105,
+      "windows": []
+    },
+    {
+      "id": "A",
+      "from": {
+        "x": -0.5,
+        "y": 24.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 24.5
+      },
+      "height": 20,
+      "windows": []
+    },
+    {
+      "id": "D-north",
+      "from": {
+        "x": 5.5,
+        "y": 14.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 15.5
+      },
+      "height": 100,
+      "windows": []
+    },
+    {
+      "id": "D-south",
+      "from": {
+        "x": 5.5,
+        "y": 17.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 24.5
+      },
+      "height": 22,
+      "windows": []
+    },
+    {
+      "id": "I",
+      "from": {
+        "x": 5.5,
+        "y": 18.5
+      },
+      "to": {
+        "x": 5.5,
+        "y": 21.5
+      },
+      "height": 24,
+      "windows": []
+    },
+    {
+      "id": "J",
+      "from": {
+        "x": 7.5,
+        "y": 19.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 19.5
+      },
+      "height": 24,
+      "windows": []
+    },
+    {
+      "id": "K",
+      "from": {
+        "x": 11.5,
+        "y": 19.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 21.5
+      },
+      "height": 24,
+      "windows": []
+    },
+    {
+      "id": "G-cutaway",
+      "from": {
+        "x": 11.5,
+        "y": 14.5
+      },
+      "to": {
+        "x": 11.5,
+        "y": 18.5
+      },
+      "height": 20,
+      "windows": []
     }
   ]
 }
