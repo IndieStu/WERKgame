@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-28T17:16:28.277Z",
+  "browser": "156.0.8078.48",
+  "results": [
+    {
+      "dimensions": {
+        "width": 1600,
+        "height": 900,
+        "cssWidth": 1600,
+        "cssHeight": 900,
+        "dpr": 1
+      },
+      "resizeTouch": true,
+      "dialogTouch": true,
+      "canvasTapToMove": true,
+      "errors": []
+    },
+    {
+      "dimensions": {
+        "width": 3200,
+        "height": 1800,
+        "cssWidth": 1600,
+        "cssHeight": 900,
+        "dpr": 2
+      },
+      "resizeTouch": true,
+      "dialogTouch": true,
+      "canvasTapToMove": true,
+      "errors": []
+    }
+  ]
+}

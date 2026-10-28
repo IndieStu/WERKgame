@@ -20,6 +20,7 @@ try{
  await listen;browser=await chromium.launch(launch);const context=await browser.newContext({viewport:{width:1600,height:900},hasTouch:true});page=await context.newPage();page.setDefaultTimeout(18000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(url);await ready(page);await tap(page,'Neues Spiel');await tap(page,'Los geht’s');
  await page.screenshot({path:output+'/screenshots/workshop.png'});
+ await tap(page,'Gesamtansicht');
  await visit(page,'coffee');await close(page);await visit(page,'laser');await close(page);
  await visit(page,'jonas');await page.screenshot({path:output+'/screenshots/jonas.png'});
  const bubble=await page.locator('#talk').boundingBox();assert.ok(bubble.x>=0&&bubble.y>=0&&bubble.x+bubble.width<=1601&&bubble.y+bubble.height<=901);

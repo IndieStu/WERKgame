@@ -16,7 +16,7 @@ function textureSurface(scene:Phaser.Scene,key:string,width:number,height:number
  const texture=scene.textures.createCanvas(key,width+2,height+Math.ceil(width/2)+2)!;
  const ctx=texture.context,materials=scene.textures.get('wood-materials').getSourceImage() as HTMLImageElement;
  const half=materials.width/2;
- ctx.imageSmoothingEnabled=false;
+ ctx.imageSmoothingEnabled=true;
  ctx.setTransform(side,.5,0,1,side===1?1:width+1,1);
  ctx.drawImage(materials,wall?half:0,shade?half:0,half,half,0,0,width,height);
  if(wall){ctx.fillStyle=side===1?'rgba(58,42,23,.13)':'rgba(255,244,214,.09)';ctx.fillRect(0,0,width,height);}
@@ -46,7 +46,7 @@ function wall(scene:Phaser.Scene,world:Project,s:NonNullable<typeof roomConfig>[
 function floorTexture(scene:Phaser.Scene,key:string,dark:boolean){
  const texture=scene.textures.createCanvas(key,128,64)!;
  const ctx=texture.context,im=scene.textures.get('wood-materials').getSourceImage() as HTMLImageElement;
- const h=im.width/2;ctx.imageSmoothingEnabled=false;ctx.setTransform(1,.5,-1,.5,64,0);
+ const h=im.width/2;ctx.imageSmoothingEnabled=true;ctx.setTransform(1,.5,-1,.5,64,0);
  ctx.drawImage(im,0,dark?h:0,h/2,h/2,0,0,64,64);texture.refresh();
 }
 export function workshopShell(scene:Phaser.Scene,world:Project){
@@ -58,7 +58,7 @@ export function workshopShell(scene:Phaser.Scene,world:Project){
  // Photo B: high timber storage on the retained west wall of the CNC room.
  const rackPoint=world({x:-.5,y:19.2});
  scene.add.image(rackPoint.x,rackPoint.y-38,'wood-extra','overhead').setOrigin(.5,1).setDisplaySize(140,60).setFlipX(true).setDepth(-650);
- const sign=world({x:8,y:8.5});scene.add.text(sign.x-22,sign.y-94,'WERK',{fontFamily:'monospace',fontStyle:'bold',fontSize:'13px',color:'#65563f'}).setDepth(-650);
+ const sign=world({x:8,y:8.5});scene.add.text(sign.x-22,sign.y-94,'WERK',{fontFamily:'monospace',fontStyle:'bold',fontSize:'13px',color:'#65563f'}).setDepth(-650).setResolution(4);
  // Clear entrance frame at F. No windows are ever generated outside wall data.
  const entry=scene.add.graphics().setDepth(-640);
  for(const x of [9.5,11.5]){const p=world({x,y:8.5});entry.lineStyle(5,0x977c56).lineBetween(p.x,p.y,p.x,p.y-102);}

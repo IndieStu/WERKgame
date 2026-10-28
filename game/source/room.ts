@@ -27,6 +27,7 @@ export class Room extends Phaser.Scene {
   private origin = { x: 480, y: 155 };
   private frames = 0; private sampleStart = performance.now();
   private zoomFactor = 1;
+  private overview = false;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   constructor(private hooks: RoomHooks) { super('werk-room'); this.cell = { ...hooks.state().cell }; }
   stop() {
@@ -39,18 +40,24 @@ export class Room extends Phaser.Scene {
   private world(p: Cell) { const q = iso(p); return { x: q.x + this.origin.x, y: q.y + this.origin.y }; }
   private cameraSize = () => {
     if (!this.actor) return;
-    const camera = this.cameras.main, w = this.scale.width, h = this.scale.height;
+    const camera = this.cameras.main, density = visitDemo ? 1 / this.scale.zoom : 1, w = this.scale.width / density, h = this.scale.height / density;
     if(visitDemo){
       const corners=roomConfig!.floorRegions.flatMap(r=>[{x:r.x-.5,y:r.y-.5},{x:r.x+r.w-.5,y:r.y-.5},{x:r.x-.5,y:r.y+r.d-.5},{x:r.x+r.w-.5,y:r.y+r.d-.5}]).map(p=>this.world(p));
       const minX=Math.min(...corners.map(p=>p.x)),maxX=Math.max(...corners.map(p=>p.x)),minY=Math.min(...corners.map(p=>p.y))-140,maxY=Math.max(...corners.map(p=>p.y));
-      camera.setZoom(Math.max(.55,Math.min(1.5,(w-80)/(maxX-minX+80),(h-120)/(maxY-minY+80)))*this.zoomFactor);
-      if(w<650||this.zoomFactor>1.25)camera.startFollow(this.actor,true,.12,.12);else{camera.stopFollow();camera.centerOn((minX+maxX)/2,(minY+maxY)/2);}
+      if(this.overview){
+        camera.setZoom(Math.max(.35,Math.min(1.5,(w-80)/(maxX-minX+80),(h-120)/(maxY-minY+80)))*density);
+        camera.stopFollow();camera.centerOn((minX+maxX)/2,(minY+maxY)/2);
+      }else{
+        camera.setZoom((w<650?1.65:2.25)*this.zoomFactor*density);
+        camera.startFollow(this.actor,true,.12,.12);
+      }
       return;
     }
     camera.setZoom(Math.max(w < 650 ? 1 : .65, Math.min(1.8, Math.min(w / 780, h / 570))) * this.zoomFactor);
     if (w < 650 || this.zoomFactor > 1.25) camera.startFollow(this.actor, true, .12, .12);
     else { camera.stopFollow(); camera.centerOn(480, visitDemo ? 290 : 275); }
   };
+  setOverview(value: boolean) { this.overview = value; this.cameraSize(); }
   zoom(amount: number) { this.zoomFactor = Math.max(.8, Math.min(1.6, this.zoomFactor + amount)); this.cameraSize(); }
   setMeasuring(value: boolean) { this.measuring = value; this.refresh(); }
   ping(id: string) {
@@ -167,9 +174,9 @@ export class Room extends Phaser.Scene {
     }
     const site=this.world(objects.find(o=>o.id==='site')!);
     this.ruler=this.add.graphics().setDepth(2500);
-    this.rulerText=this.add.text(site.x,site.y+48,'90 cm',{fontSize:'18px',color:'#ffe0a3',backgroundColor:'#21323c'}).setOrigin(.5).setDepth(2500);
+    this.rulerText=this.add.text(site.x,site.y+48,'90 cm',{fontSize:'18px',color:'#ffe0a3',backgroundColor:'#21323c'}).setOrigin(.5).setDepth(2500).setResolution(visitDemo?4:1);
     const jonas=this.world(objects.find(o=>o.id==='jonas')!);
-    this.jonasBubble=this.add.text(jonas.x+18,jonas.y-70,'Wohin nur mit den Kisten …',{fontSize:'13px',color:'#f0e5cd',backgroundColor:'#24353be8',padding:{x:8,y:5}}).setDepth(3000);
+    this.jonasBubble=this.add.text(jonas.x+18,jonas.y-70,'Wohin nur mit den Kisten …',{fontSize:'13px',color:'#f0e5cd',backgroundColor:'#24353be8',padding:{x:8,y:5}}).setDepth(3000).setResolution(visitDemo?4:1);
     this.actor=this.figure(0,0,false);this.resetPosition();
     this.scale.on('resize',this.cameraSize);
     this.input.on('pointerdown',(pointer:Phaser.Input.Pointer)=>{
@@ -202,11 +209,11 @@ export class Room extends Phaser.Scene {
     if(!this.actor)return;
     this.frames++;const elapsed=performance.now()-this.sampleStart;
     if(elapsed>=1000){this.hooks.metrics(`${Math.round(this.frames*1000/elapsed)} fps`);this.frames=0;this.sampleStart=performance.now();}
-    const cam=this.cameras.main;
+    const cam=this.cameras.main, screenScale=visitDemo?this.scale.zoom:1;
     const points:Hotspot[]=objects.filter(o=>!(o.id==='crates'&&this.hooks.state().quest.completed)).map(o=>{
-      const p=this.world({x:o.x+((o.w??1)-1)/2,y:o.y+((o.d??1)-1)/2});return{id:o.id,label:o.label,x:(p.x-cam.worldView.x)*cam.zoom,y:(p.y-Math.min(o.height/2,25)-cam.worldView.y)*cam.zoom};
+      const p=this.world({x:o.x+((o.w??1)-1)/2,y:o.y+((o.d??1)-1)/2});return{id:o.id,label:o.label,x:(p.x-cam.worldView.x)*cam.zoom*screenScale,y:(p.y-Math.min(o.height/2,25)-cam.worldView.y)*cam.zoom*screenScale};
     });
-    if(this.measuring){const p=this.world(objects.find(o=>o.id==='site')!);for(const [id,offset]of [['measure_start',-55],['measure_end',55]] as const)points.push({id,label:id==='measure_start'?'Anfang des Maßbands':'Ende des Maßbands',x:(p.x+offset-cam.worldView.x)*cam.zoom,y:(p.y+28-cam.worldView.y)*cam.zoom});}
+    if(this.measuring){const p=this.world(objects.find(o=>o.id==='site')!);for(const [id,offset]of [['measure_start',-55],['measure_end',55]] as const)points.push({id,label:id==='measure_start'?'Anfang des Maßbands':'Ende des Maßbands',x:(p.x+offset-cam.worldView.x)*cam.zoom*screenScale,y:(p.y+28-cam.worldView.y)*cam.zoom*screenScale});}
     this.hooks.hotspots(points);
     if(this.hooks.paused()||document.hidden)return;
     if(!this.target){

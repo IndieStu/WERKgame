@@ -255,6 +255,9 @@ $('menu-button').onclick = menu;
 if(visitDemo){
  const badge=document.createElement('div');badge.id='demo-badge';badge.textContent='WERK / HOLZWERKSTATT';document.getElementById('play')!.append(badge);
  const restart=document.createElement('button');restart.id='demo-restart';restart.textContent='Demo neu starten';restart.onclick=()=>{for(const d of [talk,panel,planner])if(d.open)d.close();$('new-game').click();};$('hud').append(restart);
+ const views=document.createElement('div');views.id='view-controls';$('play').append(views);
+ let overview=false;const view=addButton(views,'Gesamtansicht',()=>{overview=!overview;room.setOverview(overview);view.textContent=overview?'Zur Spielfigur':'Gesamtansicht';view.setAttribute('aria-pressed',String(overview));});view.setAttribute('aria-pressed','false');
+ addButton(views,'−',()=>room.zoom(-.2)).setAttribute('aria-label','Ansicht weiter');addButton(views,'+',()=>room.zoom(.2)).setAttribute('aria-label','Ansicht näher');
  const note=document.createElement('p');note.className='secondary';note.textContent='Spielbare Technikdemo · vereinfachter Raum nach Werkstattfotos. Messung und Bau sind simuliert.';$('start').append(note);
 }
 async function exportState(previous = false) {
@@ -360,7 +363,14 @@ room = new Room({ state: () => state, paused, interact: inspect, say, hotspots,
   metrics: text => { metrics = text; updateDebug(); },
   ready: () => { performance.mark('werk-ready'); document.body.dataset.ready = 'true'; },
 });
-new Phaser.Game({ type: Phaser.AUTO, parent: 'game', width: innerWidth, height: innerHeight, backgroundColor: '#19232b', pixelArt: true, roundPixels: true, scale: { mode: Phaser.Scale.RESIZE }, scene: room });
+// Phaser 4 uses backing-store dimensions plus Scale.NONE zoom for high-DPI rendering.
+// Keep DOM overlays in CSS pixels; pointer conversion remains the Scale Manager's job.
+const displayDensity = () => visitDemo ? Math.min(2, Math.max(1, devicePixelRatio || 1)) : 1;
+const density = displayDensity();
+const game = new Phaser.Game({ type: Phaser.AUTO, parent: 'game', width: Math.round(innerWidth*density), height: Math.round(innerHeight*density), backgroundColor: '#19232b', pixelArt: !visitDemo, roundPixels: !visitDemo, scale: { mode: visitDemo ? Phaser.Scale.NONE : Phaser.Scale.RESIZE, zoom: 1/density }, scene: room });
+if(visitDemo) window.addEventListener('resize', () => {
+  const d=displayDensity();game.scale.setZoom(1/d);game.scale.resize(Math.round(innerWidth*d),Math.round(innerHeight*d));
+});
 const keymap: Record<string, string> = { ArrowUp: 'up', w: 'up', ArrowRight: 'right', d: 'right', ArrowDown: 'down', s: 'down', ArrowLeft: 'left', a: 'left' };
 window.addEventListener('keydown', e => {
   if (e.key === 'F2') { e.preventDefault(); debugEnabled = true; debugPanel(); return; }

@@ -87,3 +87,9 @@ body[data-demo=visit] .world-hotspot { background: transparent; border-color: tr
 body[data-demo=visit] .world-hotspot:hover, body[data-demo=visit] .world-hotspot:focus-visible { border-color: #ffe0a1; background: #f3d69425; }
 body[data-demo=visit] .measure-point { background: #f6d48d; color: #302a21; border-color: #fff1c6; }
 @media(max-width:750px) { #demo-badge { top: 76px; left: 16px; font-size: 10px; } #demo-restart { font-size: .75rem; padding: 7px; } }
+
+/* Detailed raster art needs filtered downsampling; nearest sampling loses thin details. */
+body[data-demo=visit] #game canvas { image-rendering: auto; }
+#view-controls { position:absolute; left:16px; top:75px; display:flex; gap:8px; }
+body:has(#start:not([hidden])) #view-controls { display:none; }
+@media(max-width:650px) { #view-controls { top:auto; bottom:88px; left:12px; } }
