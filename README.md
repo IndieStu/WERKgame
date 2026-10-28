@@ -2,7 +2,7 @@
 
 Ein webbasiertes isometrisches Spiel verbindet virtuelle Aufträge mit sicheren Entdeckungsaufgaben im realen WERK Bremerhaven. Zielgruppe: Jugendliche von etwa 13 bis 18 Jahren.
 
-**Status:** Phase 1 ist technisch abgenommen, Creative Direction und Regalquest-Storyboard sind inhaltlich freigegeben. **Phase 2B – UX Gameplay Prototype ist implementiert und technisch geprüft**; das menschliche Review steht aus. **Phase 3 bleibt gesperrt.** Die langfristige Leitidee [Das WERK-Fest](docs/design/werk-fest.md) samt Architekturprüfung ist dokumentiert; zusätzliche Quests und Fest-Systeme werden jetzt nicht implementiert.
+**Status · 28.10.2026:** Phase 2B ist gemergt; **Phase 3 ist ausdrücklich freigegeben**. Zuerst werden Holzwerkstatt und 1. OG als isolierter Raum-/Orientierungstest vorbereitet, die reale Quest folgt später. Grundriss und Umfang liegen vor: A–R sind Wandreferenzen für Fotos; Treppenankunft, Flur und Holzwerkstatt werden begehbar, weitere Räume zunächst leer und geschlossen. [Aktueller Plan](docs/phase-3/plan.md) · [Raumaufnahme](docs/phase-3/raumgrundlage.md). Der vorhandene Spielbuild bleibt bis zur Blockout-Implementierung der technisch geprüfte Phase-2B-Prototyp.
 
 [Creative Direction / Player Experience](docs/design/creative-direction.md) · [Konkretes Regalquest-Storyboard](docs/design/regalquest-storyboard.md) · [Visuelle Inspiration](docs/design/visual-reference-01.md) · [Technischer Phase-2-Bericht](docs/phase-2/bericht.md)
 
@@ -54,4 +54,4 @@ Alle visuellen Maße bleiben vorläufig. Keine finalen WERK-Assets, keine reale 
 
 Die Projektlizenz ist noch nicht entschieden. Vorschlag: MIT für eigenen Code, getrennte Rechte für Content, Personen und Logos. Hinweise für enthaltene Drittsoftware liegen in [THIRD_PARTY_NOTICES.txt](public/THIRD_PARTY_NOTICES.txt) und werden mit dem statischen Build ausgeliefert.
 
-Nach Phase 2B stoppen und auf Review warten. Nur Placeholder, keine finalen Assets und kein Beginn von Phase 3. Technische Questlogik, spielbare Quest, pädagogische Qualität und unterhaltsame Player Experience werden getrennt beurteilt.
+Phase 3 beginnt mit Raumstruktur und Blockout; Produktionsmaße bleiben vorläufig. Weitere Werkstätten, Questketten und Fest-Systeme werden dadurch nicht automatisch freigegeben. Technische Questlogik, spielbare Quest, pädagogische Qualität und unterhaltsame Player Experience werden getrennt beurteilt.

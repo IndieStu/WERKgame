@@ -1,6 +1,6 @@
 # Entwicklungsplan und erster Vertical Slice
 
-Stand 21.10.2026. Phase 0 und die technische Phase 1 sind abgenommen. Creative Direction und Regalquest-Storyboard sind inhaltlich freigegeben. **Phase 2B – UX Gameplay Prototype ist implementiert und technisch geprüft**, mit Placeholdern und noch offenem menschlichen Review; **Phase 3 bleibt gesperrt**. Phaser + TypeScript + Vite bleiben gesetzt. Alle visuellen Produktionsmaße sind vorläufig. Ein Personentag entspricht etwa sechs konzentrierten Arbeitsstunden; Spannen sind Planungsannahmen, keine gemessenen Ist-Aufwände.
+Stand 21.10.2026. Phase 0 und die technische Phase 1 sind abgenommen. Creative Direction und Regalquest-Storyboard sind inhaltlich freigegeben. **Phase 2B – UX Gameplay Prototype ist implementiert und technisch geprüft**, mit Placeholdern und noch offenem menschlichen Review; **Phase 3 wurde anschließend ausdrücklich freigegeben; aktueller Einstieg ist Raum/Orientierung gemäß [Phase-3-Plan](phase-3/plan.md)**. Phaser + TypeScript + Vite bleiben gesetzt. Alle visuellen Produktionsmaße sind vorläufig. Ein Personentag entspricht etwa sechs konzentrierten Arbeitsstunden; Spannen sind Planungsannahmen, keine gemessenen Ist-Aufwände.
 
 Die langfristige Leitidee [Das WERK-Fest](design/werk-fest.md) ist aufgenommen: frei gewählte Interessen, mehrere Quests pro Raum, unabhängige sichtbare Weltbeiträge und spätere Content-Erweiterungen. Die dortige Architekturprüfung benennt aktuelle Grenzen und den erforderlichen Ausbau vor einer zweiten aktiven Quest. Sie gibt keine weiteren Quests oder Produktionsassets frei.
 
@@ -57,6 +57,8 @@ Status und technische Nachweise: [Phase-2-Bericht](phase-2/bericht.md). Technisc
 [Konkreter Umfang, Aufwand und Abnahme](phase-2b/plan.md) · [Reviewbericht](phase-2b/bericht.md) · [Nutzungstest](phase-2b/nutzungstest.md). Die freigegebene Experience wird in einem erfundenen Placeholder-Raum spielbar: Weltansicht, räumliche Gespräche/Erkundung/Messung, Material- und Verfahrenswahl, echtes Regalplanungs-Minispiel, sichtbare eingeräumte Kisten. Technische Prüfung und menschlicher Nutzungstest bleiben getrennte Nachweise. Danach stoppen und Review abwarten. Keine Fest-Gesamtwelt, weiteren Werkstätten oder Produktionsassets in diesem Schritt.
 
 ## Phase 3 – Eine reale Werkstatt · 6–10 PT
+
+Status 28.10.2026: freigegeben. Zunächst [isolierter Raum-/Orientierungstest im 1. OG](phase-3/plan.md), danach die reale Quest. A–R bezeichnen Wände der Holzwerkstatt; Treppenankunft/Flur/Werkstatt begehbar, andere Räume zunächst leere geschlossene Hüllen. Frühere Sperrvermerke dokumentieren den damaligen Freigabepunkt und sind durch die ausdrückliche Phase-3-Freigabe überholt.
 
 - **Ziel:** reale Entdeckung und virtuelle Entscheidung vor Ort verbinden.
 - **Deliverables:** dokumentierter Raum, kompakter wiedererkennbarer Blockout, eine echte sichere Regal-/Materialquest und Stationskarten.

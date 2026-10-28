@@ -1,0 +1,172 @@
+{
+  "id": "first_floor_survey",
+  "revision": 1,
+  "status": "planning_only_not_runtime_geometry",
+  "date": "2026-10-28",
+  "source": {
+    "filename": "Holzwerkstatt_Vorlage.png",
+    "kind": "user_supplied_floor_plan",
+    "originalCopiedToRepository": false
+  },
+  "floor": 1,
+  "scope": {
+    "firstMilestone": "Room layout and orientation before workshop quest",
+    "walkableAreas": [
+      "stair_landing",
+      "first_floor_corridor",
+      "woodshop"
+    ],
+    "futureAreas": "Other first-floor rooms: empty shells, doors closed in initial test",
+    "questImplementation": "deferred_until_room_review"
+  },
+  "wallReferences": [
+    {
+      "id": "woodshop_wall_a",
+      "photoLabel": "A",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_b",
+      "photoLabel": "B",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_c",
+      "photoLabel": "C",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_d",
+      "photoLabel": "D",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_e",
+      "photoLabel": "E",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_f",
+      "photoLabel": "F",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_g",
+      "photoLabel": "G",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_h",
+      "photoLabel": "H",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_i",
+      "photoLabel": "I",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_j",
+      "photoLabel": "J",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_k",
+      "photoLabel": "K",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_l",
+      "photoLabel": "L",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_m",
+      "photoLabel": "M",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_n",
+      "photoLabel": "N",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_o",
+      "photoLabel": "O",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_p",
+      "photoLabel": "P",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_q",
+      "photoLabel": "Q",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    },
+    {
+      "id": "woodshop_wall_r",
+      "photoLabel": "R",
+      "meaning": "wall_reference_not_object_id",
+      "photos": []
+    }
+  ],
+  "areas": [
+    {
+      "id": "stair_landing",
+      "label": "Treppenankunft 1. OG",
+      "initialAccess": "open",
+      "geometryStatus": "derive_from_plan_then_review"
+    },
+    {
+      "id": "first_floor_corridor",
+      "label": "Flur 1. OG",
+      "initialAccess": "open",
+      "geometryStatus": "derive_from_plan_then_review"
+    },
+    {
+      "id": "woodshop",
+      "label": "Holzwerkstatt, Bereiche mit Wandreferenzen A–R",
+      "initialAccess": "open",
+      "geometryStatus": "derive_from_plan_then_review",
+      "interiorStatus": "photos_pending"
+    },
+    {
+      "id": "first_floor_future",
+      "label": "Weitere Räume des 1. OG",
+      "initialAccess": "closed",
+      "interiorStatus": "empty_shells_only",
+      "geometryStatus": "individual_room_ids_after_plan_trace"
+    }
+  ],
+  "constraints": {
+    "visualProductionDimensions": "provisional",
+    "machineFootprints": "not_confirmed",
+    "physicalStation": "not_yet_selected",
+    "photosRequiredForFirstLayout": false
+  },
+  "reviewNeeded": [
+    "wall and door trace",
+    "door passage positions",
+    "initial spawn at stair landing",
+    "unobstructed routes after furnishing"
+  ]
+}
